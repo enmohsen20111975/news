@@ -1,6 +1,7 @@
 import json
 import os
 import subprocess
+import sys
 from datetime import datetime
 from pathlib import Path
 import sqlite3
@@ -16,6 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / '.env')
 DB_PATH = ROOT / 'data' / 'news.db'
 LOG_PATH = ROOT / 'data' / 'agent.log'
+PID_PATH = ROOT / 'data' / 'agent.pid'
 UI_DIR = ROOT / 'ui'
 IMAGES_DIR = ROOT / 'data' / 'telegram_images'
 CHANNELS_FILE = ROOT / 'data' / 'telegram_channels.json'
@@ -126,6 +128,24 @@ def _last_log_lines(limit: int = 5) -> list[str]:
 
 
 def _process_running() -> bool:
+    if PID_PATH.exists():
+        try:
+            pid = int(PID_PATH.read_text(encoding='ascii').strip())
+            if os.name == 'nt':
+                result = subprocess.run(
+                    ['tasklist', '/FI', f'PID eq {pid}', '/FO', 'CSV', '/NH'],
+                    capture_output=True, text=True,
+                )
+                return result.returncode == 0 and f'"{pid}"' in result.stdout
+            os.kill(pid, 0)
+            return True
+        except (FileNotFoundError, ValueError, OSError):
+            try:
+                PID_PATH.unlink()
+            except OSError:
+                pass
+    if os.name == 'nt':
+        return False
     try:
         result = subprocess.run(
             ['bash', '-lc', "pgrep -af 'python3 main.py' | grep -v grep >/dev/null 2>&1"],
@@ -409,19 +429,32 @@ def start_monitor():
     if _process_running():
         return JSONResponse({'ok': True, 'running': True, 'message': 'المشروع يعمل بالفعل'})
 
-    subprocess.Popen(
-        ["bash", "-lc", "source .venv/bin/activate && python3 main.py >> data/agent.log 2>&1"],
-        cwd=str(ROOT),
-        start_new_session=True,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+    LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    log_file = LOG_PATH.open('a', encoding='utf-8')
+    process = subprocess.Popen(
+        [sys.executable, str(ROOT / 'main.py')], cwd=str(ROOT),
+        start_new_session=True, stdout=log_file, stderr=subprocess.STDOUT,
     )
+    PID_PATH.write_text(str(process.pid), encoding='ascii')
+    log_file.close()
     return JSONResponse({'ok': True, 'running': True, 'message': 'تم تشغيل المشروع'})
 
 
 @app.post('/api/monitor/stop')
 def stop_monitor():
-    subprocess.run(['bash', '-lc', "pkill -f 'python3 main.py' || true"], cwd=str(ROOT), capture_output=True)
+    if PID_PATH.exists():
+        try:
+            pid = int(PID_PATH.read_text(encoding='ascii').strip())
+            if os.name == 'nt':
+                subprocess.run(['taskkill', '/PID', str(pid), '/T', '/F'], capture_output=True)
+            else:
+                os.kill(pid, 15)
+        except (ValueError, OSError):
+            pass
+        try:
+            PID_PATH.unlink()
+        except OSError:
+            pass
     return JSONResponse({'ok': True, 'running': False, 'message': 'تم إيقاف المشروع'})
 
 

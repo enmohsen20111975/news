@@ -113,6 +113,12 @@ class ProductionSender:
 
     def _format_recommendation(self, rec: dict) -> dict:
         """وَفّر توصية لـ API."""
+        action = rec.get('action', 'BUY')
+        action_label = {'BUY': 'شراء', 'SELL': 'بيع', 'HOLD': 'احتفاظ'}.get(action, action)
+        identity = f"السهم: {rec.get('stock_symbol', '')} | التوصية: {action_label}"
+        if rec.get('recommendation_type'):
+            identity += f" | النوع: {rec['recommendation_type']}"
+        reason = f"{identity}\n{rec.get('recommendation_reason') or ''}".strip()
         return {
             'stock_symbol': rec.get('stock_symbol', ''),
             'stock_name_ar': rec.get('stock_name_ar'),
@@ -127,7 +133,7 @@ class ProductionSender:
             'support_level': rec.get('support_level'),
             'resistance_level': rec.get('resistance_level'),
             'technical_analysis': rec.get('technical_analysis'),
-            'recommendation_reason': rec.get('recommendation_reason'),
+            'recommendation_reason': reason,
         }
 
     def _format_for_site(self, news: dict) -> dict:

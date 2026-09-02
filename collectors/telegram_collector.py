@@ -73,11 +73,20 @@ class TelegramCollector:
             return False
         try:
             from telethon import TelegramClient
-            from telethon.errors import FloodWaitError, AuthKeyError
+            try:
+                from telethon.errors import FloodWaitError
+            except ImportError:
+                FloodWaitError = Exception
+
+            self._flood_wait = FloodWaitError
+            if self.use_bot and self.bot_token:
+                self.client = TelegramClient(self._bot_session_path, int(self.api_id), self.api_hash)
+                await self.client.start(bot_token=self.bot_token)
+                self._ready = True
+                return True
 
             # استخدم جلسة المستخدم للقراءة دائماً
             self.client = TelegramClient(self._read_session_path, int(self.api_id), self.api_hash)
-            self._flood_wait = FloodWaitError
 
             # جرب الاتصال بالجلسة المحفوظة
             await self.client.connect()
@@ -99,7 +108,7 @@ class TelegramCollector:
             self._ready = True
             log.info(f"✓ Telegram متصل — {len(self.channels)} قناة")
             return True
-        except (Exception, AuthKeyError) as e:
+        except Exception as e:
             log.error(f"خطأ في الاتصال بـ Telegram: {e}")
             # إذا كانت الجلسة فاسدة، امسحها وأعد المحاولة مرة واحدة
             if 'Session' in str(type(e).__name__) or 'auth' in str(e).lower():

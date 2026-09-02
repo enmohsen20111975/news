@@ -79,6 +79,8 @@ _ENGLISH_NOISE = {
     'TODAY', 'BREAKING', 'EGP', 'USA', 'UK', 'PDF', 'CEO', 'CFO', 'CTO',
     'IPO', 'GDP', 'CPI', 'FRA', 'CBE', 'WWW', 'COM',
 }
+_GENERIC_HINTS = {'الأول', 'العربي', 'الجزيرة', 'الاستثمار', 'التجاري', 'المصري', 'المصرية'}
+_NON_EGX_TICKERS = {'QFBQ', 'QGRI', 'LONG', 'LINK'}
 
 # Common Arabic company name patterns (loose matching for news)
 _ARABIC_COMPANY_MAP = [
@@ -109,7 +111,11 @@ def _extract_tickers_enhanced(original_text: str, clean_text: str, text_lower: s
 
     # 1. Keyword matching
     for hint, ticker in TICKER_HINTS.items():
-        if hint in text_lower or hint in clean_text:
+        ticker = str(ticker).upper()
+        if (not ticker.isalpha() or ticker in _NON_EGX_TICKERS
+                or hint in _GENERIC_HINTS):
+            continue
+        if _re_module.search(rf'(?<!\w){_re_module.escape(hint)}(?!\w)', clean_text, _re_module.IGNORECASE):
             if ticker not in tickers:
                 tickers.append(ticker)
 
@@ -131,12 +137,6 @@ def _extract_tickers_enhanced(original_text: str, clean_text: str, text_lower: s
         if pattern in clean_text or pattern.lower() in text_lower:
             if ticker not in tickers:
                 tickers.append(ticker)
-
-    # 4. Market indices
-    for idx_name in ['EGX30', 'EGX70', 'EGX100']:
-        if idx_name in original_text or idx_name in clean_text:
-            if idx_name not in tickers:
-                tickers.append(idx_name)
 
     return tickers
 

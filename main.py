@@ -15,6 +15,10 @@ import json
 from pathlib import Path
 from datetime import datetime, timedelta
 
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, 'reconfigure'):
+        _stream.reconfigure(encoding='utf-8', errors='replace')
+
 # تأكد إن المسار صح
 sys.path.insert(0, str(Path(__file__).parent))
 

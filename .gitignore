@@ -49,6 +49,10 @@ data/*.sqlite*
 *.log
 logs/
 data/agent.log
+data/agent.console.*
+data/dashboard.console.*
+data/agent.pid
+data/*.bak*
 data/.source_state.json
 
 # ─── OS junk ───

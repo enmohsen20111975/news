@@ -117,6 +117,17 @@ class NewsStore:
                 self.conn.execute(query)
         self.conn.commit()
 
+    def close(self):
+        if self.conn is not None:
+            self.conn.close()
+            self.conn = None
+
+    def __del__(self):
+        try:
+            self.close()
+        except Exception:
+            pass
+
     def _make_id(self, text: str) -> str:
         return hashlib.sha256(text.encode()).hexdigest()[:16]
 
