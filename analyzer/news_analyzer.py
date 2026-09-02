@@ -65,6 +65,82 @@ IMPORTANCE_KEYWORDS = {
     'سوق': 3, 'بورصة': 3,
 }
 
+# ═══════════════════════════════════════════════════════════════════════
+# Enhanced Ticker Extraction (2026-09-02)
+# ═══════════════════════════════════════════════════════════════════════
+# Owner directive: "إصلاح استخراج وتخزين الـ tickers في الـ news agent"
+# Fixes the issue where news agent wasn't extracting tickers from Arabic news.
+
+import re as _re_module
+
+# English words that look like tickers but aren't
+_ENGLISH_NOISE = {
+    'HTTP', 'HTTPS', 'POST', 'NEWS', 'INFO', 'HTML', 'JSON', 'API', 'URL',
+    'TODAY', 'BREAKING', 'EGP', 'USA', 'UK', 'PDF', 'CEO', 'CFO', 'CTO',
+    'IPO', 'GDP', 'CPI', 'FRA', 'CBE', 'WWW', 'COM',
+}
+
+# Common Arabic company name patterns (loose matching for news)
+_ARABIC_COMPANY_MAP = [
+    ('البنك التجاري', 'COMI'), ('التجاري الدولي', 'COMI'), ('CIB', 'COMI'),
+    ('طلعت مصطفى', 'TMGH'), ('أوراسكوم', 'ORHD'), ('السويدي', 'SWDY'),
+    ('أبو قير', 'ABUK'), ('الشرقية للدخان', 'EAST'),
+    ('فوري', 'FWRY'), ('المصرية للاتصالات', 'ETEL'), ('الاتصالات', 'ETEL'),
+    ('مدينة نصر', 'MNHD'), ('هيليوبوليس', 'HELI'), ('سوديك', 'OCDI'),
+    ('إيبيكو', 'EIPH'), ('سيدي كرير', 'SKPC'), ('موبكو', 'MFPC'),
+    ('البنك الأهلي', 'BIEH'), ('البنك السعودي', 'SAIB'),
+    ('الهرم', 'HRHO'), ('الإسكندرية', 'ISPH'), ('القاهرة للدواجن', 'CPCI'),
+    ('دلتا للسكر', 'DAPH'), ('أجوا', 'AJWA'),
+    ('القاهرة للاستثمار', 'CCAP'), ('كابيتال للاستثمار', 'CCAP'),
+]
+
+
+def _extract_tickers_enhanced(original_text: str, clean_text: str, text_lower: str) -> list:
+    """
+    استخراج tickers من نص الخبر — محسّن (2026-09-02).
+
+    يجمع بين:
+    1. Keyword matching (from TICKER_HINTS)
+    2. Regex patterns (XXX.CA, XXX-CA, #XXX, XXX-EGP)
+    3. Arabic company name loose matching
+    4. Market indices (EGX30, EGX70, EGX100)
+    """
+    tickers = []
+
+    # 1. Keyword matching
+    for hint, ticker in TICKER_HINTS.items():
+        if hint in text_lower or hint in clean_text:
+            if ticker not in tickers:
+                tickers.append(ticker)
+
+    # 2. Regex patterns for ticker formats
+    ticker_patterns = [
+        r'\b([A-Z]{3,5})\.CA\b',
+        r'\b([A-Z]{3,5})-CA\b',
+        r'\b([A-Z]{3,5})-EGP\b',
+        r'#([A-Z]{3,5})\b',
+    ]
+    for pattern in ticker_patterns:
+        for m in _re_module.finditer(pattern, original_text):
+            tk = m.group(1)
+            if tk not in _ENGLISH_NOISE and tk not in tickers:
+                tickers.append(tk)
+
+    # 3. Arabic company name loose matching
+    for pattern, ticker in _ARABIC_COMPANY_MAP:
+        if pattern in clean_text or pattern.lower() in text_lower:
+            if ticker not in tickers:
+                tickers.append(ticker)
+
+    # 4. Market indices
+    for idx_name in ['EGX30', 'EGX70', 'EGX100']:
+        if idx_name in original_text or idx_name in clean_text:
+            if idx_name not in tickers:
+                tickers.append(idx_name)
+
+    return tickers
+
+
 SENTIMENT_POSITIVE = [
     'ارتفع', 'صعد', 'قفز', 'نمو', 'أرباح', 'مكاسب', 'اتفاقية',
     'استحواذ', 'توزيع', 'أسهم مجانية', 'رفع', 'نجاح', 'تميز'
@@ -149,12 +225,8 @@ class NewsAnalyzer:
         if len(clean_text.strip()) < 20:
             is_spam = True
 
-        # 3. استخراج tickers
-        tickers = []
-        for hint, ticker in TICKER_HINTS.items():
-            if hint in text_lower or hint in clean_text:
-                if ticker not in tickers:
-                    tickers.append(ticker)
+        # 3. استخراج tickers (محسّن — 2026-09-02)
+        tickers = _extract_tickers_enhanced(original_text, clean_text, text_lower)
 
         # 4. حساب الأهمية
         importance = 10
@@ -255,12 +327,8 @@ class NewsAnalyzer:
         if len(clean_text.strip()) < 20:
             is_spam = True
 
-        # 3. استخراج tickers
-        tickers = []
-        for hint, ticker in TICKER_HINTS.items():
-            if hint in text_lower or hint in clean_text:
-                if ticker not in tickers:
-                    tickers.append(ticker)
+        # 3. استخراج tickers (محسّن — 2026-09-02)
+        tickers = _extract_tickers_enhanced(original_text, clean_text, text_lower)
 
         # 4. حساب الأهمية
         importance = 10
