@@ -245,6 +245,13 @@ class NewsAnalyzer:
         # 4. استخراج tickers (محسّن — 2026-09-02)
         tickers = _extract_tickers_enhanced(original_text, clean_text, text_lower)
 
+        # دمج tickers من Ollama AI لو موجودة
+        ai_tickers = ai_meta.get('tickers', [])
+        if ai_tickers:
+            for t in ai_tickers:
+                if t not in tickers:
+                    tickers.append(t)
+
         # 5. حساب الأهمية
         importance = 10
         for kw, weight in IMPORTANCE_KEYWORDS.items():
@@ -274,6 +281,8 @@ class NewsAnalyzer:
         ai_importance = ai_meta.get('importance')
         ai_sentiment = ai_meta.get('sentiment')
         ai_impact = ai_meta.get('impact_type')
+        ai_event_type = ai_meta.get('event_type')
+        ai_reasoning = ai_meta.get('reasoning')
 
         if ai_sentiment in ('bullish', 'bearish', 'neutral'):
             sentiment = ai_sentiment
@@ -294,9 +303,10 @@ class NewsAnalyzer:
             'importance': importance if is_valid else 0,
             'sentiment': sentiment if is_valid else 'neutral',
             'impact_type': impact_type if is_valid else 'general',
+            'event_type': ai_event_type or impact_type if is_valid else 'general',
             'summary_ar': clean_text.strip() if is_valid else '',
             'summary_en': ai_meta.get('summary_en', ''),
-            'reasoning': 'ai+python' if ai_meta else 'python_filtered',
+            'reasoning': ai_reasoning or ('ai+python' if ai_meta else 'python_filtered'),
             'source': 'ollama+python',
         }
 
@@ -349,6 +359,8 @@ class NewsAnalyzer:
   "importance": 0-100,
   "sentiment": "bullish/bearish/neutral",
   "impact_type": "earnings/dividend/ipo/acquisition/macro/regulation/price_move/general",
+  "event_type": "IPO_SUBSCRIPTION|DIVIDEND_EX_DATE|EARNINGS_BEAT|EARNINGS_MISS|MA_ACQUISITION|REGULATORY_APPROVAL|STOCK_SPLIT|MANAGEMENT_CHANGE|CONTRACT_AWARD|EXPANSION|FRAUD|HALT|GENERAL",
+  "reasoning": "سبب قصير بالعربي ليه الخبر مهم أو مش مهم وإيه تأثيره المتوقع",
   "affected_tickers": ["COMI", ...]
 }}
 
@@ -365,12 +377,13 @@ JSON فقط بدون أي نص إضافي."""
                 data = json.loads(match.group())
                 data.setdefault('clean_text', original_text)
                 data.setdefault('is_valid_news', True)
-                if not data.get('affected_tickers'):
-                    data['affected_tickers'] = []
+                if data.get('affected_tickers') and not data.get('tickers'):
+                    data['tickers'] = data.pop('affected_tickers', [])
+                data.setdefault('tickers', [])
                 return data
             except json.JSONDecodeError:
                 pass
-        return {'clean_text': original_text}
+        return {'clean_text': original_text, 'tickers': []}
 
     async def _analyze_with_keywords(self, text: str, news: dict) -> dict:
         """تحليل بسيط بالكلمات المفتاحية — لا يحتاج Ollama"""

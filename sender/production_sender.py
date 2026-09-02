@@ -192,6 +192,8 @@ class ProductionSender:
             'importance':  news.get('importance', 0),
             'sentiment':   news.get('sentiment', 'neutral'),
             'impact_type': news.get('impact_type', 'general'),
+            'event_type':  news.get('event_type', news.get('impact_type', 'general')),
+            'reasoning':   analysis.get('reasoning', '') or news.get('reasoning', ''),
             'market':      'EGX',
             'image_paths': all_images,
             'ocr_text':    news.get('ocr_text', ''),
