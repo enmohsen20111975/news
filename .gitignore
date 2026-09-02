@@ -1,0 +1,23 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+
+# Data files
+data/agent.log
+data/news.db-shm
+data/news.db-wal
+data/news.db
+data/.source_state.json
+data/telegram_ui_meme.session
+data/telegram_images/
+
+# IDE
+.idea/
+.vscode/
