@@ -57,9 +57,13 @@ GET /api/news-feed -> website news UI
 - `collectors/rss_collector.py`: RSS feeds and feed media.
 - `collectors/web_scraper.py`: web articles, Open Graph images, and ticker news.
 - `collectors/egyptian_sources.py`: specialized Egyptian-market sites (currently Alborsaa News — alborsaanews.com — قسم البورصة والشركات). Disabled by default; enable with `ENABLE_EGYPTIAN_SOURCES=1`. Sources under grace period require `importance >= NEW_SOURCE_MIN_IMPORTANCE` before publishing.
+- `collectors/keyword_filter.py`: EGX relevance gate (keyword → ticker → AI fallback) applied by all collectors.
+- `config/sources.py`: central source registry; maps each channel/feed/site to its display name on the live site.
 - `data/news_store.py`: local SQLite persistence and migrations.
 - `analyzer/news_analyzer.py`: Ollama text analysis and fallback model.
 - `analyzer/vision_analyzer.py`: optional image analysis/OCR.
+- `analyzer/recommendation_aggregator.py`: يجمع توصيات الأسهم من قنوات
+  تيليجرام/ويب المتعددة، يحلل كل سهم بـ Ollama، ويطلع توصية موحّدة.
 - `sender/production_sender.py`: authenticated JSON delivery to the live site.
 - `ui/dashboard.py`: local monitoring API/UI.
 - `main.py`: collect -> analyze -> send orchestration.
@@ -139,6 +143,57 @@ Important variables are in `.env`:
 - Collection: `COLLECTION_INTERVAL_MINUTES`, `MIN_IMPORTANCE_SCORE`, `MAX_NEWS_PER_BATCH`
 - Egyptian sources: `ENABLE_EGYPTIAN_SOURCES`, `ALBORSAA_ENABLED`, `EGYPTIAN_DELAY_SECONDS`,
   `NEW_SOURCE_GRACE_DAYS`, `NEW_SOURCE_MIN_IMPORTANCE`
+- Content filtering: `KEYWORD_FILTER_USE_AI` (1 = use Ollama fallback when keywords miss)
+
+## Source Registry
+
+Every news source has a display name that appears on the live site (`market_news.source`).
+All Telegram channels collapse to a single `تيليجرام` label so the UI does not show
+channel handles like `@sahmmisr`. Other sources keep their real brand name.
+
+The registry lives at `config/sources.json` and is loaded by `config/sources.py`. It
+covers: Telegram (one display name for all channels), RSS feeds (مباشر، أرقام، أموال الغد،
+اليوم السابع - اقتصاد), and web sources (جريدة البورصة، بحث ويب).
+
+## EGX Relevance Filter
+
+`collectors/keyword_filter.py` gates new news before it enters `news.db`. Three layers:
+
+1. Hard keyword match — Arabic + English terms related to EGX (البورصة، الإدراج، التوزيعات،
+   EGX30، COMI, COMI.CA, FRA, etc).
+2. Ticker symbol scan — explicit list of EGX-listed tickers plus a regex for `XXX.CA`.
+3. AI fallback (`OLLAMA_MODEL` → `OLLAMA_FALLBACK_MODEL`) — used only when the keyword
+   layer misses. Asks Ollama `yes/no` whether the text is about EGX. If AI is disabled
+   (`KEYWORD_FILTER_USE_AI=0`) or unavailable, a short-text fallback (`len < 300`) keeps
+   very short items so we do not drop potentially valid flashes.
+
+The filter is applied inside each collector so unactionable content never reaches the
+local DB or the production sender.
+
+## Expert Recommendations Aggregator
+
+`analyzer/recommendation_aggregator.py` reads analyzed news from `news.db`, groups
+articles that mention the same ticker and look like buy/sell/hold signals, then asks
+Ollama to produce **one consolidated recommendation per stock**. The result is saved
+in `expert_recommendations` and pushed to GLMinvestment via
+`POST /api/expert-recommendations/import`.
+
+Flow per cycle (after `_analyze_pending`):
+
+1. Pull `status='analyzed'` news from the last `RECOMMENDATION_LOOKBACK_HOURS`
+   (default 48h).
+2. Filter for recommendation hints`: توصية، شراء، بيع، دعم، مقاومة، استهدف، وقف، ...
+3. Group by ticker (uses `tickers` column first, then a regex over title/body).
+4. For each ticker with `>= RECOMMENDATION_MIN_SOURCES` items, ask Ollama to extract
+   a structured JSON recommendation (action, entry, targets, stop_loss, technical
+   analysis).
+5. If Ollama is unavailable, fall back to a numeric regex extractor that produces
+   a cautious `aggregated_fallback` recommendation.
+6. Save to `expert_recommendations` (deduped on stock_symbol+session_date+entry_price)
+   and POST to the production site. Successful ones are marked `sent_ok=1`.
+
+Output feeds the GLMinvestment **Expert Recommendations** panel alongside the manual
+expert entries seeded by `scripts/seed-expert-recommendations.js`.
 
 ## Egyptian Sources Collector
 

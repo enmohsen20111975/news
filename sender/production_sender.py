@@ -29,6 +29,9 @@ class ProductionSender:
         self.local_news_endpoint = self.endpoints[0]
         self.api_key = os.getenv('PRODUCTION_API_KEY', '')
 
+        self.base_urls = [e.rsplit('/api/', 1)[0] for e in self.endpoints]
+        self.base_urls = list(dict.fromkeys(self.base_urls))
+
     async def send_batch(self, items: list[dict]) -> int:
         """إرسال مباشرة لـ GLMinvestment (محلياً وللسيرفر الإنتاجي معاً)"""
         if not items:
@@ -66,6 +69,66 @@ class ProductionSender:
                 sent += 1
 
         return sent
+
+    async def send_recommendation(self, rec: dict) -> str | None:
+        """أرسل توصية خبراء واحدة لـ /api/expert-recommendations/import."""
+        if not rec:
+            return None
+        items = [self._format_recommendation(rec)]
+        payload = {
+            'session_date': rec.get('session_date') or datetime.now().strftime('%Y-%m-%d'),
+            'session_type': 'صباحية',
+            'expert_name': rec.get('expert_name', 'محلل محلي'),
+            'expert_source': rec.get('expert_source', 'news_agent'),
+            'recommendations': items,
+        }
+        headers = {
+            'Content-Type': 'application/json',
+            'x-agent-key': self.api_key,
+            'X-News-Agent-Key': self.api_key,
+        }
+        for base in self.base_urls:
+            import_url = base.rstrip('/') + '/api/expert-recommendations/import'
+            try:
+                async with httpx.AsyncClient(timeout=15.0) as client:
+                    resp = await client.post(import_url, json=payload, headers=headers)
+                    if resp.status_code in (200, 201):
+                        data = resp.json()
+                        recs = data.get('recommendations') or []
+                        if recs:
+                            rec_id = recs[0].get('id')
+                            log.info(f'  ✓ توصية ({import_url}): {rec.get("stock_symbol")} → {rec_id}')
+                            return rec_id
+                        errors = data.get('errors') or []
+                        log.warning(
+                            f'الخادم رفض التوصية ({import_url}): {rec.get("stock_symbol")} — {errors}'
+                        )
+                        return None
+                    log.warning(f'الخادم {import_url} رجّع {resp.status_code}: {resp.text[:120]}')
+            except httpx.ConnectError:
+                log.debug(f'⚠️ تعذر الاتصال بـ {import_url}')
+            except Exception as e:
+                log.error(f'خطأ إرسال توصية إلى {import_url}: {e}')
+        return None
+
+    def _format_recommendation(self, rec: dict) -> dict:
+        """وَفّر توصية لـ API."""
+        return {
+            'stock_symbol': rec.get('stock_symbol', ''),
+            'stock_name_ar': rec.get('stock_name_ar'),
+            'action': rec.get('action', 'BUY'),
+            'recommendation_type': rec.get('recommendation_type'),
+            'entry_price': rec.get('entry_price'),
+            'entry_price_from': rec.get('entry_price_from'),
+            'entry_price_to': rec.get('entry_price_to'),
+            'target_price': rec.get('target_price'),
+            'target_price_2': rec.get('target_price_2'),
+            'stop_loss': rec.get('stop_loss'),
+            'support_level': rec.get('support_level'),
+            'resistance_level': rec.get('resistance_level'),
+            'technical_analysis': rec.get('technical_analysis'),
+            'recommendation_reason': rec.get('recommendation_reason'),
+        }
 
     def _format_for_site(self, news: dict) -> dict:
         """تنسيق الخبر لـ GLMinvestment"""

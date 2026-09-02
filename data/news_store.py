@@ -50,6 +50,38 @@ class NewsStore:
             CREATE INDEX IF NOT EXISTS idx_news_status    ON news(status);
             CREATE INDEX IF NOT EXISTS idx_news_collected ON news(collected_at);
             CREATE INDEX IF NOT EXISTS idx_news_tickers   ON news(tickers);
+
+            CREATE TABLE IF NOT EXISTS expert_recommendations (
+                id          TEXT PRIMARY KEY,
+                stock_symbol TEXT NOT NULL,
+                stock_name_ar TEXT,
+                expert_name TEXT NOT NULL,
+                expert_source TEXT,
+                action      TEXT NOT NULL DEFAULT 'BUY',
+                recommendation_type TEXT,
+                entry_price REAL,
+                entry_price_from REAL,
+                entry_price_to   REAL,
+                target_price     REAL,
+                target_price_2   REAL,
+                stop_loss        REAL,
+                support_level    REAL,
+                resistance_level REAL,
+                technical_analysis TEXT,
+                recommendation_reason TEXT,
+                session_date TEXT,
+                notes        TEXT,
+                source_news_ids TEXT,
+                status       TEXT NOT NULL DEFAULT 'PENDING',
+                sent_ok      INTEGER DEFAULT 0,
+                sent_at      TEXT,
+                remote_id    TEXT,
+                created_at   TEXT NOT NULL DEFAULT (datetime('now'))
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_rec_symbol  ON expert_recommendations(stock_symbol);
+            CREATE INDEX IF NOT EXISTS idx_rec_session ON expert_recommendations(session_date);
+            CREATE INDEX IF NOT EXISTS idx_rec_status  ON expert_recommendations(status);
         ''')
 
         columns = {
@@ -169,3 +201,86 @@ class NewsStore:
             FROM news
         ''').fetchone()
         return dict(row) if row else {}
+
+    def add_recommendation(self, rec: dict) -> str | None:
+        """أضف توصية خبراء — يميز التكرار بناءً على stock_symbol + session_date + entry_price."""
+        session_date = rec.get('session_date') or ''
+        symbol = rec.get('stock_symbol') or ''
+        entry = rec.get('entry_price') or 0
+        rid_seed = f"{symbol}|{session_date}|{entry}"
+        rid = hashlib.sha256(rid_seed.encode()).hexdigest()[:16]
+        try:
+            self.conn.execute('''
+                INSERT INTO expert_recommendations (
+                    id, stock_symbol, stock_name_ar, expert_name, expert_source,
+                    action, recommendation_type,
+                    entry_price, entry_price_from, entry_price_to,
+                    target_price, target_price_2, stop_loss,
+                    support_level, resistance_level,
+                    technical_analysis, recommendation_reason,
+                    session_date, notes, source_news_ids, status
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                rid,
+                rec.get('stock_symbol', ''),
+                rec.get('stock_name_ar'),
+                rec.get('expert_name', 'محلل محلي'),
+                rec.get('expert_source', 'news_agent'),
+                rec.get('action', 'BUY'),
+                rec.get('recommendation_type', 'detailed'),
+                rec.get('entry_price'),
+                rec.get('entry_price_from'),
+                rec.get('entry_price_to'),
+                rec.get('target_price'),
+                rec.get('target_price_2'),
+                rec.get('stop_loss'),
+                rec.get('support_level'),
+                rec.get('resistance_level'),
+                rec.get('technical_analysis'),
+                rec.get('recommendation_reason'),
+                rec.get('session_date'),
+                rec.get('notes'),
+                json.dumps(rec.get('source_news_ids') or [], ensure_ascii=False),
+                rec.get('status', 'PENDING'),
+            ))
+            self.conn.commit()
+            return rid
+        except sqlite3.IntegrityError:
+            return None
+
+    def get_unsent_recommendations(self, limit: int = 50) -> list[dict]:
+        rows = self.conn.execute(
+            'SELECT * FROM expert_recommendations WHERE sent_ok = 0 ORDER BY created_at ASC LIMIT ?',
+            (limit,),
+        ).fetchall()
+        return [dict(r) for r in rows]
+
+    def mark_recommendations_sent(self, ids: list[str]):
+        if not ids:
+            return
+        ph = ','.join('?' * len(ids))
+        self.conn.execute(
+            f'UPDATE expert_recommendations SET sent_ok = 1, sent_at = datetime("now") WHERE id IN ({ph})',
+            ids,
+        )
+        self.conn.commit()
+
+    def update_recommendation_remote_id(self, local_id: str, remote_id: str):
+        self.conn.execute(
+            'UPDATE expert_recommendations SET remote_id = ? WHERE id = ?',
+            (remote_id, local_id),
+        )
+        self.conn.commit()
+
+    def get_recommendation_candidates(self, since_hours: int = 48) -> list[dict]:
+        """يرجع الأخبار المحللة اللي ممكن تحتوي توصيات (للمجمّع)."""
+        rows = self.conn.execute('''
+            SELECT id, source, title, body, tickers, raw_analysis, importance,
+                   collected_at
+              FROM news
+             WHERE status = 'analyzed'
+               AND collected_at >= datetime('now', ?)
+             ORDER BY collected_at DESC
+             LIMIT 200
+        ''', (f'-{since_hours} hours',)).fetchall()
+        return [dict(r) for r in rows]

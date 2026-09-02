@@ -12,6 +12,12 @@ import asyncio
 import importlib.util
 from datetime import datetime
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from config.sources import registry
+from collectors.keyword_filter import filter_instance
 
 log = logging.getLogger('WebScraper')
 
@@ -76,12 +82,17 @@ class WebScraper:
         try:
             articles = _fetch_egx_market_news(max_results=10)
             for article in articles:
+                title = article.get('title', '')
+                body = article.get('snippet', '') or title
+                if not filter_instance.quick_match(f'{title}\n{body}'):
+                    log.debug(f'WebScraper رفض: {title[:60]}')
+                    continue
                 image_urls = self._extract_image_urls(article.get('url', ''))
                 news_id = self.store.add(
-                    source=article.get('source', 'DuckDuckGo'),
+                    source=registry.get_web_display('web_duckduckgo', 'بحث ويب'),
                     source_type='web',
-                    body=article.get('snippet', '') or article.get('title', ''),
-                    title=article.get('title', ''),
+                    body=body,
+                    title=title,
                     url=article.get('url', ''),
                     published_at=article.get('published_at', ''),
                     image_urls=json.dumps(image_urls, ensure_ascii=False),
@@ -89,7 +100,7 @@ class WebScraper:
                 if news_id:
                     saved += 1
         except Exception as e:
-            log.debug(f"DuckDuckGo market news error: {e}")
+            log.debug(f'DuckDuckGo market news error: {e}')
         return saved
 
     def _fetch_ticker_news(self, ticker: str) -> int:
@@ -98,12 +109,17 @@ class WebScraper:
         try:
             articles = _fetch_news_for_ticker(ticker, max_results=3)
             for article in articles:
+                title = article.get('title', '')
+                body = article.get('snippet', '') or title
+                if not filter_instance.quick_match(f'{title}\n{body}'):
+                    log.debug(f'WebScraper[{ticker}] رفض: {title[:60]}')
+                    continue
                 image_urls = self._extract_image_urls(article.get('url', ''))
                 news_id = self.store.add(
-                    source=article.get('source', 'DuckDuckGo'),
+                    source=registry.get_web_display('web_duckduckgo', 'بحث ويب'),
                     source_type='web',
-                    body=article.get('snippet', '') or article.get('title', ''),
-                    title=article.get('title', ''),
+                    body=body,
+                    title=title,
                     url=article.get('url', ''),
                     published_at=article.get('published_at', ''),
                     image_urls=json.dumps(image_urls, ensure_ascii=False),
@@ -111,7 +127,7 @@ class WebScraper:
                 if news_id:
                     saved += 1
         except Exception as e:
-            log.debug(f"DuckDuckGo ticker news error for {ticker}: {e}")
+            log.debug(f'DuckDuckGo ticker news error for {ticker}: {e}')
         return saved
 
     def _extract_image_urls(self, url: str) -> list[str]:

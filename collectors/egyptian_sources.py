@@ -87,14 +87,21 @@ class EgyptianSource(ABC):
         except Exception as e:
             log.warning(f'{self.name}: خطأ في الجلب — {e}')
             return 0
+
         saved = 0
         for article in articles:
+            title = article.get('title', '')
+            body = article.get('body', '')
+            ok, reason = await filter_instance.is_relevant(body, title=title)
+            if not ok:
+                log.debug(f'{self.name} رفض: {title[:60]} ({reason})')
+                continue
             try:
                 nid = self.store.add(
                     source=article['source'],
                     source_type='web',
-                    body=article['body'],
-                    title=article['title'],
+                    body=body,
+                    title=title,
                     url=article['url'],
                     published_at=article.get('published_at', ''),
                     image_urls=json.dumps(
@@ -183,7 +190,7 @@ class AlborsaaSource(EgyptianSource):
             'body': title,
             'url': url,
             'image_urls': image_urls[:2],
-            'source': f'جريدة البورصة — {source_label}',
+            'source': registry.get_web_display('web_alborsaa', 'جريدة البورصة'),
             'published_at': '',
         }
 

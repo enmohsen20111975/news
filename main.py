@@ -31,6 +31,7 @@ from collectors.rss_collector import RSSCollector
 from collectors.egyptian_sources import EgyptianSourcesCollector
 from analyzer.news_analyzer import NewsAnalyzer
 from analyzer.vision_analyzer import VisionAnalyzer
+from analyzer.recommendation_aggregator import RecommendationAggregator
 from sender.production_sender import ProductionSender
 from sender.social_publisher import SocialPublisher
 from data.news_store import NewsStore
@@ -57,6 +58,7 @@ class NewsAgent:
         self.vision   = VisionAnalyzer()
         self.sender   = ProductionSender()
         self.social   = SocialPublisher()
+        self.recommender = RecommendationAggregator(self.store)
         self.running  = False
 
         self.collectors = [WebScraper(self.store), RSSCollector(self.store)]
@@ -212,8 +214,7 @@ class NewsAgent:
         state = self._load_state()
         sources = state.setdefault('sources', {})
         alborsaa_labels = [
-            'جريدة البورصة — البورصة والشركات',
-            'جريدة البورصة — أسواق',
+            'جريدة البورصة',
         ]
         key = 'alborsaanews'
         if key not in sources:
@@ -227,6 +228,36 @@ class NewsAgent:
             sources[key]['labels'] = alborsaa_labels
         self._save_state(state)
 
+    async def _aggregate_recommendations(self) -> int:
+        """تجميع توصيات الخبراء من الأخبار المحلية وإرسالها للموقع."""
+        try:
+            added = await self.recommender.run()
+        except Exception as e:
+            log.warning(f'Aggregator error: {e}')
+            return 0
+        if not added:
+            return 0
+
+        unsent = self.store.get_unsent_recommendations(limit=added)
+        if not unsent:
+            return 0
+
+        console.print(f'[magenta]📊 إرسال {len(unsent)} توصية مجمّعة للخبراء...[/magenta]')
+        sent_ids: list[str] = []
+        for rec in unsent:
+            try:
+                remote_id = await self.sender.send_recommendation(rec)
+                if remote_id:
+                    sent_ids.append(rec['id'])
+                    if remote_id and remote_id != rec['id']:
+                        self.store.update_recommendation_remote_id(rec['id'], remote_id)
+            except Exception as e:
+                log.warning(f'Recommendation send error for {rec.get("stock_symbol")}: {e}')
+        if sent_ids:
+            self.store.mark_recommendations_sent(sent_ids)
+        console.print(f'[green]  ✓ تم إرسال {len(sent_ids)} توصية[/green]')
+        return len(sent_ids)
+
     async def run_cycle(self):
         """دورة تشغيل واحدة كاملة"""
         now = datetime.now().strftime('%H:%M:%S')
@@ -234,6 +265,7 @@ class NewsAgent:
         try:
             collected = await self._collect_all()
             await self._analyze_pending()
+            await self._aggregate_recommendations()
             await self._send_important()
         except Exception as e:
             log.error(f"Cycle error: {e}", exc_info=True)

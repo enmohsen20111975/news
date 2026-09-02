@@ -32,7 +32,7 @@ class RSSCollector:
         self.feeds = [f.strip() for f in feeds_env.split(',') if f.strip()] \
                      or DEFAULT_FEEDS
 
-async def collect(self) -> int:
+    async def collect(self) -> int:
         total = 0
         for url in self.feeds:
             try:
