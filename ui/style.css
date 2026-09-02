@@ -576,6 +576,23 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-height: 65vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.news-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.news-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.news-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
 }
 
 .news-item {
@@ -867,6 +884,147 @@ h1 {
 
 .published-links a:hover {
   background: rgba(78, 205, 196, 0.2);
+}
+
+/* ============ Recommendations ============ */
+
+.rec-group {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.rec-group:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border-strong);
+}
+
+.rec-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.rec-group-header .ticker-badge {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+}
+
+.rec-name {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  margin-right: 8px;
+}
+
+.rec-count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(122, 229, 130, 0.12);
+  border: 1px solid rgba(122, 229, 130, 0.3);
+  color: var(--success);
+  white-space: nowrap;
+}
+
+.rec-group-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 8px;
+  border-right: 2px solid var(--border);
+  max-height: 40vh;
+  overflow-y: auto;
+}
+
+.rec-group-items::-webkit-scrollbar {
+  width: 5px;
+}
+
+.rec-group-items::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.rec-group-items::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.rec-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.rec-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--border-strong);
+}
+
+.rec-top {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.rec-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+.rec-price strong {
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+}
+
+.rec-price.stop strong {
+  color: var(--danger);
+}
+
+.rec-summary {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.rec-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rec-footer .source {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rec-footer .time {
+  font-family: 'Courier New', monospace;
 }
 
 /* ============ Log List ============ */

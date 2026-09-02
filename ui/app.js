@@ -9,6 +9,7 @@ const API = {
   start: '/api/monitor/start',
   stop: '/api/monitor/stop',
   ingest: '/api/ingest',
+  recommendations: '/api/recommendations',
   telegramStatus: '/api/telegram/status',
   telegramSendCode: '/api/telegram/send-code',
   telegramVerify: '/api/telegram/verify',
@@ -57,6 +58,7 @@ const El = {
   telegramSaveChannels: document.getElementById('telegram-save-channels'),
   telegramChannelHint: document.getElementById('telegram-channel-hint'),
   telegramChannelList: document.getElementById('telegram-channel-list'),
+  recommendationsList: document.getElementById('recommendations-list'),
 };
 
 /* ============ Utility Helpers ============ */
@@ -336,6 +338,108 @@ function renderCopyNews(newsItems) {
     .join('');
 }
 
+async function fetchRecommendations() {
+  try {
+    const res = await fetch(API.recommendations);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.error('Recommendations fetch error:', err);
+    return null;
+  }
+}
+
+function getActionLabel(action) {
+  const labels = {
+    BUY: 'شراء',
+    SELL: 'بيع',
+    HOLD: 'احتفاظ',
+  };
+  return labels[action] || action || 'شراء';
+}
+
+function getActionClass(action) {
+  if (action === 'BUY') return 'text-success';
+  if (action === 'SELL') return 'text-danger';
+  return 'text-warning';
+}
+
+function getRecTypeLabel(type) {
+  const labels = {
+    'شراء واحتفاظ': 'شراء واحتفاظ',
+    'دعم/ارتداد': 'دعم/ارتداد',
+    'T+1/مضاربة': 'مضاربة',
+    'detailed': 'تحليل مفصل',
+    'brief': 'موجز',
+  };
+  return labels[type] || type || 'عام';
+}
+
+function renderRecommendations(data) {
+  if (!data || !El.recommendationsList) return;
+
+  const groups = data.groups || [];
+  const total = data.total || 0;
+  const groupCount = data.group_count || 0;
+
+  if (!groups.length) {
+    El.recommendationsList.innerHTML = `
+      <li class="news-item muted">
+        <div class="empty-state">
+          <div style="font-size: 2.5rem; margin-bottom: 8px;">📊</div>
+          <p>لا توجد توصيات بعد — يتم جمعها من الأخبار المحللة</p>
+        </div>
+      </li>
+    `;
+    return;
+  }
+
+  let html = '';
+  for (const group of groups) {
+    const symbol = group.symbol || 'غير معروف';
+    const nameAr = group.name_ar || '';
+    const count = group.count || 0;
+    const recs = group.recommendations || [];
+
+    html += `
+      <li class="rec-group">
+        <div class="rec-group-header">
+          <div>
+            <span class="ticker-badge">${escapeHtml(symbol)}</span>
+            ${nameAr ? `<span class="rec-name">${escapeHtml(nameAr)}</span>` : ''}
+          </div>
+          <span class="rec-count-badge">${count} توصية</span>
+        </div>
+        <div class="rec-group-items">
+          ${recs.map(rec => `
+            <div class="rec-item">
+              <div class="rec-top">
+                <span class="tag ${getActionClass(rec.action)}">${getActionLabel(rec.action)}</span>
+                <span class="tag">${escapeHtml(getRecTypeLabel(rec.recommendation_type))}</span>
+                <span class="tag status-${rec.status === 'PENDING' ? 'pending' : rec.status === 'SENT' ? 'sent' : 'analyzed'}">${rec.status === 'PENDING' ? 'قيد الانتظار' : rec.status === 'SENT' ? 'تم الإرسال' : rec.status || ''}</span>
+                ${rec.sent_ok ? '<span class="tag text-success">✓ مرسل</span>' : ''}
+              </div>
+              <div class="rec-meta">
+                ${rec.entry_price != null ? `<span class="rec-price">سعر الدخول: <strong>${rec.entry_price}</strong></span>` : ''}
+                ${rec.target_price != null ? `<span class="rec-price">الهدف: <strong>${rec.target_price}</strong></span>` : ''}
+                ${rec.stop_loss != null ? `<span class="rec-price stop">وقف الخسارة: <strong>${rec.stop_loss}</strong></span>` : ''}
+              </div>
+              ${rec.recommendation_reason ? `<div class="rec-summary">${escapeHtml(truncate(rec.recommendation_reason, 200))}</div>` : ''}
+              <div class="rec-footer">
+                <span class="source">👤 ${escapeHtml(rec.expert_name || 'محلل محلي')}</span>
+                <span class="time">📅 ${rec.session_date || ''} · 🕒 ${formatTimeAgo(rec.created_at) || '-'}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </li>
+    `;
+  }
+
+  El.recommendationsList.innerHTML = html;
+}
+
+
 function renderLogs(logLines) {
   El.logList.innerHTML = '';
   if (!logLines || !logLines.length) {
@@ -600,6 +704,9 @@ async function loadStatus() {
   renderTelegramNews(allNews);
   renderCopyNews(allNews);
   renderLogs(data.last_log || []);
+
+  const recData = await fetchRecommendations();
+  renderRecommendations(recData);
 
   if (El.lastUpdate) {
     El.lastUpdate.textContent = `آخر تحديث: ${formatTimestamp(data.timestamp)}`;

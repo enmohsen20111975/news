@@ -340,6 +340,73 @@ async def ingest(request: Request):
     return JSONResponse({'ok': False, 'message': 'الخبر مكرر'}, status_code=200)
 
 
+@app.get('/api/recommendations')
+def recommendations():
+    if not DB_PATH.exists():
+        return {'groups': [], 'total': 0, 'group_count': 0}
+
+    conn = _db_connect()
+    try:
+        rows = conn.execute('''
+            SELECT * FROM expert_recommendations
+            ORDER BY created_at DESC
+        ''').fetchall()
+
+        recs = []
+        for r in rows:
+            source_ids = r['source_news_ids'] or '[]'
+            try:
+                source_ids_list = json.loads(source_ids)
+            except Exception:
+                source_ids_list = []
+
+            recs.append({
+                'id': r['id'],
+                'stock_symbol': r['stock_symbol'] or '',
+                'stock_name_ar': r['stock_name_ar'] or '',
+                'expert_name': r['expert_name'] or '',
+                'expert_source': r['expert_source'] or '',
+                'action': r['action'] or 'BUY',
+                'recommendation_type': r['recommendation_type'] or '',
+                'entry_price': r['entry_price'],
+                'entry_price_from': r['entry_price_from'],
+                'entry_price_to': r['entry_price_to'],
+                'target_price': r['target_price'],
+                'target_price_2': r['target_price_2'],
+                'stop_loss': r['stop_loss'],
+                'support_level': r['support_level'],
+                'resistance_level': r['resistance_level'],
+                'technical_analysis': r['technical_analysis'] or '',
+                'recommendation_reason': r['recommendation_reason'] or '',
+                'session_date': r['session_date'] or '',
+                'status': r['status'] or 'PENDING',
+                'sent_ok': bool(r['sent_ok']),
+                'source_count': len(source_ids_list),
+                'created_at': r['created_at'] or '',
+            })
+
+        groups = {}
+        for rec in recs:
+            key = rec['stock_symbol']
+            if key not in groups:
+                groups[key] = {
+                    'symbol': key,
+                    'name_ar': rec['stock_name_ar'],
+                    'count': 0,
+                    'recommendations': []
+                }
+            groups[key]['count'] += 1
+            groups[key]['recommendations'].append(rec)
+
+        return {
+            'groups': list(groups.values()),
+            'total': len(recs),
+            'group_count': len(groups),
+        }
+    finally:
+        conn.close()
+
+
 @app.get('/health')
 def health():
     return {'ok': True, 'service': 'news-agent-dashboard'}
