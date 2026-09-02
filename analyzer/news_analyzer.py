@@ -10,9 +10,7 @@
 - تحليل الصور إن وجدت (نموذج رؤية)
 - نص مستخرج من الصور (OCR)
 
-يستفيد من:
-- EGX_TICKER_NAMES من GLMinvestment (بدون تكرار)
-- Ollama للنصوص + Vision للصور
+يستخدم نموذج محلي لفهم سياق الخبر وتأثيره على الأسهم المدرجة.
 """
 
 import os
@@ -65,24 +63,12 @@ IMPORTANCE_KEYWORDS = {
     'سوق': 3, 'بورصة': 3,
 }
 
-# ═══════════════════════════════════════════════════════════════════════
-# Enhanced Ticker Extraction (2026-09-02)
-# ═══════════════════════════════════════════════════════════════════════
-# Owner directive: "إصلاح استخراج وتخزين الـ tickers في الـ news agent"
-# Fixes the issue where news agent wasn't extracting tickers from Arabic news.
-
-import re as _re_module
-
-# English words that look like tickers but aren't
 _ENGLISH_NOISE = {
     'HTTP', 'HTTPS', 'POST', 'NEWS', 'INFO', 'HTML', 'JSON', 'API', 'URL',
     'TODAY', 'BREAKING', 'EGP', 'USA', 'UK', 'PDF', 'CEO', 'CFO', 'CTO',
     'IPO', 'GDP', 'CPI', 'FRA', 'CBE', 'WWW', 'COM',
 }
-_GENERIC_HINTS = {'الأول', 'العربي', 'الجزيرة', 'الاستثمار', 'التجاري', 'المصري', 'المصرية'}
-_NON_EGX_TICKERS = {'QFBQ', 'QGRI', 'LONG', 'LINK'}
 
-# Common Arabic company name patterns (loose matching for news)
 _ARABIC_COMPANY_MAP = [
     ('البنك التجاري', 'COMI'), ('التجاري الدولي', 'COMI'), ('CIB', 'COMI'),
     ('طلعت مصطفى', 'TMGH'), ('أوراسكوم', 'ORHD'), ('السويدي', 'SWDY'),
@@ -98,28 +84,12 @@ _ARABIC_COMPANY_MAP = [
 
 
 def _extract_tickers_enhanced(original_text: str, clean_text: str, text_lower: str) -> list:
-    """
-    استخراج tickers من نص الخبر — محسّن (2026-09-02).
-
-    يجمع بين:
-    1. Keyword matching (from TICKER_HINTS)
-    2. Regex patterns (XXX.CA, XXX-CA, #XXX, XXX-EGP)
-    3. Arabic company name loose matching
-    4. Market indices (EGX30, EGX70, EGX100)
-    """
     tickers = []
-
-    # 1. Keyword matching
     for hint, ticker in TICKER_HINTS.items():
-        ticker = str(ticker).upper()
-        if (not ticker.isalpha() or ticker in _NON_EGX_TICKERS
-                or hint in _GENERIC_HINTS):
-            continue
-        if _re_module.search(rf'(?<!\w){_re_module.escape(hint)}(?!\w)', clean_text, _re_module.IGNORECASE):
+        if hint in text_lower or hint in clean_text:
             if ticker not in tickers:
                 tickers.append(ticker)
 
-    # 2. Regex patterns for ticker formats
     ticker_patterns = [
         r'\b([A-Z]{3,5})\.CA\b',
         r'\b([A-Z]{3,5})-CA\b',
@@ -127,16 +97,20 @@ def _extract_tickers_enhanced(original_text: str, clean_text: str, text_lower: s
         r'#([A-Z]{3,5})\b',
     ]
     for pattern in ticker_patterns:
-        for m in _re_module.finditer(pattern, original_text):
+        for m in re.finditer(pattern, original_text):
             tk = m.group(1)
             if tk not in _ENGLISH_NOISE and tk not in tickers:
                 tickers.append(tk)
 
-    # 3. Arabic company name loose matching
     for pattern, ticker in _ARABIC_COMPANY_MAP:
         if pattern in clean_text or pattern.lower() in text_lower:
             if ticker not in tickers:
                 tickers.append(ticker)
+
+    for idx_name in ['EGX30', 'EGX70', 'EGX100']:
+        if idx_name in original_text or idx_name in clean_text:
+            if idx_name not in tickers:
+                tickers.append(idx_name)
 
     return tickers
 
@@ -178,19 +152,20 @@ class NewsAnalyzer:
         body  = news.get('body', '') or ''
         original_text = f"{title}\n{body}".strip()
 
-        # 1. تنظيف النص بـ AI (اختياري)
+        # 1. تنظيف النص + فهم السياق بـ AI
         clean_text = original_text
+        ai_meta = {}
         if self._ollama_ok and original_text and len(original_text) > 20:
             try:
-                ai_result = await self._analyze_with_ollama(original_text)
-                if ai_result and ai_result.get('clean_text') and len(ai_result['clean_text']) > 10:
-                    clean_text = ai_result['clean_text']
+                ai_meta = await self._analyze_with_ollama(original_text) or {}
+                if ai_meta.get('clean_text') and len(ai_meta['clean_text']) > 10:
+                    clean_text = ai_meta['clean_text']
             except Exception:
-                pass  # لو AI فشل، نستخدم النص الأصلي
+                pass
 
-        # 2. فلترة وتبويب في Python (هذا هو الأساس)
-        filtered = self._filter_and_classify(clean_text, original_text, news)
-        
+        # 2. فلترة وتبويب في Python
+        filtered = self._filter_and_classify(clean_text, original_text, news, ai_meta=ai_meta)
+
         # 3. تحليل الصور إن وجدت
         image_paths = news.get('image_paths') or []
         if isinstance(image_paths, str):
@@ -207,66 +182,7 @@ class NewsAnalyzer:
         filtered['image_paths'] = image_paths
         return filtered
 
-    def _filter_and_classify(self, clean_text: str, original_text: str, news: dict) -> dict:
-        """فلترة وتبويب الأخبار بالكامل في Python"""
-        text_lower = clean_text.lower()
-        orig_lower = original_text.lower()
-
-        # 1. كلمات/keywords وعلامات رفض
-        spam_patterns = [
-            'لايف', 'بث مباشر', 'اكتب اسم السهم', 'سؤال وجواب',
-            'تعليق:', 'share', 'تابعونا', 'يوتيوب', 'facebook',
-            'بدأنا اللايف', 'متابعة', 'اشتراك', 'قناة التليجرام',
-            'انضم للمجموعة', 'تواصل معنا', 'رابط القناة',
-        ]
-        is_spam = any(p in orig_lower for p in spam_patterns)
-
-        # 2. فلترة القصير جداً
-        if len(clean_text.strip()) < 20:
-            is_spam = True
-
-        # 3. استخراج tickers (محسّن — 2026-09-02)
-        tickers = _extract_tickers_enhanced(original_text, clean_text, text_lower)
-
-        # 4. حساب الأهمية
-        importance = 10
-        for kw, weight in IMPORTANCE_KEYWORDS.items():
-            if kw in clean_text or kw.lower() in text_lower:
-                importance += weight
-        importance = min(100, importance)
-
-        # 5. المشاعر
-        pos = sum(1 for w in SENTIMENT_POSITIVE if w in clean_text)
-        neg = sum(1 for w in SENTIMENT_NEGATIVE if w in clean_text)
-        if pos > neg:
-            sentiment = 'bullish'
-        elif neg > pos:
-            sentiment = 'bearish'
-        else:
-            sentiment = 'neutral'
-
-        # 6. نوع التأثير
-        impact_type = 'general'
-        for itype, keywords in IMPACT_TYPES.items():
-            if any(k in clean_text for k in keywords):
-                impact_type = itype
-                break
-
-        # 7. النتيجة النهائية
-        is_valid = not is_spam and importance >= 10
-
-        return {
-            'is_valid_news': is_valid,
-            'news_text': clean_text.strip() if is_valid else '',
-            'tickers': tickers,
-            'importance': importance if is_valid else 0,
-            'sentiment': sentiment if is_valid else 'neutral',
-            'impact_type': impact_type if is_valid else 'general',
-            'summary_ar': clean_text.strip() if is_valid else '',
-            'summary_en': '',
-            'reasoning': 'python_filtered' if is_valid else 'python_rejected',
-            'source': 'ollama+python',
-        }
+    def _merge_vision_result(self, text_result: dict, vision: dict, clean_text: str) -> dict:
         """دمج نتائج تحليل الصور مع نتائج النص"""
         merged = dict(text_result)
 
@@ -296,10 +212,11 @@ class NewsAnalyzer:
         merged['source'] = 'ollama+vision'
         return merged
 
-    def _filter_and_classify(self, clean_text: str, original_text: str, news: dict) -> dict:
+    def _filter_and_classify(self, clean_text: str, original_text: str, news: dict, ai_meta: dict | None = None) -> dict:
         """فلترة وتبويب الأخبار بالكامل في Python"""
         text_lower = clean_text.lower()
         orig_lower = original_text.lower()
+        ai_meta = ai_meta or {}
 
         # 1. كلمات/keywords وعلامات رفض
         spam_patterns = [
@@ -314,30 +231,28 @@ class NewsAnalyzer:
         is_spam = any(p in orig_lower for p in spam_patterns)
 
         # 2. فلترة URLs فقط (النص اللي مالهوش محتوى غير روابط)
-        import re
         url_pattern = re.compile(r'https?://\S+')
         urls = url_pattern.findall(clean_text)
         text_without_urls = url_pattern.sub('', clean_text).strip()
-        
-        # لو النص بعد ما نحذف الروابط قصير كتير — ميلغيه
+
         if len(text_without_urls) < 15 and urls:
             is_spam = True
 
-        # 2. فلترة القصير جداً
+        # 3. فلترة القصير جداً
         if len(clean_text.strip()) < 20:
             is_spam = True
 
-        # 3. استخراج tickers (محسّن — 2026-09-02)
+        # 4. استخراج tickers (محسّن — 2026-09-02)
         tickers = _extract_tickers_enhanced(original_text, clean_text, text_lower)
 
-        # 4. حساب الأهمية
+        # 5. حساب الأهمية
         importance = 10
         for kw, weight in IMPORTANCE_KEYWORDS.items():
             if kw in clean_text or kw.lower() in text_lower:
                 importance += weight
         importance = min(100, importance)
 
-        # 5. المشاعر
+        # 6. المشاعر
         pos = sum(1 for w in SENTIMENT_POSITIVE if w in clean_text)
         neg = sum(1 for w in SENTIMENT_NEGATIVE if w in clean_text)
         if pos > neg:
@@ -347,14 +262,29 @@ class NewsAnalyzer:
         else:
             sentiment = 'neutral'
 
-        # 6. نوع التأثير
+        # 7. نوع التأثير
         impact_type = 'general'
         for itype, keywords in IMPACT_TYPES.items():
             if any(k in clean_text for k in keywords):
                 impact_type = itype
                 break
 
-        # 7. النتيجة النهائية
+        # 8. لو AI فهم سياق الخبر، نثق في قراره الإضافي لو موجود
+        ai_valid = ai_meta.get('is_valid_news')
+        ai_importance = ai_meta.get('importance')
+        ai_sentiment = ai_meta.get('sentiment')
+        ai_impact = ai_meta.get('impact_type')
+
+        if ai_sentiment in ('bullish', 'bearish', 'neutral'):
+            sentiment = ai_sentiment
+        if ai_impact:
+            impact_type = ai_impact
+        if isinstance(ai_importance, int) and 0 <= ai_importance <= 100:
+            importance = max(importance, ai_importance)
+
+        if ai_valid is False:
+            is_spam = True
+
         is_valid = not is_spam and importance >= 10
 
         return {
@@ -365,13 +295,13 @@ class NewsAnalyzer:
             'sentiment': sentiment if is_valid else 'neutral',
             'impact_type': impact_type if is_valid else 'general',
             'summary_ar': clean_text.strip() if is_valid else '',
-            'summary_en': '',
-            'reasoning': 'python_filtered' if is_valid else 'python_rejected',
+            'summary_en': ai_meta.get('summary_en', ''),
+            'reasoning': 'ai+python' if ai_meta else 'python_filtered',
             'source': 'ollama+python',
         }
 
     async def _analyze_with_ollama(self, text: str) -> dict | None:
-        """إرسال الخبر لـ Ollama وانتظار التحليل"""
+        """إرسال الخبر لـ Ollama وانتظار تحليل فهم/أهمية/تأثير/ملخص."""
         prompt = self._build_prompt(text)
         try:
             async with httpx.AsyncClient(timeout=45.0) as client:
@@ -381,15 +311,14 @@ class NewsAnalyzer:
                         "model": self.model,
                         "prompt": prompt,
                         "stream": False,
-                        "options": {"temperature": 0.1, "num_predict": 300}
+                        "options": {"temperature": 0.1, "num_predict": 400}
                     }
                 )
                 if resp.status_code != 200:
                     raise Exception(f"HTTP {resp.status_code}")
 
                 raw = resp.json().get('response', '')
-                result = self._parse_ollama_response(raw, text)
-                return result
+                return self._parse_ollama_response(raw, text)
 
         except Exception as e:
             log.warning(f"Ollama error ({self.model}): {e}")
@@ -399,7 +328,7 @@ class NewsAnalyzer:
                         resp = await client.post(
                             f"{self.ollama_url}/api/generate",
                             json={"model": self.fallback_model, "prompt": prompt,
-                                  "stream": False, "options": {"temperature": 0.1}}
+                                  "stream": False, "options": {"temperature": 0.1, "num_predict": 300}}
                         )
                         raw = resp.json().get('response', '')
                         return self._parse_ollama_response(raw, text)
@@ -409,15 +338,24 @@ class NewsAnalyzer:
             return None
 
     def _build_prompt(self, text: str) -> str:
-        return f"""نظف النص التالي من النقاشات والهراء وارجع الخبر المالي فقط:
+        return f"""أنت محلل أخبار مالية متخصص في البورصة المصرية.
+حلل الخبر التالي وأخرج JSON فقط بالحقول المطلوبة:
 
-النص:
+{{
+  "is_valid_news": true/false,
+  "clean_text": "نص الخبر بعد تنظيفه من الهراء والروابط والاشتراكات",
+  "summary_ar": "ملخص قصير بالعربية",
+  "summary_en": "short English summary",
+  "importance": 0-100,
+  "sentiment": "bullish/bearish/neutral",
+  "impact_type": "earnings/dividend/ipo/acquisition/macro/regulation/price_move/general",
+  "affected_tickers": ["COMI", ...]
+}}
+
+الخبر:
 {text}
 
-أخرج JSON فقط:
-{{
-  "clean_text": "الخبر النظيف بالعربية أو نفس النص لو مش فيه هراء"
-}}"""
+JSON فقط بدون أي نص إضافي."""
 
     def _parse_ollama_response(self, raw: str, original_text: str) -> dict:
         """استخرج JSON من رد Ollama"""
@@ -425,13 +363,16 @@ class NewsAnalyzer:
         if match:
             try:
                 data = json.loads(match.group())
-                clean_text = data.get('clean_text', '') or original_text
-                return {'clean_text': clean_text.strip()}
+                data.setdefault('clean_text', original_text)
+                data.setdefault('is_valid_news', True)
+                if not data.get('affected_tickers'):
+                    data['affected_tickers'] = []
+                return data
             except json.JSONDecodeError:
                 pass
         return {'clean_text': original_text}
 
-    def _analyze_with_keywords(self, text: str, news: dict) -> dict:
+    async def _analyze_with_keywords(self, text: str, news: dict) -> dict:
         """تحليل بسيط بالكلمات المفتاحية — لا يحتاج Ollama"""
         text_lower = text.lower()
 
@@ -464,8 +405,7 @@ class NewsAnalyzer:
 
         title = news.get('title', '') if isinstance(news, dict) else ''
         summary = title[:100] if title else text[:100]
-        
-        # Keyword fallback: assume valid if has tickers or importance > 30
+
         is_valid = bool(tickers) or importance > 30
 
         return {
