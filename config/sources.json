@@ -1,0 +1,72 @@
+{
+  "telegram": {
+    "display_name": "تيليجرام",
+    "source_type": "telegram",
+    "enabled": true,
+    "description": "قنوات تيليجرام متخصصة في البورصة المصرية",
+    "channels": [
+      "sahmmisr",
+      "borsablarabi",
+      "easier_stock",
+      "ostoulcapital",
+      "BursaAcademy",
+      "borsabelarabi96",
+      "MubasherTA",
+      "egyptianborsa",
+      "shariaStocksEG",
+      "AhmedMansourstocks",
+      "egxpilot",
+      "SOM3AEG",
+      "egx_professinals",
+      "Arabian_investment_guide"
+    ]
+  },
+  "rss_mubasher": {
+    "display_name": "مباشر",
+    "source_type": "rss",
+    "enabled": true,
+    "description": "مباشر - البورصة المصرية (Mubasher)",
+    "feeds": [
+      "https://www.mubasher.info/api/news/ar/feed/EG"
+    ]
+  },
+  "rss_argaam": {
+    "display_name": "أرقام",
+    "source_type": "rss",
+    "enabled": true,
+    "description": "أرقام (Argaam)",
+    "feeds": [
+      "https://argaam.com/ar/rss"
+    ]
+  },
+  "rss_amwal": {
+    "display_name": "أموال الغد",
+    "source_type": "rss",
+    "enabled": true,
+    "description": "أموال الغد (Amwal Al-Ghad)",
+    "feeds": [
+      "https://www.amwalalghad.com/feed/"
+    ]
+  },
+  "rss_youm7": {
+    "display_name": "اليوم السابع - اقتصاد",
+    "source_type": "rss",
+    "enabled": true,
+    "description": "اليوم السابع - قسم الاقتصاد",
+    "feeds": [
+      "https://www.youm7.com/Section/56/RSS"
+    ]
+  },
+  "web_duckduckgo": {
+    "display_name": "بحث ويب",
+    "source_type": "web",
+    "enabled": true,
+    "description": "بحث DuckDuckGo عبر GLMinvestment analyzer"
+  },
+  "web_alborsaa": {
+    "display_name": "جريدة البورصة",
+    "source_type": "web",
+    "enabled": true,
+    "description": "جريدة البورصة - قسم البورصة والشركات"
+  }
+}

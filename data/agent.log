@@ -1,0 +1,1061 @@
+2026-09-02 11:50:39,634 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 11:50:40,062 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 11:50:40,536 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85 200
+2026-09-02 11:50:41,589 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85&vqd=4-163701492442373360883453802285739817876&p=-1 200
+2026-09-02 11:50:42,921 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 11:56:38,073 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 11:56:38,254 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 11:56:38,601 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85 200
+2026-09-02 11:56:39,917 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85&vqd=4-163701492442373360883453802285739817876&p=-1 403
+2026-09-02 11:56:40,369 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 12:00:03,405 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 12:00:03,566 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 12:00:03,923 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85 200
+2026-09-02 12:00:04,782 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 12:00:04,988 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85&vqd=4-163702424165564292808887683782177720708&p=-1 403
+2026-09-02 12:00:05,403 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 12:00:07,272 [INFO] primp: response: https://duckduckgo.com/?q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1 200
+2026-09-02 12:00:08,138 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1&vqd=4-224586787669405692333485764974165206285&p=-1 403
+2026-09-02 12:00:11,474 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86 200
+2026-09-02 12:00:12,355 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86&vqd=4-234306134385456755726509753185727428829&p=-1 403
+2026-09-02 12:00:14,616 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX 200
+2026-09-02 12:00:15,480 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX&vqd=4-247382228784407878381475652429831938081&p=-1 403
+2026-09-02 12:00:18,443 [INFO] primp: response: https://duckduckgo.com/?q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1 200
+2026-09-02 12:00:19,295 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1&vqd=4-336236461170278353896233647222222208989&p=-1 403
+2026-09-02 12:00:32,762 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 12:00:34,545 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 12:00:36,535 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 12:00:38,326 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 12:00:41,925 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 12:00:43,889 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 12:00:44,625 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news/ingest "HTTP/1.1 200 OK"
+2026-09-02 12:00:44,626 [INFO] ProductionSender: ✓ السيرفر قبل 6 خبر
+2026-09-02 12:09:40,282 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 12:09:40,438 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 12:09:40,781 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85 200
+2026-09-02 12:09:41,647 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85&vqd=4-163702424165564292808887683782177720708&p=-1 403
+2026-09-02 12:09:41,687 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 12:09:42,124 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 12:09:43,939 [INFO] primp: response: https://duckduckgo.com/?q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1 200
+2026-09-02 12:09:44,797 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1&vqd=4-224586787669405692333485764974165206285&p=-1 403
+2026-09-02 12:09:47,042 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86 200
+2026-09-02 12:09:47,894 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86&vqd=4-234306134385456755726509753185727428829&p=-1 403
+2026-09-02 12:09:50,148 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX 200
+2026-09-02 12:09:51,001 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX&vqd=4-247382228784407878381475652429831938081&p=-1 403
+2026-09-02 12:09:53,243 [INFO] primp: response: https://duckduckgo.com/?q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1 200
+2026-09-02 12:09:54,102 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1&vqd=4-336236461170278353896233647222222208989&p=-1 403
+2026-09-02 12:25:45,392 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 12:25:45,655 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85 200
+2026-09-02 12:25:46,757 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85&vqd=4-163702424165564292808887683782177720708&p=-1 200
+2026-09-02 12:25:47,360 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 12:25:47,969 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 12:25:52,611 [INFO] primp: response: https://duckduckgo.com/?q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1 200
+2026-09-02 12:25:53,471 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1&vqd=4-224586787669405692333485764974165206285&p=-1 403
+2026-09-02 12:25:57,322 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86 200
+2026-09-02 12:25:58,178 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86&vqd=4-234306134385456755726509753185727428829&p=-1 403
+2026-09-02 12:26:00,427 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX 200
+2026-09-02 12:26:01,288 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX&vqd=4-247382228784407878381475652429831938081&p=-1 403
+2026-09-02 12:26:03,546 [INFO] primp: response: https://duckduckgo.com/?q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1 200
+2026-09-02 12:26:04,404 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1&vqd=4-336236461170278353896233647222222208989&p=-1 403
+2026-09-02 12:26:14,429 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 12:26:15,068 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news/ingest "HTTP/1.1 200 OK"
+2026-09-02 12:26:15,068 [INFO] ProductionSender: ✓ السيرفر قبل 1 خبر
+2026-09-02 12:42:05,713 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 12:42:06,627 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85 200
+2026-09-02 12:42:07,844 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D9%8A%D9%88%D9%85&vqd=4-163702424165564292808887683782177720708&p=-1 403
+2026-09-02 12:42:07,985 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 12:42:10,268 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 12:42:11,585 [INFO] primp: response: https://duckduckgo.com/?q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1 200
+2026-09-02 12:42:12,673 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1&vqd=4-224586787669405692333485764974165206285&p=-1 403
+2026-09-02 12:42:17,008 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86 200
+2026-09-02 12:42:18,431 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86&vqd=4-234306134385456755726509753185727428829&p=-1 403
+2026-09-02 12:42:21,011 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX 200
+2026-09-02 12:42:22,903 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX&vqd=4-247382228784407878381475652429831938081&p=-1 403
+2026-09-02 12:42:25,237 [INFO] primp: response: https://duckduckgo.com/?q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1 200
+2026-09-02 12:42:26,112 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1&vqd=4-336236461170278353896233647222222208989&p=-1 403
+2026-09-02 12:51:33,280 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 12:51:33,431 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 12:51:38,564 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 12:51:38,986 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 12:51:43,886 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86 200
+2026-09-02 12:51:47,778 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86&vqd=4-234306134385456755726509753185727428829&p=-1 403
+2026-09-02 12:51:51,108 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX 200
+2026-09-02 12:51:51,961 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX&vqd=4-247382228784407878381475652429831938081&p=-1 403
+2026-09-02 12:51:54,203 [INFO] primp: response: https://duckduckgo.com/?q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1 200
+2026-09-02 12:51:55,436 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1&vqd=4-336236461170278353896233647222222208989&p=-1 403
+2026-09-02 13:07:34,319 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 13:07:35,495 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 13:07:35,953 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 13:07:37,784 [INFO] primp: response: https://duckduckgo.com/?q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1 200
+2026-09-02 13:07:38,778 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1&vqd=4-224586345259346297388873418172610753341&p=-1 200
+2026-09-02 13:07:41,031 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86 200
+2026-09-02 13:07:41,894 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86&vqd=4-234305932829011405326075342124079918829&p=-1 403
+2026-09-02 13:07:44,147 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX 200
+2026-09-02 13:07:45,012 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX&vqd=4-247381867503986709148885673299895596561&p=-1 403
+2026-09-02 13:07:47,272 [INFO] primp: response: https://duckduckgo.com/?q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1 200
+2026-09-02 13:07:48,130 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1&vqd=4-336236903580337879886515867405591226861&p=-1 403
+2026-09-02 13:08:01,516 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:08:03,235 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:08:03,777 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news/ingest "HTTP/1.1 200 OK"
+2026-09-02 13:08:03,777 [INFO] ProductionSender: ✓ السيرفر قبل 2 خبر
+2026-09-02 13:23:48,418 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 13:23:49,527 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 13:23:49,940 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 13:23:51,794 [INFO] primp: response: https://duckduckgo.com/?q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1 200
+2026-09-02 13:23:52,688 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1&vqd=4-224586345259346297388873418172610753341&p=-1 403
+2026-09-02 13:23:54,944 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86 200
+2026-09-02 13:23:55,799 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86&vqd=4-234305932829011405326075342124079918829&p=-1 403
+2026-09-02 13:23:58,067 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX 200
+2026-09-02 13:23:58,917 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX&vqd=4-247381867503986709148885673299895596561&p=-1 403
+2026-09-02 13:24:01,185 [INFO] primp: response: https://duckduckgo.com/?q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1 200
+2026-09-02 13:24:02,041 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1&vqd=4-336236903580337879886515867405591226861&p=-1 403
+2026-09-02 13:39:52,659 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 13:39:53,826 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 13:39:54,230 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 13:39:56,071 [INFO] primp: response: https://duckduckgo.com/?q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1 200
+2026-09-02 13:39:57,052 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1&vqd=4-224586345259346297388873418172610753341&p=-1 200
+2026-09-02 13:39:59,303 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86 200
+2026-09-02 13:40:00,153 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86&vqd=4-234305932829011405326075342124079918829&p=-1 403
+2026-09-02 13:40:02,424 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX 200
+2026-09-02 13:40:03,283 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX&vqd=4-247381867503986709148885673299895596561&p=-1 403
+2026-09-02 13:40:05,552 [INFO] primp: response: https://duckduckgo.com/?q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1 200
+2026-09-02 13:40:06,405 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1&vqd=4-336236903580337879886515867405591226861&p=-1 403
+2026-09-02 13:55:59,676 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 13:56:00,764 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 13:56:01,219 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 13:56:03,036 [INFO] primp: response: https://duckduckgo.com/?q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1 200
+2026-09-02 13:56:03,895 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=EGX+%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1&vqd=4-224586345259346297388873418172610753341&p=-1 403
+2026-09-02 13:56:07,992 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86 200
+2026-09-02 13:56:08,855 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85+%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%A2%D9%86&vqd=4-234305932829011405326075342124079918829&p=-1 403
+2026-09-02 13:56:11,117 [INFO] primp: response: https://duckduckgo.com/?q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX 200
+2026-09-02 13:56:11,978 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1+%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9+EGX&vqd=4-247381867503986709148885673299895596561&p=-1 403
+2026-09-02 13:56:14,232 [INFO] primp: response: https://duckduckgo.com/?q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1 200
+2026-09-02 13:56:15,109 [INFO] primp: response: https://duckduckgo.com/news.js?l=ar-eg&o=json&noamp=1&q=%D9%85%D9%83%D8%A7%D8%B3%D8%A8+%D8%AE%D8%B3%D8%A7%D8%A6%D8%B1+%D8%A3%D8%B3%D9%87%D9%85+%D9%85%D8%B5%D8%B1&vqd=4-336236903580337879886515867405591226861&p=-1 403
+2026-09-02 13:56:47,563 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 13:56:47,768 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 13:56:50,946 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 13:56:51,333 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 13:56:51,333 [WARNING] NewsAgent: Collector WebScraper error: name 'asyncio' is not defined
+2026-09-02 13:57:20,188 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 13:57:20,320 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 13:57:21,452 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 13:57:21,888 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 13:57:35,941 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:35,942 [WARNING] NewsAgent: Analysis error for 61631847d10a47b1: no such column: ocr_text
+2026-09-02 13:57:37,311 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:37,312 [WARNING] NewsAgent: Analysis error for f065899e8ab011d9: no such column: ocr_text
+2026-09-02 13:57:38,854 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:38,855 [WARNING] NewsAgent: Analysis error for 68481a88d0d1c241: no such column: ocr_text
+2026-09-02 13:57:40,284 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:40,285 [WARNING] NewsAgent: Analysis error for 7c373ee621292346: no such column: ocr_text
+2026-09-02 13:57:41,784 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:41,785 [WARNING] NewsAgent: Analysis error for 6c67646a4f0f01fd: no such column: ocr_text
+2026-09-02 13:57:43,095 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:43,096 [WARNING] NewsAgent: Analysis error for 4f1e06719ee9f97b: no such column: ocr_text
+2026-09-02 13:57:44,551 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:44,552 [WARNING] NewsAgent: Analysis error for e3b783d9a0242111: no such column: ocr_text
+2026-09-02 13:57:46,147 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:46,149 [WARNING] NewsAgent: Analysis error for ec6596cdd47a7893: no such column: ocr_text
+2026-09-02 13:57:49,514 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:49,515 [WARNING] NewsAgent: Analysis error for 4c8fc433e7530e50: no such column: ocr_text
+2026-09-02 13:57:50,747 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:50,748 [WARNING] NewsAgent: Analysis error for 3d828fa21939fd3c: no such column: ocr_text
+2026-09-02 13:57:52,501 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:52,503 [WARNING] NewsAgent: Analysis error for 11f47a62c32ff9a9: no such column: ocr_text
+2026-09-02 13:57:54,212 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:54,213 [WARNING] NewsAgent: Analysis error for 97f0cf106245a3d7: no such column: ocr_text
+2026-09-02 13:57:56,232 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:57:56,233 [WARNING] NewsAgent: Analysis error for 068c14da504ce565: no such column: ocr_text
+2026-09-02 13:58:11,993 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 13:58:12,128 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 13:58:13,311 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 13:58:13,736 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 13:58:20,950 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:24,274 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:25,819 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:27,249 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:28,495 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:29,798 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:31,121 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:32,657 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:33,937 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:35,038 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:36,211 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:37,637 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:39,169 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 13:58:39,206 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,206 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,240 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,240 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,270 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,270 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,298 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,298 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,326 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,327 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,354 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,354 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,379 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,380 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,407 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,408 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,435 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,435 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,462 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,462 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,497 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,497 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,523 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,524 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 13:58:39,549 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 405 Method Not Allowed"
+2026-09-02 13:58:39,550 [WARNING] ProductionSender: الموقع رجّع 405: 
+2026-09-02 14:05:44,129 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 14:05:44,279 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 14:05:45,539 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 14:05:47,850 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 14:05:53,295 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,295 [INFO] ProductionSender:   ✓ الموقع استلم خبر: Commercial Int Bank Stock Price Today - Investing.
+2026-09-02 14:05:53,333 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,334 [INFO] ProductionSender:   ✓ الموقع استلم خبر: Commercial International Bank Egypt (CIB) S.A.E. (
+2026-09-02 14:05:53,369 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,370 [INFO] ProductionSender:   ✓ الموقع استلم خبر: News Commercial International Bank Egypt (CIB) S.A
+2026-09-02 14:05:53,406 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,407 [INFO] ProductionSender:   ✓ الموقع استلم خبر: البورصة المصرية - الصفحة الرئيسية
+2026-09-02 14:05:53,442 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,443 [INFO] ProductionSender:   ✓ الموقع استلم خبر: البورصة المصرية - البيانات الصحفية وأخبار البورصة,
+2026-09-02 14:05:53,478 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,478 [INFO] ProductionSender:   ✓ الموقع استلم خبر: EGX.news | البورصة المصرية — أسعار مباشرة وتحليلات
+2026-09-02 14:05:53,516 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,517 [INFO] ProductionSender:   ✓ الموقع استلم خبر: The Egyptian Exchange - EGX - البورصة المصرية | 6t
+2026-09-02 14:05:53,550 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,551 [INFO] ProductionSender:   ✓ الموقع استلم خبر: مؤشر إيجى إكس 30 (Egx30) - معلومات مباشر السعودية
+2026-09-02 14:05:53,583 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,584 [INFO] ProductionSender:   ✓ الموقع استلم خبر: البورصة المصرية اليوم — أسعار الأسهم والمؤشرات وال
+2026-09-02 14:05:53,616 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,617 [INFO] ProductionSender:   ✓ الموقع استلم خبر: EGX
+2026-09-02 14:05:53,649 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,650 [INFO] ProductionSender:   ✓ الموقع استلم خبر: مؤشر البورصة المصرية EGX 30 - TradingView
+2026-09-02 14:05:53,684 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,685 [INFO] ProductionSender:   ✓ الموقع استلم خبر: EGX30 | ايجي اكس 30 - Investing.com
+2026-09-02 14:05:53,718 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 200 OK"
+2026-09-02 14:05:53,719 [INFO] ProductionSender:   ✓ الموقع استلم خبر: تقارير البورصة المصرية اليومية والأسبوعية | تحليل 
+2026-09-02 14:10:08,080 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 14:10:08,224 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 14:10:09,421 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 14:10:10,196 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 14:12:10,677 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 14:12:11,844 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 14:12:12,298 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 14:19:06,230 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 14:19:06,365 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 14:19:11,538 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 14:19:12,392 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 14:29:06,687 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 14:29:07,859 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 14:29:08,311 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 14:44:25,369 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 14:44:25,543 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 14:44:26,888 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 14:44:27,319 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 14:45:54,497 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 14:46:03,283 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 14:46:04,352 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 15:02:51,568 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 15:02:52,844 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 15:02:53,239 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 15:08:33,707 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 15:08:33,916 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 15:08:35,116 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 15:08:35,589 [INFO] telethon.client.users: Phone migrated to 4
+2026-09-02 15:08:35,590 [INFO] telethon.client.telegrambaseclient: Reconnecting to new data center 4
+2026-09-02 15:08:35,694 [INFO] telethon.network.mtprotosender: Disconnecting from 149.154.167.51:443/TcpFull...
+2026-09-02 15:08:35,695 [INFO] telethon.network.mtprotosender: Disconnection from 149.154.167.51:443/TcpFull complete!
+2026-09-02 15:08:35,695 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 15:08:37,086 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 15:08:37,529 [INFO] TelegramCollector: ✓ Telegram متصل — 6 قناة
+2026-09-02 15:08:37,606 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 15:08:38,704 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 15:08:43,215 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 15:19:41,150 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 15:19:44,390 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 15:19:45,107 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 15:33:34,443 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 15:33:34,614 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 15:33:44,746 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 15:33:45,295 [INFO] TelegramCollector: ✓ Telegram متصل — 6 قناة
+2026-09-02 15:33:45,386 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 15:33:46,469 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 15:33:51,133 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 15:35:07,268 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 15:35:07,435 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 15:35:08,910 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 15:35:09,465 [INFO] TelegramCollector: ✓ Telegram متصل — 6 قناة
+2026-09-02 15:35:09,562 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 15:35:10,651 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 15:35:15,625 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 15:36:33,706 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.51:443/TcpFull...
+2026-09-02 15:36:37,736 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.51:443/TcpFull complete!
+2026-09-02 15:36:38,133 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: The provided token is not valid (caused by ImportBotAuthorizationRequest)
+2026-09-02 15:37:21,554 [ERROR] asyncio: Task exception was never retrieved
+future: <Task finished name='Task-10' coro=<UpdateMethods._keepalive_loop() done, defined at /home/meme/my_apps/news_agent/.venv/lib/python3.12/site-packages/telethon/client/updates.py:516> exception=OperationalError('database is locked')>
+Traceback (most recent call last):
+  File "/home/meme/my_apps/news_agent/.venv/lib/python3.12/site-packages/telethon/client/updates.py", line 552, in _keepalive_loop
+    await self._save_states_and_entities()
+  File "/home/meme/my_apps/news_agent/.venv/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py", line 709, in _save_states_and_entities
+    self.session.process_entities(
+  File "/home/meme/my_apps/news_agent/.venv/lib/python3.12/site-packages/telethon/sessions/sqlite.py", line 318, in process_entities
+    c.executemany(
+sqlite3.OperationalError: database is locked
+2026-09-02 15:45:28,207 [INFO] httpx: HTTP Request: GET https://invist.m2y.net/api/news-feed "HTTP/1.1 200 OK"
+2026-09-02 15:45:40,576 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 15:45:42,474 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 15:45:44,423 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 15:45:45,841 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 15:45:47,353 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 15:45:48,712 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 15:45:50,752 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 15:45:52,624 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 15:45:54,081 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 15:45:54,429 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 15:45:54,430 [INFO] ProductionSender:   ✓ الموقع استلم خبر: ارتفاع مؤشرات البورصة المصرية مع بداية تعاملات جلس
+2026-09-02 15:45:54,744 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 15:45:54,746 [INFO] ProductionSender:   ✓ الموقع استلم خبر: الرقابة المالية تعتمد بدء التداول على أسهم “القاهر
+2026-09-02 15:45:55,081 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 15:45:55,082 [INFO] ProductionSender:   ✓ الموقع استلم خبر: أعلنت شركة أبوظبي الأول عن توقيع اتفاقية تعاون است
+2026-09-02 15:45:55,410 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 15:45:55,411 [INFO] ProductionSender:   ✓ الموقع استلم خبر: إيقاف التداول على أسهم 6 شركات بالبورصة لتجاوزها ا
+2026-09-02 15:45:55,719 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 15:45:55,719 [INFO] ProductionSender:   ✓ الموقع استلم خبر: الأجانب يكتسحون الشراء.. ارتفاع البورصة يتحدى اتجا
+2026-09-02 15:45:56,037 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 15:45:56,037 [INFO] ProductionSender:   ✓ الموقع استلم خبر: البورصة المصرية تصعد أكثر من 1% والتداولات تتجاوز 
+2026-09-02 15:45:56,340 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 15:45:56,341 [INFO] ProductionSender:   ✓ الموقع استلم خبر: الحوافز الضريبية وحدها لا تكفي.. خبراء يحددون شروط
+2026-09-02 15:45:56,655 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 15:45:56,656 [INFO] ProductionSender:   ✓ الموقع استلم خبر: ارتفاع المؤشر الرئيسي EGX30 بمستهل تعاملات البورصة
+2026-09-02 15:45:56,986 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 15:45:56,987 [INFO] ProductionSender:   ✓ الموقع استلم خبر: اختبار
+╭─────────────────────── 📰 EGX News Intelligence Agent ───────────────────────╮
+│ 🚀 News Agent شغّال!                                                          │
+│ النموذج: glm-fast:latest                                                     │
+│ الدورة: كل 15 دقيقة                                                          │
+│ السيرفر: https://invist.m2y.net                                              │
+│ اضغط Ctrl+C للإيقاف                                                          │
+╰──────────────────────────────────────────────────────────────────────────────╯
+─────────────────────────── 🔄 دورة جديدة — 15:46:24 ───────────────────────────
+⚡ جمع الأخبار من كل المصادر...
+  ✓ تم جمع 0 خبر جديد
+2026-09-02 15:47:51,034 [INFO] httpx: HTTP Request: GET https://invist.m2y.net/api/news-feed "HTTP/1.1 200 OK"
+2026-09-02 15:47:51,034 [INFO] httpx: HTTP Request: GET https://invist.m2y.net/api/news-feed "HTTP/1.1 200 OK"
+  ↳ تم استيراد 0 خبر من تغذية الموقع
+💤 انتظار 15 دقيقة للدورة القادمة...
+─────────────────────────── 🔄 دورة جديدة — 16:03:39 ───────────────────────────
+⚡ جمع الأخبار من كل المصادر...
+  ✓ تم جمع 0 خبر جديد
+2026-09-02 16:04:55,625 [INFO] httpx: HTTP Request: GET https://invist.m2y.net/api/news-feed "HTTP/1.1 200 OK"
+2026-09-02 16:04:55,625 [INFO] httpx: HTTP Request: GET https://invist.m2y.net/api/news-feed "HTTP/1.1 200 OK"
+  ↳ تم استيراد 0 خبر من تغذية الموقع
+💤 انتظار 15 دقيقة للدورة القادمة...
+🛑 وقف News Agent
+2026-09-02 16:19:39,539 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 16:19:41,021 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 16:19:42,608 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 16:19:46,025 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 16:19:47,302 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 16:19:48,845 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 16:19:48,914 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:48,915 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): Hermes Holding Co Stock Price Today - In
+2026-09-02 16:19:49,476 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:49,476 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): Hermes Holding Co Stock Price Today - In
+2026-09-02 16:19:49,512 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:49,513 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): EFG Hermes Holding SAE Stock () - Quote 
+2026-09-02 16:19:49,932 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:49,933 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): EFG Hermes Holding SAE Stock () - Quote 
+2026-09-02 16:19:49,974 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:49,974 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): EFG Hermes Holding Company (EGX:HRHO) St
+2026-09-02 16:19:50,320 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:50,321 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): EFG Hermes Holding Company (EGX:HRHO) St
+2026-09-02 16:19:50,367 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:50,368 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): Commercial Int Bank Stock Price Today - 
+2026-09-02 16:19:50,700 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:50,701 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): Commercial Int Bank Stock Price Today - 
+2026-09-02 16:19:50,751 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:50,752 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): Commercial International Bank Egypt (CIB
+2026-09-02 16:19:51,099 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:51,101 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): Commercial International Bank Egypt (CIB
+2026-09-02 16:19:51,156 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:51,157 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): COMI: Commercial International Bank - Eg
+2026-09-02 16:19:51,493 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 16:19:51,493 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): COMI: Commercial International Bank - Eg
+2026-09-02 17:19:12,111 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 17:19:12,326 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 17:19:14,055 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 17:19:14,596 [INFO] TelegramCollector: ✓ Telegram متصل — 6 قناة
+2026-09-02 17:19:14,669 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 17:19:15,744 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 17:19:20,287 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 17:20:45,446 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 17:20:45,609 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 17:20:47,058 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 17:20:47,504 [INFO] TelegramCollector: ✓ Telegram متصل — 6 قناة
+2026-09-02 17:20:47,580 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 17:20:48,696 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 17:20:53,493 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 17:21:23,998 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 17:21:24,151 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 17:21:25,580 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 17:21:26,090 [INFO] TelegramCollector: ✓ Telegram متصل — 3 قناة
+╭─────────────────────── 📰 EGX News Intelligence Agent ───────────────────────╮
+│ 🚀 News Agent شغّال!                                                          │
+│ النموذج: glm-fast:latest                                                     │
+│ الدورة: كل 15 دقيقة                                                          │
+│ السيرفر: https://invist.m2y.net                                              │
+│ اضغط Ctrl+C للإيقاف                                                          │
+╰──────────────────────────────────────────────────────────────────────────────╯
+─────────────────────────── 🔄 دورة جديدة — 17:58:54 ───────────────────────────
+⚡ جمع الأخبار من كل المصادر...
+2026-09-02 17:58:54,259 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 17:58:54,259 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 17:58:54,446 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 17:58:54,446 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 17:58:55,980 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 17:58:55,980 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 17:58:59,782 [INFO] TelegramCollector: ✓ Telegram متصل — 6 قناة
+2026-09-02 17:58:59,782 [INFO] TelegramCollector: ✓ Telegram متصل — 6 قناة
+2026-09-02 17:59:00,245 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 17:59:00,245 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 17:59:01,576 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 17:59:01,576 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 17:59:06,803 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 17:59:06,803 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+  ✓ تم جمع 0 خبر جديد
+💤 انتظار 15 دقيقة للدورة القادمة...
+2026-09-02 18:08:31,303 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 18:08:31,449 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:08:32,674 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:08:33,280 [INFO] TelegramCollector: ✓ Telegram متصل — 4 قناة
+2026-09-02 18:09:55,769 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 18:09:55,912 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:09:57,553 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:09:57,948 [INFO] TelegramCollector: ✓ جلسة Telegram المحفوظة شغالة
+2026-09-02 18:09:57,948 [INFO] TelegramCollector: ✓ Telegram متصل — 4 قناة
+2026-09-02 18:09:58,192 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:09:58,437 [INFO] TelegramCollector:   📷 تم تنزيل صورة: ostoulcapital_62543_20260902_142132.jpg
+2026-09-02 18:09:58,445 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:09:58,621 [INFO] TelegramCollector:   📷 تم تنزيل صورة: ostoulcapital_62542_20260902_141853.jpg
+2026-09-02 18:09:58,629 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:09:58,779 [INFO] TelegramCollector:   📷 تم تنزيل صورة: ostoulcapital_62541_20260902_133055.jpg
+2026-09-02 18:09:58,779 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:09:59,130 [INFO] TelegramCollector:   📷 تم تنزيل صورة: ostoulcapital_62535_20260902_123051.jpg
+2026-09-02 18:09:59,139 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:09:59,386 [INFO] TelegramCollector:   📷 تم تنزيل صورة: ostoulcapital_62532_20260902_121657.jpg
+2026-09-02 18:10:00,581 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:10:00,714 [INFO] TelegramCollector:   📷 تم تنزيل صورة: BursaAcademy_204672_20260902_141741.jpg
+2026-09-02 18:10:02,105 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:10:02,249 [INFO] TelegramCollector:   📷 تم تنزيل صورة: easier_stock_617055_20260902_140613.jpg
+2026-09-02 18:10:02,702 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:10:02,839 [INFO] TelegramCollector:   📷 تم تنزيل صورة: easier_stock_617050_20260902_134009.jpg
+2026-09-02 18:10:02,918 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:10:03,060 [INFO] TelegramCollector:   📷 تم تنزيل صورة: easier_stock_617049_20260902_134009.jpg
+2026-09-02 18:10:03,432 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:10:03,565 [INFO] TelegramCollector:   📷 تم تنزيل صورة: easier_stock_617045_20260902_133235.jpg
+2026-09-02 18:10:03,647 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:10:03,773 [INFO] TelegramCollector:   📷 تم تنزيل صورة: easier_stock_617044_20260902_133235.jpg
+2026-09-02 18:10:29,714 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:31,612 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:33,799 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:35,892 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:37,474 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:38,907 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:40,604 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:42,886 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:44,544 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:46,449 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:47,986 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:49,464 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:50,784 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:52,115 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:53,614 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:55,143 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:56,812 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:58,265 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:10:59,688 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:11:01,360 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:11:02,941 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:11:04,535 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:11:06,317 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:11:07,954 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:11:08,026 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:08,027 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): هو كمان عايز يعرف [رد على: يعني اي]
+2026-09-02 18:11:08,612 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:08,613 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): هو كمان عايز يعرف [رد على: يعني اي]
+2026-09-02 18:11:08,693 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:08,694 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): يعني اي [رد على: +1]
+2026-09-02 18:11:09,950 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:09,952 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): يعني اي [رد على: +1]
+2026-09-02 18:11:10,070 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:10,072 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): +1 [رد على: نهر الخير هيجيب ثاني ولا ابي
+2026-09-02 18:11:10,666 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:10,667 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): +1 [رد على: نهر الخير هيجيب ثاني ولا ابي
+2026-09-02 18:11:10,724 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:10,725 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): نهر الخير هيجيب ثاني ولا ابيع على كده
+2026-09-02 18:11:11,444 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:11,445 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): نهر الخير هيجيب ثاني ولا ابيع على كده
+2026-09-02 18:11:11,516 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:11,517 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): شكله ايجابى
+2026-09-02 18:11:13,098 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:13,099 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): شكله ايجابى
+2026-09-02 18:11:13,145 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:13,146 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): جولدن تكس
+2026-09-02 18:11:13,573 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:13,574 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): جولدن تكس
+2026-09-02 18:11:13,620 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:13,621 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): ايوه تمام ربنا يوفقك يارب [رد على: أنا م
+2026-09-02 18:11:14,067 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:14,067 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): ايوه تمام ربنا يوفقك يارب [رد على: أنا م
+2026-09-02 18:11:14,113 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:14,114 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): أنا معايا بره نهر الخير عاوز اعرف اتجاه 
+2026-09-02 18:11:14,618 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:14,619 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): أنا معايا بره نهر الخير عاوز اعرف اتجاه 
+2026-09-02 18:11:14,666 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:14,667 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): ممكن كتاب ict  يشمل جميع مفاهيم واستراتج
+2026-09-02 18:11:15,183 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:15,183 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): ممكن كتاب ict  يشمل جميع مفاهيم واستراتج
+2026-09-02 18:11:15,241 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:15,242 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): السلام عليكم ورحمة الله وبركاته
+2026-09-02 18:11:17,241 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:17,242 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): السلام عليكم ورحمة الله وبركاته
+2026-09-02 18:11:17,288 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:17,289 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): صباح النور يا مدير 🌹  لم أجد كتابًا محفو
+2026-09-02 18:11:17,772 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:17,773 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): صباح النور يا مدير 🌹  لم أجد كتابًا محفو
+2026-09-02 18:11:17,819 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:17,820 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 🥷🎯✔️
+2026-09-02 18:11:20,498 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:20,498 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 🥷🎯✔️
+2026-09-02 18:11:20,547 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:20,548 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): عبدالعزيز يدري انك منتحل شخصيته ؟ ولا مع
+2026-09-02 18:11:22,443 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:22,445 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): عبدالعزيز يدري انك منتحل شخصيته ؟ ولا مع
+2026-09-02 18:11:22,498 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:22,499 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): ✅😉 tp1
+2026-09-02 18:11:22,864 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:22,864 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): ✅😉 tp1
+2026-09-02 18:11:22,903 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:22,904 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): done [رد على: ✅😉 tp1]
+2026-09-02 18:11:24,434 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:24,435 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): done [رد على: ✅😉 tp1]
+2026-09-02 18:11:24,480 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:24,481 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): مرحبا بك Ꮪ Ꭺ Ꭼ Ꭼ Ꭰ 𓄧 ،يسعدنا انضمامك للم
+2026-09-02 18:11:24,956 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:24,957 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): مرحبا بك Ꮪ Ꭺ Ꭼ Ꭼ Ꭰ 𓄧 ،يسعدنا انضمامك للم
+2026-09-02 18:11:25,003 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:25,004 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): ETH-USD (Ethereum) | 1h | السعر الأخير: 
+2026-09-02 18:11:25,345 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:25,346 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): ETH-USD (Ethereum) | 1h | السعر الأخير: 
+2026-09-02 18:11:25,387 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:25,388 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): EURJPY=X (EUR/JPY) — فريم 1h   السعر الأ
+2026-09-02 18:11:25,748 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:25,750 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): EURJPY=X (EUR/JPY) — فريم 1h   السعر الأ
+2026-09-02 18:11:25,807 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:25,808 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): NFLX (NFLX) — الإطار الزمني: 1h   السعر 
+2026-09-02 18:11:26,254 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:26,254 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): NFLX (NFLX) — الإطار الزمني: 1h   السعر 
+2026-09-02 18:11:26,298 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:26,299 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): **الرئيس المصري عبد الفتاح السيسي:**  📌ت
+2026-09-02 18:11:27,323 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:27,324 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): **الرئيس المصري عبد الفتاح السيسي:**  📌ت
+2026-09-02 18:11:56,566 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:56,567 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): https://qr.asharq.com/s/M70BLJF تسببت ال
+2026-09-02 18:11:56,977 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:56,978 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): https://qr.asharq.com/s/M70BLJF تسببت ال
+2026-09-02 18:11:57,026 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:57,027 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): *“المصرية للاتصالات” تتعاون مع شركة يونا
+2026-09-02 18:11:57,498 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:57,498 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): *“المصرية للاتصالات” تتعاون مع شركة يونا
+2026-09-02 18:11:57,538 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:57,539 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): الاجتماع الصباحي لجلسة يوم الخميس  3-9-2
+2026-09-02 18:11:57,906 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:57,907 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): الاجتماع الصباحي لجلسة يوم الخميس  3-9-2
+2026-09-02 18:11:57,959 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:57,959 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 🔴 بدأنا اللايف! 📈  اكتب اسم السهم اللي ح
+2026-09-02 18:11:58,339 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:11:58,339 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 🔴 بدأنا اللايف! 📈  اكتب اسم السهم اللي ح
+─────────────────────────── 🔄 دورة جديدة — 18:15:33 ───────────────────────────
+⚡ جمع الأخبار من كل المصادر...
+2026-09-02 18:15:34,893 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 18:15:34,893 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 18:15:35,971 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 18:15:35,971 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 18:15:40,624 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 18:15:40,624 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+  ✓ تم جمع 0 خبر جديد
+💤 انتظار 15 دقيقة للدورة القادمة...
+2026-09-02 18:18:21,091 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 18:18:21,266 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:18:25,327 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:18:26,713 [INFO] TelegramCollector: ✓ جلسة Telegram المحفوظة شغالة
+2026-09-02 18:18:26,714 [INFO] TelegramCollector: ✓ Telegram متصل — 17 قناة
+2026-09-02 18:18:27,868 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:29,843 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1602212587_35497_20260902_151232.jpg
+2026-09-02 18:18:29,852 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:31,808 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1602212587_35495_20260902_143831.jpg
+2026-09-02 18:18:31,822 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:33,760 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1602212587_35494_20260902_134739.jpg
+2026-09-02 18:18:33,766 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:34,743 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1602212587_35493_20260902_133548.jpg
+2026-09-02 18:18:34,744 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:36,548 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1602212587_35491_20260902_130701.jpg
+2026-09-02 18:18:36,548 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:38,102 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1602212587_35488_20260902_124730.jpg
+2026-09-02 18:18:38,102 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:39,663 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1602212587_35487_20260902_124730.jpg
+2026-09-02 18:18:41,464 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:42,150 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56432_20260902_150632.jpg
+2026-09-02 18:18:42,166 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:43,379 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56431_20260902_145525.jpg
+2026-09-02 18:18:43,386 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:44,775 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56430_20260902_144116.jpg
+2026-09-02 18:18:44,783 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:45,971 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56429_20260902_143730.jpg
+2026-09-02 18:18:45,979 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:47,934 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56428_20260902_143135.jpg
+2026-09-02 18:18:47,941 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:49,918 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56427_20260902_142606.jpg
+2026-09-02 18:18:49,929 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:51,172 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56426_20260902_142339.jpg
+2026-09-02 18:18:51,178 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:52,739 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56425_20260902_141648.jpg
+2026-09-02 18:18:52,746 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:54,047 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56424_20260902_141445.jpg
+2026-09-02 18:18:54,055 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:55,256 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56423_20260902_141216.jpg
+2026-09-02 18:18:55,273 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:57,259 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56422_20260902_140854.jpg
+2026-09-02 18:18:57,270 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:58,388 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56421_20260902_140643.jpg
+2026-09-02 18:18:58,393 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:18:59,549 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56420_20260902_140348.jpg
+2026-09-02 18:18:59,556 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:00,717 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56419_20260902_134127.jpg
+2026-09-02 18:19:00,724 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:02,107 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56418_20260902_133849.jpg
+2026-09-02 18:19:02,113 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:03,299 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56417_20260902_133636.jpg
+2026-09-02 18:19:03,307 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:04,458 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56416_20260902_133444.jpg
+2026-09-02 18:19:04,464 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:05,624 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56415_20260902_133247.jpg
+2026-09-02 18:19:05,631 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:06,838 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56414_20260902_133036.jpg
+2026-09-02 18:19:06,847 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:07,689 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56413_20260902_132510.jpg
+2026-09-02 18:19:07,695 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:08,864 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56412_20260902_132242.jpg
+2026-09-02 18:19:08,870 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:10,323 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56411_20260902_132040.jpg
+2026-09-02 18:19:10,331 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:12,211 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56410_20260902_131828.jpg
+2026-09-02 18:19:12,219 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:13,483 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56409_20260902_131511.jpg
+2026-09-02 18:19:13,490 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:15,576 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56408_20260902_131247.jpg
+2026-09-02 18:19:15,591 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:17,345 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56406_20260902_125928.jpg
+2026-09-02 18:19:17,355 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:18,080 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56405_20260902_125725.jpg
+2026-09-02 18:19:18,081 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:19,964 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56404_20260902_125725.jpg
+2026-09-02 18:19:19,965 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:20,852 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56403_20260902_125725.jpg
+2026-09-02 18:19:20,852 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:21,669 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56402_20260902_125725.jpg
+2026-09-02 18:19:21,670 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:22,377 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56401_20260902_125724.jpg
+2026-09-02 18:19:22,377 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:23,192 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56400_20260902_125724.jpg
+2026-09-02 18:19:23,192 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:24,464 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56399_20260902_125657.jpg
+2026-09-02 18:19:24,475 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:25,456 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56398_20260902_124321.jpg
+2026-09-02 18:19:25,469 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:26,466 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56397_20260902_123453.jpg
+2026-09-02 18:19:26,473 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:28,247 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56396_20260902_123114.jpg
+2026-09-02 18:19:28,259 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:30,131 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56395_20260902_122349.jpg
+2026-09-02 18:19:30,138 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:32,259 [INFO] TelegramCollector:   📷 تم تنزيل صورة: sahmmisr_56394_20260902_122006.jpg
+2026-09-02 18:19:33,978 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:35,430 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1618005069_153172_20260902_151235.jpg
+2026-09-02 18:19:35,431 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:36,160 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1618005069_153170_20260902_143837.jpg
+2026-09-02 18:19:36,161 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:36,802 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1618005069_153169_20260902_134742.jpg
+2026-09-02 18:19:36,803 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:37,321 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1618005069_153168_20260902_133551.jpg
+2026-09-02 18:19:37,322 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:38,333 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1618005069_153166_20260902_130704.jpg
+2026-09-02 18:19:38,334 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:39,483 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1618005069_153163_20260902_124733.jpg
+2026-09-02 18:19:39,483 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:19:40,554 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1618005069_153162_20260902_124733.jpg
+2026-09-02 18:20:28,551 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:20:31,064 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:20:33,674 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:20:36,417 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:20:39,466 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:20:41,892 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:20:46,101 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:20:50,563 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:20:54,182 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:20:57,346 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:21:00,419 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:21:03,126 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:21:06,106 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:21:09,237 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:21:12,321 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:21:16,005 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:21:18,996 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:24:28,645 [INFO] NewsAgent: Alborsaa registered as new source (grace period 7 days)
+2026-09-02 18:30:18,910 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 18:30:19,096 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:30:22,020 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:30:27,030 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: database is locked
+2026-09-02 18:31:49,796 [WARNING] telethon.network.connection.connection: Server closed the connection: 0 bytes read on a total of 8 expected bytes
+2026-09-02 18:31:49,797 [INFO] telethon.network.mtprotosender: Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+2026-09-02 18:31:49,797 [INFO] telethon.network.mtprotosender: Closing current connection to begin reconnect...
+2026-09-02 18:31:49,797 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:31:49,862 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:31:55,076 [WARNING] telethon.client.updates: Error executing high-level request after reconnect: <class 'sqlite3.OperationalError'>: database is locked
+2026-09-02 18:32:18,293 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:21,729 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:23,052 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:24,401 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:26,845 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:28,646 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:29,717 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:30,881 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:32,480 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+─────────────────────────── 🔄 دورة جديدة — 18:32:34 ───────────────────────────
+⚡ جمع الأخبار من كل المصادر...
+2026-09-02 18:32:35,832 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:36,548 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 18:32:36,548 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 18:32:36,999 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:37,800 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 18:32:37,800 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 18:32:42,518 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 18:32:42,518 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 18:32:42,542 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:44,643 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:46,205 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:47,775 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:48,839 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:53,024 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:53,786 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:54,978 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:57,961 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:32:59,457 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:00,980 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:01,838 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:03,000 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:04,062 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:04,940 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:05,724 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:07,297 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:08,584 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:09,708 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:10,539 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:11,567 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:12,389 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:13,451 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:14,381 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:15,441 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:16,524 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:17,458 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:33:18,362 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+  ✓ تم جمع 0 خبر جديد
+🧠 تحليل 5 خبر بنموذج محلي...
+2026-09-02 18:34:39,194 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:34:39,194 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:34:42,224 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:34:42,224 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:34:45,135 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:34:45,135 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:34:46,815 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:34:46,815 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:34:49,003 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:34:49,003 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+  ✓ تم تحليل 5 خبر
+📡 إرسال 20 خبر مهم...
+2026-09-02 18:34:49,074 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,074 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,075 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): أرباح ​”كونكريت فاشون” تتراجع 13.2% خلال
+2026-09-02 18:34:49,075 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): أرباح ​”كونكريت فاشون” تتراجع 13.2% خلال
+2026-09-02 18:34:49,502 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,502 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,503 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): أرباح ​”كونكريت فاشون” تتراجع 13.2% خلال
+2026-09-02 18:34:49,503 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): أرباح ​”كونكريت فاشون” تتراجع 13.2% خلال
+2026-09-02 18:34:49,563 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,563 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,565 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): الرقابة المالية تعتمد بدء التداول على أس
+2026-09-02 18:34:49,565 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): الرقابة المالية تعتمد بدء التداول على أس
+2026-09-02 18:34:49,933 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,933 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,934 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): الرقابة المالية تعتمد بدء التداول على أس
+2026-09-02 18:34:49,934 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): الرقابة المالية تعتمد بدء التداول على أس
+2026-09-02 18:34:49,988 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,988 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:49,989 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): مساهم يتخارج من “الأهرام للطباعة” بقيمة 
+2026-09-02 18:34:49,989 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): مساهم يتخارج من “الأهرام للطباعة” بقيمة 
+2026-09-02 18:34:50,318 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:50,318 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:50,319 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): مساهم يتخارج من “الأهرام للطباعة” بقيمة 
+2026-09-02 18:34:50,319 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): مساهم يتخارج من “الأهرام للطباعة” بقيمة 
+2026-09-02 18:34:50,369 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:50,369 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:50,370 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): “كريستمارك” تنفق 6.7 مليون جنيه من متحصل
+2026-09-02 18:34:50,370 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): “كريستمارك” تنفق 6.7 مليون جنيه من متحصل
+2026-09-02 18:34:50,711 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:50,711 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:50,711 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): “كريستمارك” تنفق 6.7 مليون جنيه من متحصل
+2026-09-02 18:34:50,711 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): “كريستمارك” تنفق 6.7 مليون جنيه من متحصل
+2026-09-02 18:34:50,759 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:50,759 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:50,760 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): فشل انعقاد عمومية “ابن سينا” لعدم اكتمال
+2026-09-02 18:34:50,760 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): فشل انعقاد عمومية “ابن سينا” لعدم اكتمال
+2026-09-02 18:34:51,121 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:51,121 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:51,122 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): فشل انعقاد عمومية “ابن سينا” لعدم اكتمال
+2026-09-02 18:34:51,122 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): فشل انعقاد عمومية “ابن سينا” لعدم اكتمال
+2026-09-02 18:34:51,167 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:51,167 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:51,168 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **اكتشاف ضخم في الصين: العثور على كنز 
+2026-09-02 18:34:51,168 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **اكتشاف ضخم في الصين: العثور على كنز 
+2026-09-02 18:34:51,512 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:51,512 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:51,512 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **اكتشاف ضخم في الصين: العثور على كنز 
+2026-09-02 18:34:51,512 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **اكتشاف ضخم في الصين: العثور على كنز 
+2026-09-02 18:34:51,571 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:51,571 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:51,573 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **رسمياً في الصاغة: عيار 21 يكسر حاجز 
+2026-09-02 18:34:51,573 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **رسمياً في الصاغة: عيار 21 يكسر حاجز 
+2026-09-02 18:34:52,667 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:52,667 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:52,669 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **رسمياً في الصاغة: عيار 21 يكسر حاجز 
+2026-09-02 18:34:52,669 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **رسمياً في الصاغة: عيار 21 يكسر حاجز 
+2026-09-02 18:34:52,719 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:52,719 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:52,720 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **الأوقية تقترب من 4,400 دولار وعيار 2
+2026-09-02 18:34:52,720 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **الأوقية تقترب من 4,400 دولار وعيار 2
+2026-09-02 18:34:54,021 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:54,021 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:54,022 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **الأوقية تقترب من 4,400 دولار وعيار 2
+2026-09-02 18:34:54,022 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **الأوقية تقترب من 4,400 دولار وعيار 2
+2026-09-02 18:34:54,069 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:54,069 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:54,070 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **شراكة استراتيجية بين مصر والصين: تجد
+2026-09-02 18:34:54,070 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **شراكة استراتيجية بين مصر والصين: تجد
+2026-09-02 18:34:54,741 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:54,741 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:54,742 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **شراكة استراتيجية بين مصر والصين: تجد
+2026-09-02 18:34:54,742 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **شراكة استراتيجية بين مصر والصين: تجد
+2026-09-02 18:34:54,803 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:54,803 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:54,804 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **استقرار عند القمة: عيار 21 يثبت عند 
+2026-09-02 18:34:54,804 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **استقرار عند القمة: عيار 21 يثبت عند 
+2026-09-02 18:34:55,137 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,137 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,139 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **استقرار عند القمة: عيار 21 يثبت عند 
+2026-09-02 18:34:55,139 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **استقرار عند القمة: عيار 21 يثبت عند 
+2026-09-02 18:34:55,182 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,182 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,183 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **تباطؤ التوظيف الأمريكي لأقل من التوق
+2026-09-02 18:34:55,183 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **تباطؤ التوظيف الأمريكي لأقل من التوق
+2026-09-02 18:34:55,517 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,517 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,518 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **تباطؤ التوظيف الأمريكي لأقل من التوق
+2026-09-02 18:34:55,518 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **تباطؤ التوظيف الأمريكي لأقل من التوق
+2026-09-02 18:34:55,560 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,560 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,560 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **الذهب يستقر عند المستويات القياسية: 
+2026-09-02 18:34:55,560 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **الذهب يستقر عند المستويات القياسية: 
+2026-09-02 18:34:55,908 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,908 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,909 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **الذهب يستقر عند المستويات القياسية: 
+2026-09-02 18:34:55,909 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **الذهب يستقر عند المستويات القياسية: 
+2026-09-02 18:34:55,962 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,962 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:55,962 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **تراجع خفيف في الصاغة: عيار 21 يسجل 6
+2026-09-02 18:34:55,962 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **تراجع خفيف في الصاغة: عيار 21 يسجل 6
+2026-09-02 18:34:56,307 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:56,307 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:56,308 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **تراجع خفيف في الصاغة: عيار 21 يسجل 6
+2026-09-02 18:34:56,308 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **تراجع خفيف في الصاغة: عيار 21 يسجل 6
+2026-09-02 18:34:56,375 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:56,375 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:56,377 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **الذهب في مصر يوصل للسعر العادل: اختف
+2026-09-02 18:34:56,377 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **الذهب في مصر يوصل للسعر العادل: اختف
+2026-09-02 18:34:56,737 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:56,737 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:56,738 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **الذهب في مصر يوصل للسعر العادل: اختف
+2026-09-02 18:34:56,738 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **الذهب في مصر يوصل للسعر العادل: اختف
+2026-09-02 18:34:56,795 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:56,795 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:56,796 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **تراجع جديد بالصاغة: عيار 21 ينخفض لـ
+2026-09-02 18:34:56,796 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📢 **تراجع جديد بالصاغة: عيار 21 ينخفض لـ
+2026-09-02 18:34:57,163 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:57,163 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:57,164 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **تراجع جديد بالصاغة: عيار 21 ينخفض لـ
+2026-09-02 18:34:57,164 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📢 **تراجع جديد بالصاغة: عيار 21 ينخفض لـ
+2026-09-02 18:34:57,217 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:57,217 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:57,218 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📈 إغلاقات صناديق الاستثمار – إن آي كابيت
+2026-09-02 18:34:57,218 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📈 إغلاقات صناديق الاستثمار – إن آي كابيت
+2026-09-02 18:34:57,572 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:57,572 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:57,573 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📈 إغلاقات صناديق الاستثمار – إن آي كابيت
+2026-09-02 18:34:57,573 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📈 إغلاقات صناديق الاستثمار – إن آي كابيت
+2026-09-02 18:34:57,622 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:57,622 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:57,623 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📊 إحصائيات جلسة البورصة المصرية 📅 الأربع
+2026-09-02 18:34:57,623 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 📊 إحصائيات جلسة البورصة المصرية 📅 الأربع
+2026-09-02 18:34:58,348 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:58,348 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:58,349 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📊 إحصائيات جلسة البورصة المصرية 📅 الأربع
+2026-09-02 18:34:58,349 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 📊 إحصائيات جلسة البورصة المصرية 📅 الأربع
+2026-09-02 18:34:58,395 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:58,395 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:34:58,395 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): تقرير متابعة التوصيات بتاريخ 2/9/2026
+2026-09-02 18:34:58,395 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): تقرير متابعة التوصيات بتاريخ 2/9/2026
+2026-09-02 18:35:00,510 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:00,510 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:00,510 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): تقرير متابعة التوصيات بتاريخ 2/9/2026
+2026-09-02 18:35:00,510 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): تقرير متابعة التوصيات بتاريخ 2/9/2026
+2026-09-02 18:35:00,558 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:00,558 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:00,558 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): توصيات لجلسة الغد بتاريخ 3/9/2026
+2026-09-02 18:35:00,558 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): توصيات لجلسة الغد بتاريخ 3/9/2026
+2026-09-02 18:35:02,781 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:02,781 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:02,782 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): توصيات لجلسة الغد بتاريخ 3/9/2026
+2026-09-02 18:35:02,782 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): توصيات لجلسة الغد بتاريخ 3/9/2026
+2026-09-02 18:35:02,824 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:02,824 [INFO] httpx: HTTP Request: POST http://localhost:3000/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:02,825 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 🔰 الاجتماع المسائى               لجلسه ب
+2026-09-02 18:35:02,825 [INFO] ProductionSender:   ✓ استلم (http://localhost:3000/api/news): 🔰 الاجتماع المسائى               لجلسه ب
+2026-09-02 18:35:04,479 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:04,479 [INFO] httpx: HTTP Request: POST https://invist.m2y.net/api/news "HTTP/1.1 201 Created"
+2026-09-02 18:35:04,480 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 🔰 الاجتماع المسائى               لجلسه ب
+2026-09-02 18:35:04,480 [INFO] ProductionSender:   ✓ استلم (https://invist.m2y.net/api/news): 🔰 الاجتماع المسائى               لجلسه ب
+  ↳ النشر الاجتماعي متوقف لهذا الوكيل
+💤 انتظار 15 دقيقة للدورة القادمة...
+2026-09-02 18:35:56,187 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 18:35:56,367 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:35:57,822 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:36:02,832 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: database is locked
+2026-09-02 18:37:26,517 [WARNING] telethon.network.connection.connection: Server closed the connection: 0 bytes read on a total of 8 expected bytes
+2026-09-02 18:37:26,517 [INFO] telethon.network.mtprotosender: Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+2026-09-02 18:37:26,517 [INFO] telethon.network.mtprotosender: Closing current connection to begin reconnect...
+2026-09-02 18:37:26,518 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:37:26,873 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:37:32,218 [WARNING] telethon.client.updates: Error executing high-level request after reconnect: <class 'sqlite3.OperationalError'>: database is locked
+2026-09-02 18:40:17,583 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 18:40:17,844 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:40:19,246 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:40:24,258 [ERROR] TelegramCollector: خطأ في الاتصال بـ Telegram: database is locked
+2026-09-02 18:41:47,955 [WARNING] telethon.network.connection.connection: Server closed the connection: 0 bytes read on a total of 8 expected bytes
+2026-09-02 18:41:47,956 [INFO] telethon.network.mtprotosender: Connection closed while receiving data: 0 bytes read on a total of 8 expected bytes
+2026-09-02 18:41:47,956 [INFO] telethon.network.mtprotosender: Closing current connection to begin reconnect...
+2026-09-02 18:41:47,957 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:41:48,022 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:41:53,183 [WARNING] telethon.client.updates: Error executing high-level request after reconnect: <class 'sqlite3.OperationalError'>: database is locked
+2026-09-02 18:42:56,767 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 18:42:56,925 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:42:58,165 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:42:58,842 [INFO] TelegramCollector: ✓ جلسة Telegram المحفوظة شغالة
+2026-09-02 18:42:58,843 [INFO] TelegramCollector: ✓ Telegram متصل — 17 قناة
+2026-09-02 18:42:59,474 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:42:59,881 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1602212587_35498_20260902_152313.jpg
+2026-09-02 18:43:02,740 [INFO] telethon.client.downloads: Starting direct file download in chunks of 131072 at 0, stride 131072
+2026-09-02 18:43:03,070 [INFO] TelegramCollector:   📷 تم تنزيل صورة: 1618005069_153173_20260902_152316.jpg
+2026-09-02 18:45:02,344 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:05,652 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:06,428 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:07,167 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:08,609 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:11,683 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:12,319 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:14,339 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:15,273 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:15,835 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:17,224 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:18,082 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:19,234 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:21,499 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:23,380 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:25,412 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:26,348 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:28,539 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:31,292 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:32,247 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:33,255 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:35,227 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:36,877 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:37,781 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:38,626 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:39,919 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:42,324 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:43,827 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:47,865 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:49,569 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:51,004 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:52,562 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:53,447 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:54,041 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:45:55,056 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:46:52,238 [INFO] telethon.crypto.aes: libssl detected, it will be used for encryption
+2026-09-02 18:46:52,373 [INFO] telethon.network.mtprotosender: Connecting to 149.154.167.92:443/TcpFull...
+2026-09-02 18:46:53,589 [INFO] telethon.network.mtprotosender: Connection to 149.154.167.92:443/TcpFull complete!
+2026-09-02 18:46:53,977 [INFO] TelegramCollector: ✓ جلسة Telegram المحفوظة شغالة
+2026-09-02 18:46:53,977 [INFO] TelegramCollector: ✓ Telegram متصل — 17 قناة
+2026-09-02 18:48:55,317 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:48:57,113 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:48:57,656 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:48:58,759 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:48:59,332 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:01,399 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:02,696 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:06,939 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:08,299 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:09,276 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:10,098 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:10,774 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:11,463 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:12,522 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:13,009 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:13,573 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:14,320 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:15,497 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:16,337 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:17,265 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:18,070 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:19,168 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:19,988 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:21,622 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:22,456 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:23,222 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:23,980 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:24,746 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:25,443 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2026-09-02 18:49:25,981 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+─────────────────────────── 🔄 دورة جديدة — 18:50:04 ───────────────────────────
+⚡ جمع الأخبار من كل المصادر...
+2026-09-02 18:50:06,222 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 18:50:06,222 [WARNING] TelegramCollector: لم يتم العثور على القناة: EGX_alerts
+2026-09-02 18:50:07,311 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 18:50:07,311 [WARNING] TelegramCollector: لم يتم العثور على القناة: mubasher_egx
+2026-09-02 18:50:11,865 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+2026-09-02 18:50:11,865 [WARNING] TelegramCollector: لم يتم العثور على القناة: egx_news_ar
+  ✓ تم جمع 0 خبر جديد
+💤 انتظار 15 دقيقة للدورة القادمة...

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Agent — EGX Dashboard</title>
+    <link rel="stylesheet" href="/ui/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- ===== Top Bar ===== -->
+      <div class="topbar">
+        <div>
+          <h1>📰 News Agent — EGX Dashboard</h1>
+          <div class="subtitle">مراقبة أخبار بورصة مصر الحية</div>
+        </div>
+        <div class="status-pill" id="status-pill">
+          <span class="dot"></span>
+          <span>جاري التحديث...</span>
+        </div>
+      </div>
+
+      <!-- ===== Controls ===== -->
+      <div class="controls">
+        <button class="btn primary" id="start-btn">
+          <span>تشغيل المشروع</span>
+        </button>
+        <button class="btn danger" id="stop-btn">
+          <span>إيقاف المشروع</span>
+        </button>
+        <button class="btn secondary" id="refresh-btn">
+          <span>تحديث يدوي</span>
+        </button>
+
+        <div class="telegram-box">
+          Telegram: <strong id="telegram-state">غير متصل</strong>
+        </div>
+
+        <select class="filter-select" id="filter-select">
+          <option value="all">كل الأخبار</option>
+          <option value="important">أهم الأخبار (≥ 55)</option>
+          <option value="analyzed">محللّة</option>
+          <option value="unsent">لم تُرسل بعد</option>
+        </select>
+      </div>
+
+      <section class="panel telegram-setup" aria-label="إعداد Telegram">
+        <h2><span>ربط Telegram واختيار القنوات</span><span class="count" id="telegram-auth-state">غير مسجل</span></h2>
+        <div class="telegram-form-grid">
+          <label>رقم الهاتف بصيغة دولية<input type="tel" id="telegram-phone" placeholder="+201xxxxxxxxx" dir="ltr" /></label>
+          <button class="btn secondary" id="telegram-send-code"><span>إرسال كود الدخول</span></button>
+          <label>كود Telegram<input type="text" id="telegram-code" placeholder="12345" inputmode="numeric" dir="ltr" /></label>
+          <label>كلمة مرور التحقق بخطوتين<input type="password" id="telegram-password" placeholder="اختياري" dir="ltr" /></label>
+          <button class="btn primary" id="telegram-verify"><span>تأكيد الدخول</span></button>
+        </div>
+        <div class="channel-toolbar">
+          <button class="btn secondary" id="telegram-load-channels"><span>تحميل القنوات</span></button>
+          <button class="btn primary" id="telegram-save-channels"><span>حفظ القنوات المختارة</span></button>
+          <span class="hint" id="telegram-channel-hint">سجل الدخول ثم حمّل القنوات المشترَك بها</span>
+        </div>
+        <div class="channel-list" id="telegram-channel-list"></div>
+      </section>
+
+      <!-- ===== Auto-refresh Info ===== -->
+      <div class="refresh-info">
+        <span>تحديث تلقائي خلال:</span>
+        <span class="countdown" id="countdown">15</span>
+        <span>ثوانٍ</span>
+        ·
+        <span id="last-update">—</span>
+      </div>
+
+      <!-- ===== Stats Grid ===== -->
+      <div class="grid">
+        <div class="card">
+          <div class="label">📰 إجمالي الأخبار</div>
+          <div class="value" id="total-count">0</div>
+        </div>
+        <div class="card">
+          <div class="label">⏳ بانتظار التحليل</div>
+          <div class="value small" id="pending-count">0</div>
+        </div>
+        <div class="card">
+          <div class="label">🧠 تم تحليلها</div>
+          <div class="value small" id="analyzed-count">0</div>
+        </div>
+        <div class="card">
+          <div class="label">📡 تم إرسالها</div>
+          <div class="value small" id="sent-count">0</div>
+        </div>
+      </div>
+
+      <!-- ===== Vertical Stack: News + Logs ===== -->
+      <div class="two-col">
+        <!-- ===== News Section with Tabs ===== -->
+        <section class="panel">
+          <h2>
+            <span>الأخبار</span>
+            <span class="count" id="news-count">0</span>
+          </h2>
+
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="all" id="tab-all">
+              <span>📰 كل الأخبار</span>
+            </button>
+            <button class="tab-btn" data-tab="telegram" id="tab-telegram">
+              <span>📱 تيليجرام</span>
+            </button>
+            <button class="tab-btn" data-tab="copy" id="tab-copy">
+              <span>📋 نسخ يدوي</span>
+            </button>
+          </div>
+
+          <!-- Tab Content: All News -->
+          <div class="tab-content active" id="tab-all-content">
+            <ul class="news-list" id="news-list"></ul>
+          </div>
+
+          <!-- Tab Content: Telegram News -->
+          <div class="tab-content" id="tab-telegram-content">
+            <ul class="news-list" id="telegram-news-list"></ul>
+          </div>
+
+          <!-- Tab Content: Copy/Paste News -->
+          <div class="tab-content" id="tab-copy-content">
+            <div class="paste-form">
+              <textarea
+                id="paste-text"
+                placeholder="ألصق هنا نص الخبر من فيسبوك، واتساب، أو أي مصدر آخر..."
+                dir="rtl"
+              ></textarea>
+              <div class="row">
+                <input type="text" id="paste-source" placeholder="اسم المصدر (اختياري)" />
+                <button class="btn primary" id="paste-submit">
+                  <span>إرسال للتحليل بالذكاء الاصطناعي</span>
+                </button>
+              </div>
+            </div>
+            <hr style="border-color: var(--border); margin: 16px 0;" />
+            <ul class="news-list" id="copy-news-list" style="margin-top: 16px;"></ul>
+          </div>
+        </section>
+
+        <!-- ===== Log Section ===== -->
+        <section class="panel">
+          <h2>
+            <span>سجل التشغيل</span>
+            <span class="count" id="log-count">0</span>
+          </h2>
+          <ul class="log-list" id="log-list"></ul>
+        </section>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="/ui/app.js"></script>
+  </body>
+</html>
