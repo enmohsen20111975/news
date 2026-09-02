@@ -1,0 +1,69 @@
+# ─────────────────────────────────────────────────────
+# .gitignore — News Agent (sandbox-safe version, 2026-09-02)
+# ─────────────────────────────────────────────────────
+# CRITICAL: This .gitignore was previously EMPTY, causing .env + .venv/ + data/news.db
+# to be committed to GitHub. The owner MUST scrub them from history (see Agent messages.md).
+
+# ─── Secrets (NEVER commit) ───
+.env
+.env.local
+.env.production
+.env.*.local
+*.secret
+*.key
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+*.egg
+build/
+dist/
+
+# ─── Databases (NEVER commit — production data) ───
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.db.bak*
+*.sqlite
+*.sqlite3
+data/news.db
+data/news.db-*
+data/*.db
+data/*.sqlite*
+
+# ─── Logs & runtime ───
+*.log
+logs/
+data/agent.log
+data/.source_state.json
+
+# ─── OS junk ───
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ─── IDE ───
+.vscode/
+.idea/
+*.iml
+
+# ─── Telegram session files (contains auth!) ───
+*.session
+*.session-journal
+data/*.session*

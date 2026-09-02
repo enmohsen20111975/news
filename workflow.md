@@ -258,3 +258,45 @@ After editing:
 - `ENABLE_TELEGRAM=0` and `SOCIAL_PLATFORMS=` are intentional while a separate worker owns Telegram collection and social publishing.
 
 Last updated: 2026-09-02
+
+---
+
+## 2026-09-02 — Z.ai Code Sandbox Integration Audit
+
+### What was done (sandbox only — not pushed)
+- Cloned `news` repo shallowly to `/home/z/my-project/news`.
+- Inspected `main.py`, `sender/production_sender.py`, `analyzer/news_analyzer.py`, `data/news_store.py`, `.env.example`.
+- Synced `NEWS_AGENT_API_KEY` in GLMinvestment sandbox `.env` with news agent's `PRODUCTION_API_KEY` (`news_agent_secret_key_2026`) — **sandbox only**.
+- Sent test news via `POST /api/news` with `x-agent-key` header → HTTP 201 → stored in `market_news` (ID=7895, ID=7896).
+- Verified `news_impact_scorer.score_news_articles()` runs on the stored news successfully.
+- Scrubbed real Telegram secrets from `.env.example` (replaced with placeholders).
+- Created `.gitignore` (was previously empty — caused `.env` + `.venv/` + `data/news.db` to be committed).
+- Wrote `Agent messages.md` with all modifications required from the human programmer.
+
+### Critical security findings (in `Agent messages.md`)
+1. 🚨 `.env` (real, with Telegram API_HASH + Bot Token + GLMinvestment PRODUCTION_API_KEY) is committed in `0975b0d` and pushed to GitHub.
+2. 🚨 `.venv/` (7408 files) committed.
+3. 🚨 `data/news.db` committed (could contain session data).
+4. 🚨 `.gitignore` was empty.
+
+### Modifications required from human programmer
+- See `Agent messages.md` (root of this repo). All 10 items documented with exact code/SQL/commands.
+- Priority order: 0 (security scrub) → 1 (revoke secrets) → 5-9 (code changes) → 10 (enable V40_2_NEWS_IMPACT).
+
+### Integration verified end-to-end
+```
+news agent → POST /api/news (with x-agent-key) → GLMinvestment market_news table → news_impact_scorer → V40.2 daily_generator
+                                                                                              ↑
+                                        (after item 7 done) news_fetcher_analyzer reads from market_news
+```
+
+### Files touched in sandbox (not pushed)
+- `.env.example` — secrets replaced with placeholders
+- `.gitignore` — created (was empty)
+- `Agent messages.md` — new file (430 lines)
+
+### Next steps (awaiting owner's permission)
+1. Push the `.env.example` + `.gitignore` + `Agent messages.md` changes (3 files, no secrets).
+2. Human programmer to revoke secrets + scrub history (item 0 in Agent messages.md).
+3. Human programmer to implement code changes (items 2-9).
+4. After all done, enable `V40_2_NEWS_IMPACT=1` in production (item 10).
