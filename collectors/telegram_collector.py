@@ -56,6 +56,16 @@ class TelegramCollector:
         self._bot_session_path = str(Path(__file__).parent.parent / 'data' / f'telegram_session_{hostname}')
         self._session_path = self._read_session_path  # للقراءة
 
+    def _clear_session_file(self, session_path: str):
+        """يمسح ملف الجلسة الفاسد (و .session / -journal)"""
+        for suffix in ['', '.session', '.session-journal']:
+            p = Path(session_path + suffix)
+            if p.exists():
+                try:
+                    p.unlink()
+                except Exception:
+                    pass
+
     async def _init_client(self):
         """تهيئة Telethon client مع جلسة المستخدم للقراءة"""
         if not self.api_id or not self.api_hash:
@@ -63,7 +73,7 @@ class TelegramCollector:
             return False
         try:
             from telethon import TelegramClient
-            from telethon.errors import FloodWaitError
+            from telethon.errors import FloodWaitError, AuthKeyError
 
             # استخدم جلسة المستخدم للقراءة دائماً
             self.client = TelegramClient(self._read_session_path, int(self.api_id), self.api_hash)
@@ -89,8 +99,12 @@ class TelegramCollector:
             self._ready = True
             log.info(f"✓ Telegram متصل — {len(self.channels)} قناة")
             return True
-        except Exception as e:
+        except (Exception, AuthKeyError) as e:
             log.error(f"خطأ في الاتصال بـ Telegram: {e}")
+            # إذا كانت الجلسة فاسدة، امسحها وأعد المحاولة مرة واحدة
+            if 'Session' in str(type(e).__name__) or 'auth' in str(e).lower():
+                self._clear_session_file(self._read_session_path)
+                log.warning("✓ تم مسح الجلسة الفاسدة — أعد تشغيل لتسجيل الدخول من جديد")
             return False
 
     async def collect(self) -> int:

@@ -131,8 +131,20 @@ def _telegram_session_path() -> str:
     return str(ROOT / 'data' / f'telegram_ui_{socket.gethostname()}')
 
 
+def _clear_session_file(session_path: str):
+    """يمسح ملف الجلسة الفاسد"""
+    for suffix in ['', '.session', '.session-journal']:
+        p = Path(session_path + suffix)
+        if p.exists():
+            try:
+                p.unlink()
+            except Exception:
+                pass
+
+
 async def _telegram_client():
     from telethon import TelegramClient
+    from telethon.errors import SessionPasswordNeededError
 
     api_id = os.getenv('TELEGRAM_API_ID', '')
     api_hash = os.getenv('TELEGRAM_API_HASH', '')
@@ -143,6 +155,14 @@ async def _telegram_client():
     if client is None:
         client = TelegramClient(_telegram_session_path(), int(api_id), api_hash)
         await client.connect()
+        # تحقق من صلاحية الجلسة — إذا فاسدة، امسحها
+        try:
+            if not await client.is_user_authorized():
+                raise SessionPasswordNeededError('session not authorized')
+        except (SessionPasswordNeededError, Exception):
+            _clear_session_file(_telegram_session_path())
+            client = TelegramClient(_telegram_session_path(), int(api_id), api_hash)
+            await client.connect()
         _telegram_auth['client'] = client
     return client
 
