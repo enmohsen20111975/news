@@ -342,7 +342,9 @@ async function fetchRecommendations() {
   try {
     const res = await fetch(API.recommendations);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return await res.json();
+    const data = await res.json();
+    console.log('Recommendations API response:', data);
+    return data;
   } catch (err) {
     console.error('Recommendations fetch error:', err);
     return null;
@@ -375,7 +377,7 @@ function getRecTypeLabel(type) {
   return labels[type] || type || 'عام';
 }
 
-function renderRecommendations(data) {
+function renderRecommendations(data, isRunning) {
   if (!data || !El.recommendationsList) return;
 
   const groups = data.groups || [];
@@ -383,11 +385,14 @@ function renderRecommendations(data) {
   const groupCount = data.group_count || 0;
 
   if (!groups.length) {
+    const message = !isRunning
+      ? 'المشروع متوقف حالياً — اضغط "تشغيل المشروع" لتشغيل الـ Local AI وجمع التوصيات'
+      : 'لا توجد توصيات بعد — يتم جمعها من الأخبار المحللة';
     El.recommendationsList.innerHTML = `
       <li class="news-item muted">
         <div class="empty-state">
           <div style="font-size: 2.5rem; margin-bottom: 8px;">📊</div>
-          <p>لا توجد توصيات بعد — يتم جمعها من الأخبار المحللة</p>
+          <p>${message}</p>
         </div>
       </li>
     `;
@@ -706,7 +711,7 @@ async function loadStatus() {
   renderLogs(data.last_log || []);
 
   const recData = await fetchRecommendations();
-  renderRecommendations(recData);
+  renderRecommendations(recData, Boolean(data.running));
 
   if (El.lastUpdate) {
     El.lastUpdate.textContent = `آخر تحديث: ${formatTimestamp(data.timestamp)}`;

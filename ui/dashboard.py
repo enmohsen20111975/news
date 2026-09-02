@@ -6,9 +6,10 @@ from pathlib import Path
 import sqlite3
 import socket
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException, Depends
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -17,6 +18,7 @@ DB_PATH = ROOT / 'data' / 'news.db'
 LOG_PATH = ROOT / 'data' / 'agent.log'
 UI_DIR = ROOT / 'ui'
 IMAGES_DIR = ROOT / 'data' / 'telegram_images'
+CHANNELS_FILE = ROOT / 'data' / 'telegram_channels.json'
 
 from data.news_store import NewsStore
 _store = NewsStore()
@@ -31,6 +33,15 @@ app = FastAPI(title='News Agent Dashboard', version='1.0.0')
 
 app.mount('/ui', StaticFiles(directory=str(UI_DIR)), name='ui')
 app.mount('/images', StaticFiles(directory=str(IMAGES_DIR)), name='images')
+
+security = HTTPBearer(auto_error=False)
+DASHBOARD_API_KEY = os.getenv('DASHBOARD_API_KEY', 'change-me-dashboard-key')
+
+
+def _require_auth(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    if not credentials or credentials.credentials != DASHBOARD_API_KEY:
+        raise HTTPException(status_code=401, detail='unauthorized')
+    return True
 
 
 def _db_connect() -> sqlite3.Connection:
@@ -187,8 +198,23 @@ def _save_telegram_channels(channels: list[str]):
     env_path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
 
 
+def _load_channels_file() -> list[dict]:
+    if not CHANNELS_FILE.exists():
+        return []
+    try:
+        data = json.loads(CHANNELS_FILE.read_text(encoding='utf-8'))
+        return data if isinstance(data, list) else []
+    except Exception:
+        return []
+
+
+def _save_channels_file(channels: list[dict]):
+    CHANNELS_FILE.parent.mkdir(parents=True, exist_ok=True)
+    CHANNELS_FILE.write_text(json.dumps(channels, ensure_ascii=False, indent=2), encoding='utf-8')
+
+
 @app.get('/api/telegram/status')
-async def telegram_status():
+async def telegram_status(auth: bool = Depends(_require_auth)):
     try:
         client = await _telegram_client()
         authorized = await client.is_user_authorized()
@@ -241,8 +267,52 @@ async def telegram_verify(request: Request):
         return JSONResponse({'ok': False, 'message': str(exc)}, status_code=400)
 
 
+@app.post('/api/telegram/send-code')
+async def telegram_send_code(request: Request, auth: bool = Depends(_require_auth)):
+    body = await request.json()
+    phone = (body.get('phone') or '').strip()
+    if not phone:
+        return JSONResponse({'ok': False, 'message': 'أدخل رقم الهاتف بصيغة دولية مثل +201xxxxxxxxx'}, status_code=400)
+    try:
+        client = await _telegram_client()
+        if await client.is_user_authorized():
+            _telegram_auth['phone'] = phone
+            return {'ok': True, 'authorized': True, 'message': 'الجلسة مسجلة بالفعل'}
+        sent = await client.send_code_request(phone)
+        _telegram_auth.update(phone=phone, phone_code_hash=sent.phone_code_hash)
+        return {'ok': True, 'authorized': False, 'message': 'تم إرسال كود Telegram إلى حسابك'}
+    except Exception as exc:
+        return JSONResponse({'ok': False, 'message': str(exc)}, status_code=400)
+
+
+@app.post('/api/telegram/verify')
+async def telegram_verify(request: Request, auth: bool = Depends(_require_auth)):
+    body = await request.json()
+    code = (body.get('code') or '').strip()
+    password = body.get('password') or ''
+    if not code:
+        return JSONResponse({'ok': False, 'message': 'أدخل كود Telegram'}, status_code=400)
+    try:
+        from telethon.errors import SessionPasswordNeededError
+
+        client = await _telegram_client()
+        try:
+            await client.sign_in(
+                phone=_telegram_auth['phone'],
+                code=code,
+                phone_code_hash=_telegram_auth['phone_code_hash'],
+            )
+        except SessionPasswordNeededError:
+            if not password:
+                return {'ok': False, 'needs_password': True, 'message': 'الحساب محمي بكلمة مرور التحقق بخطوتين'}
+            await client.sign_in(password=password)
+        return {'ok': True, 'authorized': True, 'message': 'تم تسجيل الدخول بنجاح'}
+    except Exception as exc:
+        return JSONResponse({'ok': False, 'message': str(exc)}, status_code=400)
+
+
 @app.get('/api/telegram/channels')
-async def telegram_channels():
+async def telegram_channels(auth: bool = Depends(_require_auth)):
     try:
         client = await _telegram_client()
         if not await client.is_user_authorized():
@@ -264,13 +334,56 @@ async def telegram_channels():
 
 
 @app.post('/api/telegram/channels')
-async def save_telegram_channels(request: Request):
+async def save_telegram_channels(request: Request, auth: bool = Depends(_require_auth)):
     body = await request.json()
     channels = [str(value).strip() for value in body.get('channels', []) if str(value).strip()]
     if not channels:
         return JSONResponse({'ok': False, 'message': 'اختر قناة واحدة على الأقل'}, status_code=400)
     _save_telegram_channels(channels)
+    saved = [
+        {'value': c, 'title': c, 'username': c if c.startswith('@') else ''}
+        for c in channels
+    ]
+    _save_channels_file(saved)
     return {'ok': True, 'channels': channels, 'message': 'تم حفظ قنوات جمع الأخبار'}
+
+
+@app.get('/api/telegram/managed-channels')
+async def managed_channels(auth: bool = Depends(_require_auth)):
+    channels = _load_channels_file()
+    return {'ok': True, 'channels': channels}
+
+
+@app.post('/api/telegram/managed-channels')
+async def upsert_managed_channel(request: Request, auth: bool = Depends(_require_auth)):
+    body = await request.json()
+    channel = {
+        'value': str(body.get('value', '')).strip(),
+        'title': str(body.get('title', '')).strip(),
+        'username': str(body.get('username', '')).strip(),
+    }
+    if not channel['value']:
+        return JSONResponse({'ok': False, 'message': 'قيمة القناة مطلوبة'}, status_code=400)
+
+    channels = _load_channels_file()
+    existing_index = next((i for i, c in enumerate(channels) if c.get('value') == channel['value']), -1)
+    if existing_index >= 0:
+        channels[existing_index] = channel
+    else:
+        channels.append(channel)
+    _save_channels_file(channels)
+    return {'ok': True, 'channel': channel, 'message': 'تم حفظ القناة'}
+
+
+@app.delete('/api/telegram/managed-channels')
+async def delete_managed_channel(request: Request, auth: bool = Depends(_require_auth)):
+    body = await request.json()
+    value = str(body.get('value', '')).strip()
+    if not value:
+        return JSONResponse({'ok': False, 'message': 'قيمة القناة مطلوبة للحذف'}, status_code=400)
+    channels = [c for c in _load_channels_file() if c.get('value') != value]
+    _save_channels_file(channels)
+    return {'ok': True, 'message': 'تم حذف القناة'}
 
 
 @app.get('/')

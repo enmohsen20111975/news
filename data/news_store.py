@@ -95,6 +95,26 @@ class NewsStore:
         ):
             if column not in columns:
                 self.conn.execute(query)
+
+        rec_columns = {
+            row['name'] for row in self.conn.execute('PRAGMA table_info(expert_recommendations)').fetchall()
+        }
+        for column, query in (
+            ('stock_name_ar', "ALTER TABLE expert_recommendations ADD COLUMN stock_name_ar TEXT"),
+            ('recommendation_type', "ALTER TABLE expert_recommendations ADD COLUMN recommendation_type TEXT"),
+            ('entry_price_from', "ALTER TABLE expert_recommendations ADD COLUMN entry_price_from REAL"),
+            ('entry_price_to', "ALTER TABLE expert_recommendations ADD COLUMN entry_price_to REAL"),
+            ('target_price_2', "ALTER TABLE expert_recommendations ADD COLUMN target_price_2 REAL"),
+            ('support_level', "ALTER TABLE expert_recommendations ADD COLUMN support_level REAL"),
+            ('resistance_level', "ALTER TABLE expert_recommendations ADD COLUMN resistance_level REAL"),
+            ('technical_analysis', "ALTER TABLE expert_recommendations ADD COLUMN technical_analysis TEXT"),
+            ('recommendation_reason', "ALTER TABLE expert_recommendations ADD COLUMN recommendation_reason TEXT"),
+            ('notes', "ALTER TABLE expert_recommendations ADD COLUMN notes TEXT"),
+            ('source_news_ids', "ALTER TABLE expert_recommendations ADD COLUMN source_news_ids TEXT"),
+            ('remote_id', "ALTER TABLE expert_recommendations ADD COLUMN remote_id TEXT"),
+        ):
+            if column not in rec_columns:
+                self.conn.execute(query)
         self.conn.commit()
 
     def _make_id(self, text: str) -> str:
