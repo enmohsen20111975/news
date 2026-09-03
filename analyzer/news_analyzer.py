@@ -222,6 +222,10 @@ class NewsAnalyzer:
         ai_meta = ai_meta or {}
 
         # 1. كلمات/keywords وعلامات رفض
+        chat_spam_patterns = [
+            'رد على:', 'رد:', 'رد ', 'اقتباس', 'quoting',
+        ]
+        
         spam_patterns = [
             'لايف', 'بث مباشر', 'اكتب اسم السهم', 'سؤال وجواب',
             'تعليق:', 'share', 'تابعونا', 'يوتيوب', 'facebook',
@@ -230,9 +234,17 @@ class NewsAnalyzer:
             'مرحبا بك', 'يسعدنا انضمامك', 'قائمة المنشورات',
             'youtube.com', 'youtu.be', 'facebook.com', 'fb.watch',
             'انشر', 'منشن', 'tag', 'إعادة نشر',
-            'رد على:', 'رد:', 'رد', 'اقتباس', 'quoting',
         ]
-        is_spam = any(p in orig_lower for p in spam_patterns)
+        
+        source_type = news.get('source_type', '').lower()
+        is_telegram_or_copy = source_type in ('telegram', 'copy', '') or 'telegram' in source_type
+        
+        if is_telegram_or_copy:
+            is_spam = any(p in orig_lower for p in chat_spam_patterns)
+            if not is_spam:
+                is_spam = any(p in orig_lower for p in spam_patterns)
+        else:
+            is_spam = any(p in orig_lower for p in spam_patterns)
 
         # 2. فلترة URLs فقط (النص اللي مالهوش محتوى غير روابط)
         url_pattern = re.compile(r'https?://\S+')
@@ -257,10 +269,30 @@ class NewsAnalyzer:
                     tickers.append(t)
 
         # 5. حساب الأهمية
-        importance = 10
-        for kw, weight in IMPORTANCE_KEYWORDS.items():
+        importance = 20  # قاعدة أعلى للأخبار المالية
+        
+        # كلمات مفتاحية للأخبار المهمة جداً
+        critical_keywords = {
+            'تشتري': 25, 'شراء أسهم': 30, 'مليون سهم': 25, 'مليار سهم': 30,
+            'زيادة رأس المال': 25, 'استحواذ على': 28, 'تستحوذ': 28,
+            'تشتري حصة': 25, 'صفقة شراء': 28, 'شراء حصة': 25,
+            'اكتتاب': 25, 'إدراج': 20, 'استحواذ': 25, 'اندماج': 25,
+            'أرباح': 22, 'خسارة': 22, 'نتائج': 20, 'ربع سنوي': 20,
+            'توزيع': 18, 'أرباح نقدية': 22, 'أسهم مجانية': 22,
+        }
+        
+        for kw, weight in critical_keywords.items():
             if kw in clean_text or kw.lower() in text_lower:
                 importance += weight
+        
+        # boost إضافي لأخبار شركات محددة + حركة أسهم
+        company_indicators = ['شركة', 'بنك', 'مجموعة', 'قابضة', 'مصر', 'الرياض', 'السعودية']
+        stock_actions = ['تشتري', 'شراء', 'استحواذ', 'زيادة', 'اكتتاب', 'توزيع', 'أرباح']
+        has_company = any(ind in clean_text for ind in company_indicators)
+        has_stock_action = any(act in clean_text for act in stock_actions)
+        
+        if has_company and has_stock_action:
+            importance = min(100, importance + 20)
         
         # boost لمصادر مالية موثوقة
         trusted_sources = ['جريدة البورصة', 'أموال غد', 'البورصة', 'مباشر', 'موبasher', 'الغد']
