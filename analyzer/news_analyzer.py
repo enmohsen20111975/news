@@ -140,7 +140,7 @@ class NewsAnalyzer:
 
     def __init__(self):
         self.ollama_url      = os.getenv('OLLAMA_URL', 'http://localhost:11434')
-        self.model           = os.getenv('OLLAMA_MODEL', 'glm-fast:latest')
+        self.model           = os.getenv('OLLAMA_MODEL', 'qwen2.5-coder:7b')
         self.fallback_model  = os.getenv('OLLAMA_FALLBACK_MODEL', 'qwen2.5:1.5b')
         self.vision_model    = os.getenv('OLLAMA_VISION_MODEL', '')
         self._ollama_ok      = True
@@ -348,21 +348,28 @@ class NewsAnalyzer:
             return None
 
     def _build_prompt(self, text: str) -> str:
-        return f"""أنت محلل أخبار مالية متخصص في البورصة المصرية.
+        return f"""أنت محلل أخبار مالية متخصص في البورصة المصرية EGX.
 حلل الخبر التالي وأخرج JSON فقط بالحقول المطلوبة:
 
 {{
-  "is_valid_news": true/false,
-  "clean_text": "نص الخبر بعد تنظيفه من الهراء والروابط والاشتراكات",
-  "summary_ar": "ملخص قصير بالعربية",
-  "summary_en": "short English summary",
-  "importance": 0-100,
-  "sentiment": "bullish/bearish/neutral",
-  "impact_type": "earnings/dividend/ipo/acquisition/macro/regulation/price_move/general",
-  "event_type": "IPO_SUBSCRIPTION|DIVIDEND_EX_DATE|EARNINGS_BEAT|EARNINGS_MISS|MA_ACQUISITION|REGULATORY_APPROVAL|STOCK_SPLIT|MANAGEMENT_CHANGE|CONTRACT_AWARD|EXPANSION|FRAUD|HALT|GENERAL",
-  "reasoning": "سبب قصير بالعربي ليه الخبر مهم أو مش مهم وإيه تأثيره المتوقع",
-  "affected_tickers": ["COMI", ...]
+  'is_valid_news': true/false,
+  'clean_text': 'نص الخبر بعد تنظيفه من الهراء والروابط والاشتراكات',
+  'summary_ar': 'ملخص قصير بالعربية',
+  'summary_en': 'short English summary',
+  'importance': 0-100,
+  'sentiment': 'bullish/bearish/neutral',
+  'impact_type': 'earnings/dividend/ipo/acquisition/macro/regulation/price_move/general',
+  'event_type': 'IPO_SUBSCRIPTION|DIVIDEND_EX_DATE|EARNINGS_BEAT|EARNINGS_MISS|MA_ACQUISITION|REGULATORY_APPROVAL|STOCK_SPLIT|MANAGEMENT_CHANGE|CONTRACT_AWARD|EXPANSION|FRAUD|HALT|GENERAL',
+  'reasoning': 'سبب قصير بالعربي ليه الخبر مهم أو مش مهم وإيه تأثيره المتوقع',
+  'tickers': ['SYMBOL1', 'SYMBOL2']
 }}
+
+قواعد هامة:
+- tickers: رموز الأسهم المصرية المتأثرة فقط. استخدم هذه الرموز الشائعة: COMI=البنك التجاري الدولي، TMGH=طلعت مصطفى، MNHD=مدينة نصر، ETEL=المصرية للاتصالات، FWRY=فوري، SKPC=سيدي كرير، AMOC=أموك، ORHD=أوراسكوم، SWDY=السويدي، EAST=الشرقية للدخان
+- لو الخبر عام عن السوق المصري بدون ذكر شركة محددة → tickers = []
+- لو الخبر عن شركة محددة → tickers = ['TICKER']
+- event_type: اختر الأنسب من القائمة
+- impact_type: earnings/dividend/ipo/acquisition/macro/regulation/price_move/general
 
 الخبر:
 {text}

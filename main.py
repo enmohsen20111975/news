@@ -282,7 +282,7 @@ class NewsAgent:
         console.print(Panel(
             Text.from_markup(
                 "[bold green]🚀 News Agent شغّال![/bold green]\n"
-                f"[cyan]النموذج:[/cyan] {os.getenv('OLLAMA_MODEL', 'glm-fast:latest')}\n"
+                f"[cyan]النموذج:[/cyan] {os.getenv('OLLAMA_MODEL', 'qwen2.5-coder:7b')}\n"
                 f"[cyan]الدورة:[/cyan] كل {interval//60} دقيقة\n"
                 f"[cyan]السيرفر:[/cyan] {os.getenv('PRODUCTION_SERVER_URL', 'N/A')}\n"
                 "[dim]اضغط Ctrl+C للإيقاف[/dim]"

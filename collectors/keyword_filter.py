@@ -85,7 +85,7 @@ class KeywordFilter:
 
     def __init__(self, ollama_url: str | None = None):
         self.ollama_url = ollama_url or os.getenv('OLLAMA_URL', 'http://localhost:11434')
-        self.model = os.getenv('OLLAMA_MODEL', 'glm-fast:latest')
+        self.model = os.getenv('OLLAMA_MODEL', 'qwen2.5-coder:7b')
         self.fallback_model = os.getenv('OLLAMA_FALLBACK_MODEL', 'qwen2.5:1.5b')
         self.ai_enabled = os.getenv('KEYWORD_FILTER_USE_AI', '1').lower() in ('1', 'true', 'yes')
 

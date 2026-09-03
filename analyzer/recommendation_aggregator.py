@@ -73,7 +73,7 @@ class RecommendationAggregator:
     def __init__(self, store):
         self.store = store
         self.ollama_url = os.getenv('OLLAMA_URL', 'http://localhost:11434')
-        self.model = os.getenv('OLLAMA_MODEL', 'glm-fast:latest')
+        self.model = os.getenv('OLLAMA_MODEL', 'qwen2.5-coder:7b')
         self.fallback_model = os.getenv('OLLAMA_FALLBACK_MODEL', 'qwen2.5:1.5b')
         self.expert_name = os.getenv('EXPERT_AGGREGATOR_NAME', 'تحليل مجمّع (AI محلي)')
         self.expert_source = os.getenv('EXPERT_AGGREGATOR_SOURCE', 'news_agent_aggregator')
