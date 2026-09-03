@@ -230,6 +230,7 @@ class NewsAnalyzer:
             'مرحبا بك', 'يسعدنا انضمامك', 'قائمة المنشورات',
             'youtube.com', 'youtu.be', 'facebook.com', 'fb.watch',
             'انشر', 'منشن', 'tag', 'إعادة نشر',
+            'رد على:', 'رد:', 'رد', 'اقتباس', 'quoting',
         ]
         is_spam = any(p in orig_lower for p in spam_patterns)
 
