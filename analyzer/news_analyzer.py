@@ -80,6 +80,9 @@ _ARABIC_COMPANY_MAP = [
     ('الهرم', 'HRHO'), ('الإسكندرية', 'ISPH'), ('القاهرة للدواجن', 'CPCI'),
     ('دلتا للسكر', 'DAPH'), ('أجوا', 'AJWA'),
     ('القاهرة للاستثمار', 'CCAP'), ('كابيتال للاستثمار', 'CCAP'),
+    ('فيركيم', 'FRKC'), ('المالية والصناعية', 'MFIN'), ('أودن', 'ODEN'),
+    ('المصريين للإسكان', 'MASR'), ('المصريين', 'MASR'),
+    ('جريدة البورصة', ''), ('أموال غد', ''), ('البورصة', ''),
 ]
 
 
@@ -257,6 +260,12 @@ class NewsAnalyzer:
         for kw, weight in IMPORTANCE_KEYWORDS.items():
             if kw in clean_text or kw.lower() in text_lower:
                 importance += weight
+        
+        # boost لمصادر مالية موثوقة
+        trusted_sources = ['جريدة البورصة', 'أموال غد', 'البورصة', 'مباشر', 'موبasher', 'الغد']
+        if any(src in clean_text or src in original_text for src in trusted_sources):
+            importance = min(100, importance + 15)
+        
         importance = min(100, importance)
 
         # 6. المشاعر
@@ -291,8 +300,10 @@ class NewsAnalyzer:
         if isinstance(ai_importance, int) and 0 <= ai_importance <= 100:
             importance = max(importance, ai_importance)
 
-        if ai_valid is False:
-            is_spam = True
+        # لا تعتمد على is_valid_news من AI كحكم نهائي بالرفض
+        # نستخدمه فقط كإشارة إضافية وليس كسبب لتصفير الأهمية
+        # if ai_valid is False:
+        #     is_spam = True
 
         is_valid = not is_spam and importance >= 10
 
