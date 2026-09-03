@@ -14,6 +14,8 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 load_dotenv(ROOT / '.env')
 DB_PATH = ROOT / 'data' / 'news.db'
 LOG_PATH = ROOT / 'data' / 'agent.log'
@@ -241,50 +243,6 @@ async def telegram_status(auth: bool = Depends(_require_auth)):
         return {'ok': True, 'authorized': authorized, 'phone': _telegram_auth['phone']}
     except Exception as exc:
         return JSONResponse({'ok': False, 'authorized': False, 'message': str(exc)}, status_code=400)
-
-
-@app.post('/api/telegram/send-code')
-async def telegram_send_code(request: Request):
-    body = await request.json()
-    phone = (body.get('phone') or '').strip()
-    if not phone:
-        return JSONResponse({'ok': False, 'message': 'أدخل رقم الهاتف بصيغة دولية مثل +201xxxxxxxxx'}, status_code=400)
-    try:
-        client = await _telegram_client()
-        if await client.is_user_authorized():
-            _telegram_auth['phone'] = phone
-            return {'ok': True, 'authorized': True, 'message': 'الجلسة مسجلة بالفعل'}
-        sent = await client.send_code_request(phone)
-        _telegram_auth.update(phone=phone, phone_code_hash=sent.phone_code_hash)
-        return {'ok': True, 'authorized': False, 'message': 'تم إرسال كود Telegram إلى حسابك'}
-    except Exception as exc:
-        return JSONResponse({'ok': False, 'message': str(exc)}, status_code=400)
-
-
-@app.post('/api/telegram/verify')
-async def telegram_verify(request: Request):
-    body = await request.json()
-    code = (body.get('code') or '').strip()
-    password = body.get('password') or ''
-    if not code:
-        return JSONResponse({'ok': False, 'message': 'أدخل كود Telegram'}, status_code=400)
-    try:
-        from telethon.errors import SessionPasswordNeededError
-
-        client = await _telegram_client()
-        try:
-            await client.sign_in(
-                phone=_telegram_auth['phone'],
-                code=code,
-                phone_code_hash=_telegram_auth['phone_code_hash'],
-            )
-        except SessionPasswordNeededError:
-            if not password:
-                return {'ok': False, 'needs_password': True, 'message': 'الحساب محمي بكلمة مرور التحقق بخطوتين'}
-            await client.sign_in(password=password)
-        return {'ok': True, 'authorized': True, 'message': 'تم تسجيل الدخول بنجاح'}
-    except Exception as exc:
-        return JSONResponse({'ok': False, 'message': str(exc)}, status_code=400)
 
 
 @app.post('/api/telegram/send-code')
@@ -556,3 +514,33 @@ def recommendations():
 @app.get('/health')
 def health():
     return {'ok': True, 'service': 'news-agent-dashboard'}
+
+
+@app.get('/api/logs')
+def logs(lines: int = 200, offset: int = 0):
+    if not LOG_PATH.exists():
+        return {'lines': [], 'total': 0}
+    try:
+        with LOG_PATH.open('r', encoding='utf-8') as f:
+            all_lines = [line.rstrip('\n') for line in f]
+        total = len(all_lines)
+        sliced = all_lines[offset:offset + lines]
+        return {'lines': sliced, 'total': total, 'offset': offset, 'limit': lines}
+    except Exception as exc:
+        return JSONResponse({'lines': [], 'total': 0, 'error': str(exc)}, status_code=400)
+
+
+@app.get('/api/system')
+def system_info():
+    try:
+        import platform
+        return {
+            'python': platform.python_version(),
+            'system': platform.system(),
+            'release': platform.release(),
+            'hostname': platform.node(),
+            'pid': int(PID_PATH.read_text(encoding='ascii').strip()) if PID_PATH.exists() else None,
+            'running': _process_running(),
+        }
+    except Exception as exc:
+        return JSONResponse({'error': str(exc)}, status_code=400)

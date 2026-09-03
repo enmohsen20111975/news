@@ -179,6 +179,75 @@ WHATSAPP_ACCESS_TOKEN=
 - جميع الاتصالات عبر HTTPS
 - لا تسجيل أسرار في اللوج
 
+### 13. بنية قواعد البيانات
+- **قاعدة الأخبار**: `data/news.db` — تديرها `data/news_store.py` (NewsStore). تخزن الأخبار، التوصيات، الـ OCR.
+- **قاعدة بيانات الأسهم**: `db/data_engine.db` — تديرها الـ scrapers في `collectors/scrappers/`. تخزن أسعار الأسهم، Screener Lists، وعمود التبويبات (9 tabs من Market Movers).
+- **القاعدة الذهبية**: لا يتم خلط الـ databases. كل scraper يكتب في `db/data_engine.db` فقط. لا يتصل مباشرة بـ `data/news.db`.
+- **الـ sync.py**: كان مرجعاً لملف محذوف — تم تعويضه بـ `save_to_db()` مباشرة في كل scraper. للـ backward compatibility، يتحقق الكود من وجود `sync.py` قبل المحاولة.
+- كل جدول جديد في أي قاعدة بيانات يجب أن يُوثّق في `workflow.md` قبل الاستخدام.
+
+### 14. هيكل المشروع (محدث)
+```
+news_agent/
+├── main.py                    # المحرك الرئيسي — Collect → Analyze → Send
+├── monitor.py                 # CLI dashboard للمراقبة
+├── run.bat / run.ps1 / run.sh # سكريبتات التشغيل (run.bat يفتح المتصفح أوتوماتيكياً)
+├── run_dashboard.*            # تشغيل الواجهة فقط (FastAPI على port 8001)
+├── CONSTITUTION.md            # دستور المشروع (هذا الملف)
+├── workflow.md                # دليل التشغيل والـ API contract
+├── INTEGRATION.md             # عقد التكامل مع GLMinvestment
+├── CHANGELOG.md               # سجل التغييرات
+├── AGENTS.md                  # دليل الوكلاء والمهام
+├── collectors/
+│   ├── __init__.py
+│   ├── telegram_collector.py  # جمع من التيليجرام + صور
+│   ├── rss_collector.py       # جمع من RSS
+│   ├── web_scraper.py         # جمع من الويب + og:image
+│   ├── investing_news_collector.py  # جمع أخبار Investing.com → data/news.db
+│   ├── egyptian_sources.py    # مواقع مصرية متخصصة
+│   ├── keyword_filter.py      # فلترة EGX relevance
+│   └── scrappers/
+│       ├── __init__.py
+│       ├── tradingview_scraper.py    # Full scraper — all stocks + tabs
+│       ├── tradingview_screener_lists.py  # Smart lists (gainers/losers/active/...)
+│       ├── tradingview_market_movers.py   # 9-tabs scraper (NEW)
+│       ├── tradingview_rest.py        # REST fetcher (no Playwright)
+│       └── investing_scraper.py        # Investing.com sectors/commodities/currencies → data/investing_egypt.json
+├── analyzer/
+│   ├── news_analyzer.py        # Ollama text analysis
+│   ├── vision_analyzer.py      # Ollama Vision (OCR + image analysis)
+│   └── recommendation_aggregator.py  # توحيد توصيات الأسهم
+├── sender/
+│   ├── production_sender.py    # إرسال للموقع + منصات التواصل
+│   └── social_publisher.py     # نشر على FB/WA/TG
+├── data/
+│   ├── news_store.py           # SQLite — data/news.db (الأخبار)
+│   └── .source_state.json      # حالة مصادر الأخبار
+├── db/
+│   └── data_engine.db          # SQLite — stock data (scrapers)
+├── config/
+│   ├── sources.py              # سجل المصادر
+│   └── sources.json            # بيانات المصادر
+├── scripts/
+│   ├── build_stocks_index.py
+│   └── backfill_tickers.py
+├── ui/
+│   ├── dashboard.py            # FastAPI dashboard (port 8001)
+│   ├── index.html / app.js / style.css
+│   └── run_dashboard.*         # تشغيل الواجهة فقط
+└── tests/
+    ├── test_news_store.py
+    └── test_telegram_collector.py
+```
+
+### 15. قواعد التطوير
+- **مقدار التغيير**: لا تعديل على أكثر من ملف واحد بدون توثيق موحد.
+- **الاختبار قبل التوثيق**: كل scraper يجرب على صفحة واحدة أولاً، يطبع عدد الأعمدة والصفوف، ثم يوسع للصفحات.
+- **لا fallback للـ databases**: إذا احتجت قاعدة بيانات جديدة، اسأل المالك أولاً. لا تخلق `db/` جديد أو `data/` جديد.
+- **الربط المعماري**: كل ملف جديد يجب أن يربط بـ main.py أو scraper pipeline. لا ملفات عادية (standalone) إلا إذا تم توثيقه صراحةً في workflow.md.
+- **قراءة أولاً**: قراءة CONSTITUTION.md + workflow.md إجبارية قبل أي تعديل.
+
 ---
-آخر تحديث: 2026-09-02
-صيغة: v1.0
+
+آخر تحديث: 2026-09-03
+صيغة: v1.1

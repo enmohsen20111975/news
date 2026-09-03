@@ -1,5 +1,33 @@
 # Changelog — News Agent
 
+## [SCRAPERS-ARCHITECTURE-FIX] — 2026-09-03
+
+### ✅ إنجازات
+- ✅ إضافة `__init__.py` إلى `collectors/scrappers/` — أصبحت حزمة بايثون رسمية
+- ✅ إصلاح المرجع المكسور لـ `sync.py` في `tradingview_scraper.py` — أصبحت الـ call backward-compatible
+- ✅ إنشاء `collectors/scrappers/tradingview_market_movers.py` — الـ 9-tabs scraper
+- ✅ تحديث `run.bat` — يفتح المتصفح أوتوماتيكياً بعد تشغيل الداشبورد
+- ✅ تحديث `CONSTITUTION.md` — إضافة بنود 13-15 (قواعد قواعد البيانات، هيكل المشروع، قواعد التطوير)
+- ✅ تحديث `workflow.md` — توثيق معمارية الـ scrapers وتدفق البيانات
+- ✅ إنشاء `AGENTS.md` — دليل الوكلاء والمهام
+- ✅ نقل `scrape_investing.py` → `collectors/scrappers/investing_scraper.py` — إصلاح المسار المقصول
+- ✅ نقل `scrape_investing_news.py` → `collectors/investing_news_collector.py` — إصلاح المسار المقصول
+- ✅ إصلاح المسار الصلب في `investing_scraper.py` (كان `D:\\...` الآن بـ `Path(__file__)`)
+- ✅ تحديث `run_investing_scraper.bat` — مسارات نسبية بدلاً من مقصولة
+
+### المشاكل التي اقتحمتها
+- ❌ قاعدة بيانات موحدة: كان `db/data_engine.db` و `data/news.db` منفصلين تماماً بدون توثيق
+- ❌ `sync.py` مرجع غير موجود — كان سبب crash إذا تم تشغيل الـ scraper
+- ❌ `collectors/scrappers/` ليس package — لا يمكن استيراده
+- ❌ `run.bat` لا يفتح المتصفح تلقائياً
+
+### ملاحظات الأمان
+- لم يتم لمس أي secrets
+- لم يتم رفع أي قواعد بيانات للمستودع
+- كل التوثيق بالعربية
+
+---
+
 ## [SECURITY-CRITICAL + GLMINVESTMENT-INTEGRATION-AUDIT] — (2026-09-02)
 
 > **توجيه المالك:** "بص على المشروع دة (news). دة المشروع المحلى اللي بيولد الأخبار.

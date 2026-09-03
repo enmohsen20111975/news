@@ -1,7 +1,8 @@
 /* ============================================================
    News Agent Dashboard — Frontend Logic
    Auto-refresh, modular rendering, EGX-aware data display
-   Tab system: All News | Telegram | Copy/Paste
+   Navigation: Dashboard | News | Recommendations | Logs | Settings
+   Console: Output | System | Errors
    ============================================================ */
 
 const API = {
@@ -14,14 +15,21 @@ const API = {
   telegramSendCode: '/api/telegram/send-code',
   telegramVerify: '/api/telegram/verify',
   telegramChannels: '/api/telegram/channels',
+  logs: '/api/logs',
+  system: '/api/system',
 };
 
-const REFRESH_INTERVAL = 15000; // 15 seconds
+const REFRESH_INTERVAL = 15000;
 const AUTO_REFRESH = true;
 
 let refreshTimer = null;
 let countdownValue = REFRESH_INTERVAL / 1000;
 let allNews = [];
+let logsOffset = 0;
+let logsLimit = 200;
+let logsTotal = 0;
+let consoleTab = 'output';
+let navPage = 'dashboard';
 
 const El = {
   total: document.getElementById('total-count'),
@@ -34,6 +42,7 @@ const El = {
   telegramNewsList: document.getElementById('telegram-news-list'),
   copyNewsList: document.getElementById('copy-news-list'),
   logList: document.getElementById('log-list'),
+  logsList: document.getElementById('logs-list'),
   startBtn: document.getElementById('start-btn'),
   stopBtn: document.getElementById('stop-btn'),
   refreshBtn: document.getElementById('refresh-btn'),
@@ -42,6 +51,7 @@ const El = {
   countdownEl: document.getElementById('countdown'),
   newsCount: document.getElementById('news-count'),
   logCount: document.getElementById('log-count'),
+  logsCount: document.getElementById('logs-count'),
   tabButtons: document.querySelectorAll('.tab-btn'),
   tabContents: document.querySelectorAll('.tab-content'),
   pasteText: document.getElementById('paste-text'),
@@ -59,6 +69,18 @@ const El = {
   telegramChannelHint: document.getElementById('telegram-channel-hint'),
   telegramChannelList: document.getElementById('telegram-channel-list'),
   recommendationsList: document.getElementById('recommendations-list'),
+  recommendationsFullList: document.getElementById('recommendations-full-list'),
+  recsCount: document.getElementById('recs-count'),
+  recentNewsList: document.getElementById('recent-news-list'),
+  recentNewsCount: document.getElementById('recent-news-count'),
+  consoleOutput: document.getElementById('console-output'),
+  consoleSystem: document.getElementById('console-system'),
+  consoleErrors: document.getElementById('console-errors'),
+  consoleClear: document.getElementById('console-clear'),
+  logsRefresh: document.getElementById('logs-refresh'),
+  logsTop: document.getElementById('logs-top'),
+  logsBottom: document.getElementById('logs-bottom'),
+  logsOffsetHint: document.getElementById('logs-offset-hint'),
 };
 
 /* ============ Utility Helpers ============ */
@@ -76,7 +98,6 @@ function formatTimeAgo(isoStr) {
   if (isNaN(date.getTime())) return '';
   const now = new Date();
   const diff = Math.floor((now - date) / 1000);
-
   if (diff < 60) return `${diff} ثواني`;
   if (diff < 3600) return `${Math.floor(diff / 60)} دقيقة`;
   if (diff < 86400) return `${Math.floor(diff / 3600)} ساعة`;
@@ -90,11 +111,8 @@ function formatTimestamp(isoStr) {
   const date = new Date(isoStr);
   if (isNaN(date.getTime())) return '';
   return date.toLocaleString('ar-EG', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
+    year: 'numeric', month: 'short', day: 'numeric',
+    hour: '2-digit', minute: '2-digit',
   });
 }
 
@@ -121,14 +139,9 @@ function getSentimentLabel(ar) {
 
 function getImpactLabel(ar) {
   const labels = {
-    earnings: 'أرباح',
-    dividend: 'توزيع',
-    ipo: 'طرح',
-    acquisition: 'استحواذ',
-    macro: 'ماكرو',
-    regulation: 'لوائح',
-    price_move: 'حركة سعر',
-    general: 'عام',
+    earnings: 'أرباح', dividend: 'توزيع', ipo: 'طرح',
+    acquisition: 'استحواذ', macro: 'ماكرو', regulation: 'لوائح',
+    price_move: 'حركة سعر', general: 'عام',
   };
   return labels[ar] || ar || 'عام';
 }
@@ -136,12 +149,8 @@ function getImpactLabel(ar) {
 function parseTickers(field) {
   if (!field) return [];
   if (Array.isArray(field)) return field;
-  try {
-    const parsed = JSON.parse(field);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+  try { const parsed = JSON.parse(field); return Array.isArray(parsed) ? parsed : []; }
+  catch { return []; }
 }
 
 function showToast(message, type = 'success') {
@@ -164,7 +173,69 @@ function setButtonLoading(btn, loading, originalText) {
   }
 }
 
-/* ============ Status Fetching ============ */
+/* ============ Navigation ============ */
+
+function initNavigation() {
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const page = btn.dataset.nav;
+      if (!page) return;
+
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(`page-${page}`);
+      if (target) target.classList.add('active');
+
+      navPage = page;
+      if (page === 'logs') loadLogs();
+      if (page === 'recommendations') loadRecommendationsFull();
+      if (page === 'settings') loadTelegramAuth();
+    });
+  });
+}
+
+/* ============ Tab System (News) ============ */
+
+function initTabs() {
+  El.tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      El.tabButtons.forEach(b => b.classList.remove('active'));
+      El.tabContents.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      const contentEl = document.getElementById(`tab-${tab}-content`);
+      if (contentEl) contentEl.classList.add('active');
+    });
+  });
+}
+
+/* ============ Console Tabs ============ */
+
+function initConsoleTabs() {
+  document.querySelectorAll('.console-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const name = tab.dataset.console;
+      consoleTab = name;
+      document.querySelectorAll('.console-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.console-content').forEach(c => c.classList.remove('active'));
+      const target = document.getElementById(`console-${name}`);
+      if (target) target.classList.add('active');
+      if (name === 'output') loadLogs();
+      if (name === 'system') loadSystem();
+      if (name === 'errors') loadErrors();
+    });
+  });
+
+  El.consoleClear?.addEventListener('click', () => {
+    const target = document.getElementById(`console-${consoleTab}`);
+    if (target) target.innerHTML = '<div class="empty-state"><p>تم المسح</p></div>';
+  });
+}
+
+/* ============ API Calls ============ */
 
 async function fetchStatus() {
   try {
@@ -177,54 +248,32 @@ async function fetchStatus() {
   }
 }
 
-async function startAgent() {
-  setButtonLoading(El.startBtn, true, 'بدء التشغيل...');
+async function fetchLogs(offset = 0, limit = 200) {
   try {
-    const res = await fetch(API.start, { method: 'POST' });
-    const data = await res.json();
-    showToast(data.message || 'تم تشغيل المشروع', data.ok ? 'success' : 'error');
-    await loadStatus();
+    const res = await fetch(`${API.logs}?offset=${offset}&lines=${limit}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
   } catch (err) {
-    showToast('خطأ في الاتصال بالخادم', 'error');
-  } finally {
-    setButtonLoading(El.startBtn, false);
+    console.error('Logs fetch error:', err);
+    return null;
   }
 }
 
-async function stopAgent() {
-  setButtonLoading(El.stopBtn, true, 'إيقاف...');
+async function fetchSystem() {
   try {
-    const res = await fetch(API.stop, { method: 'POST' });
-    const data = await res.json();
-    showToast(data.message || 'تم إيقاف المشروع', data.ok ? 'success' : 'error');
-    await loadStatus();
+    const res = await fetch(API.system);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
   } catch (err) {
-    showToast('خطأ في الاتصال بالخادم', 'error');
-  } finally {
-    setButtonLoading(El.stopBtn, false);
+    console.error('System fetch error:', err);
+    return null;
   }
-}
-
-/* ============ Tab System ============ */
-
-function initTabs() {
-  El.tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tab = btn.dataset.tab;
-
-      El.tabButtons.forEach(b => b.classList.remove('active'));
-      El.tabContents.forEach(c => c.classList.remove('active'));
-
-      btn.classList.add('active');
-      const contentEl = document.getElementById(`tab-${tab}-content`);
-      if (contentEl) contentEl.classList.add('active');
-    });
-  });
 }
 
 /* ============ Rendering ============ */
 
 function renderStats(stats) {
+  if (!stats) return;
   El.total.textContent = stats.total ?? 0;
   El.pending.textContent = stats.pending ?? 0;
   El.analyzed.textContent = stats.analyzed ?? 0;
@@ -235,12 +284,8 @@ function renderStats(stats) {
   El.analyzed.className = 'value small';
   El.sent.className = 'value small';
 
-  if (stats.pending > 10) {
-    El.pending.classList.add('yellow');
-  }
-  if (stats.sent > 0) {
-    El.sent.classList.add('green');
-  }
+  if ((stats.pending || 0) > 10) El.pending.classList.add('yellow');
+  if ((stats.sent || 0) > 0) El.sent.classList.add('green');
 }
 
 function renderStatusPill(running) {
@@ -291,14 +336,11 @@ function renderNews(newsItems, filter = 'all') {
     El.newsList.innerHTML = filtered.map(item => createNewsItem(item)).join('');
   }
 
-  if (El.newsCount) {
-    El.newsCount.textContent = filtered.length;
-  }
+  if (El.newsCount) El.newsCount.textContent = filtered.length;
 }
 
 function renderTelegramNews(newsItems) {
   const telegramNews = newsItems.filter(n => n.source_type === 'telegram');
-
   if (!telegramNews.length) {
     El.telegramNewsList.innerHTML = `
       <li class="news-item muted">
@@ -310,16 +352,11 @@ function renderTelegramNews(newsItems) {
     `;
     return;
   }
-
-  El.telegramNewsList.innerHTML = telegramNews
-    .slice(0, 10)
-    .map(item => createNewsItem(item))
-    .join('');
+  El.telegramNewsList.innerHTML = telegramNews.slice(0, 10).map(item => createNewsItem(item)).join('');
 }
 
 function renderCopyNews(newsItems) {
   const copyNews = newsItems.filter(n => n.source_type === 'copy');
-
   if (!copyNews.length) {
     El.copyNewsList.innerHTML = `
       <li class="news-item muted">
@@ -331,32 +368,87 @@ function renderCopyNews(newsItems) {
     `;
     return;
   }
-
-  El.copyNewsList.innerHTML = copyNews
-    .slice(0, 10)
-    .map(item => createNewsItem(item))
-    .join('');
+  El.copyNewsList.innerHTML = copyNews.slice(0, 10).map(item => createNewsItem(item)).join('');
 }
 
-async function fetchRecommendations() {
-  try {
-    const res = await fetch(API.recommendations);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    console.log('Recommendations API response:', data);
-    return data;
-  } catch (err) {
-    console.error('Recommendations fetch error:', err);
-    return null;
+function renderRecommendations(data, isRunning) {
+  if (!data || !El.recommendationsList || !El.recommendationsFullList) return;
+
+  const groups = data.groups || [];
+  const total = data.total || 0;
+  const groupCount = data.group_count || 0;
+
+  const renderEmpty = (message) => `
+    <li class="news-item muted">
+      <div class="empty-state">
+        <div style="font-size: 2.5rem; margin-bottom: 8px;">📊</div>
+        <p>${message}</p>
+      </div>
+    </li>
+  `;
+
+  if (!groups.length) {
+    const message = !isRunning
+      ? 'المشروع متوقف حالياً — اضغط "تشغيل المشروع" لتشغيل الـ Local AI وجمع التوصيات'
+      : 'لا توجد توصيات بعد — يتم جمعها من الأخبار المحللة';
+    El.recommendationsList.innerHTML = renderEmpty(message);
+    El.recommendationsFullList.innerHTML = renderEmpty(message);
+    if (El.recsCount) El.recsCount.textContent = 0;
+    return;
   }
+
+  const buildRecHtml = (recs) => {
+    let html = '';
+    for (const group of groups) {
+      const symbol = group.symbol || 'غير معروف';
+      const nameAr = group.name_ar || '';
+      const count = group.count || 0;
+      const groupRecs = group.recommendations || [];
+      html += `
+        <li class="rec-group">
+          <div class="rec-group-header">
+            <div>
+              <span class="ticker-badge">${escapeHtml(symbol)}</span>
+              ${nameAr ? `<span class="rec-name">${escapeHtml(nameAr)}</span>` : ''}
+            </div>
+            <span class="rec-count-badge">${count} توصية</span>
+          </div>
+          <div class="rec-group-items">
+            ${groupRecs.map(rec => `
+              <div class="rec-item">
+                <div class="rec-top">
+                  <span class="tag ${getActionClass(rec.action)}">${getActionLabel(rec.action)}</span>
+                  <span class="tag">${escapeHtml(getRecTypeLabel(rec.recommendation_type))}</span>
+                  <span class="tag status-${rec.status === 'PENDING' ? 'pending' : rec.status === 'SENT' ? 'sent' : 'analyzed'}">${rec.status === 'PENDING' ? 'قيد الانتظار' : rec.status === 'SENT' ? 'تم الإرسال' : rec.status || ''}</span>
+                  ${rec.sent_ok ? '<span class="tag text-success">✓ مرسل</span>' : ''}
+                </div>
+                <div class="rec-meta">
+                  ${rec.entry_price != null ? `<span class="rec-price">سعر الدخول: <strong>${rec.entry_price}</strong></span>` : ''}
+                  ${rec.target_price != null ? `<span class="rec-price">الهدف: <strong>${rec.target_price}</strong></span>` : ''}
+                  ${rec.stop_loss != null ? `<span class="rec-price stop">وقف الخسارة: <strong>${rec.stop_loss}</strong></span>` : ''}
+                </div>
+                ${rec.recommendation_reason ? `<div class="rec-summary">${escapeHtml(truncate(rec.recommendation_reason, 200))}</div>` : ''}
+                <div class="rec-footer">
+                  <span class="source">👤 ${escapeHtml(rec.expert_name || 'محلل محلي')}</span>
+                  <span class="time">📅 ${rec.session_date || ''} · 🕒 ${formatTimeAgo(rec.created_at) || '-'}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </li>
+      `;
+    };
+    return html;
+  };
+
+  const html = buildRecHtml(groups);
+  El.recommendationsList.innerHTML = html;
+  El.recommendationsFullList.innerHTML = html;
+  if (El.recsCount) El.recsCount.textContent = total;
 }
 
 function getActionLabel(action) {
-  const labels = {
-    BUY: 'شراء',
-    SELL: 'بيع',
-    HOLD: 'احتفاظ',
-  };
+  const labels = { BUY: 'شراء', SELL: 'بيع', HOLD: 'احتفاظ' };
   return labels[action] || action || 'شراء';
 }
 
@@ -377,83 +469,27 @@ function getRecTypeLabel(type) {
   return labels[type] || type || 'عام';
 }
 
-function renderRecommendations(data, isRunning) {
-  if (!data || !El.recommendationsList) return;
-
-  const groups = data.groups || [];
-  const total = data.total || 0;
-  const groupCount = data.group_count || 0;
-
-  if (!groups.length) {
-    const message = !isRunning
-      ? 'المشروع متوقف حالياً — اضغط "تشغيل المشروع" لتشغيل الـ Local AI وجمع التوصيات'
-      : 'لا توجد توصيات بعد — يتم جمعها من الأخبار المحللة';
-    El.recommendationsList.innerHTML = `
+function renderRecentNews(newsItems) {
+  if (!newsItems || !newsItems.length) {
+    El.recentNewsList.innerHTML = `
       <li class="news-item muted">
-        <div class="empty-state">
-          <div style="font-size: 2.5rem; margin-bottom: 8px;">📊</div>
-          <p>${message}</p>
-        </div>
+        <div class="empty-state"><p>لا توجد أخبار حديثة</p></div>
       </li>
     `;
+    if (El.recentNewsCount) El.recentNewsCount.textContent = 0;
     return;
   }
-
-  let html = '';
-  for (const group of groups) {
-    const symbol = group.symbol || 'غير معروف';
-    const nameAr = group.name_ar || '';
-    const count = group.count || 0;
-    const recs = group.recommendations || [];
-
-    html += `
-      <li class="rec-group">
-        <div class="rec-group-header">
-          <div>
-            <span class="ticker-badge">${escapeHtml(symbol)}</span>
-            ${nameAr ? `<span class="rec-name">${escapeHtml(nameAr)}</span>` : ''}
-          </div>
-          <span class="rec-count-badge">${count} توصية</span>
-        </div>
-        <div class="rec-group-items">
-          ${recs.map(rec => `
-            <div class="rec-item">
-              <div class="rec-top">
-                <span class="tag ${getActionClass(rec.action)}">${getActionLabel(rec.action)}</span>
-                <span class="tag">${escapeHtml(getRecTypeLabel(rec.recommendation_type))}</span>
-                <span class="tag status-${rec.status === 'PENDING' ? 'pending' : rec.status === 'SENT' ? 'sent' : 'analyzed'}">${rec.status === 'PENDING' ? 'قيد الانتظار' : rec.status === 'SENT' ? 'تم الإرسال' : rec.status || ''}</span>
-                ${rec.sent_ok ? '<span class="tag text-success">✓ مرسل</span>' : ''}
-              </div>
-              <div class="rec-meta">
-                ${rec.entry_price != null ? `<span class="rec-price">سعر الدخول: <strong>${rec.entry_price}</strong></span>` : ''}
-                ${rec.target_price != null ? `<span class="rec-price">الهدف: <strong>${rec.target_price}</strong></span>` : ''}
-                ${rec.stop_loss != null ? `<span class="rec-price stop">وقف الخسارة: <strong>${rec.stop_loss}</strong></span>` : ''}
-              </div>
-              ${rec.recommendation_reason ? `<div class="rec-summary">${escapeHtml(truncate(rec.recommendation_reason, 200))}</div>` : ''}
-              <div class="rec-footer">
-                <span class="source">👤 ${escapeHtml(rec.expert_name || 'محلل محلي')}</span>
-                <span class="time">📅 ${rec.session_date || ''} · 🕒 ${formatTimeAgo(rec.created_at) || '-'}</span>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </li>
-    `;
-  }
-
-  El.recommendationsList.innerHTML = html;
+  El.recentNewsList.innerHTML = newsItems.slice(0, 5).map(item => createNewsItem(item)).join('');
+  if (El.recentNewsCount) El.recentNewsCount.textContent = Math.min(5, newsItems.length);
 }
 
-
 function renderLogs(logLines) {
-  El.logList.innerHTML = '';
   if (!logLines || !logLines.length) {
-    El.logList.innerHTML = '<li class="log-item muted">لا يوجد سجل بعد</li>';
-    if (El.logCount) El.logCount.textContent = 0;
+    El.logsList.innerHTML = '<li class="log-item muted">لا يوجد سجل بعد</li>';
+    if (El.logsCount) El.logsCount.textContent = 0;
     return;
   }
-
-  El.logList.innerHTML = logLines.slice().reverse().map(line => {
+  El.logsList.innerHTML = logLines.slice().reverse().map(line => {
     const level = parseLogLevel(line);
     const levelClass = level ? level.toLowerCase() : 'info';
     const safeLine = escapeHtml(line);
@@ -465,31 +501,56 @@ function renderLogs(logLines) {
       <span class="log-level ${levelClass}">${escapeHtml(message)}</span>
     </li>`;
   }).join('');
+  if (El.logsCount) El.logsCount.textContent = logLines.length;
+}
 
-  if (El.logCount) {
-    El.logCount.textContent = logLines.length;
+function renderConsoleLines(lines, container, mode = 'all') {
+  if (!container) return;
+  if (!lines || !lines.length) {
+    container.innerHTML = '<div class="empty-state"><p>لا توجد بيانات</p></div>';
+    return;
   }
+  container.innerHTML = lines.map(line => {
+    const level = parseLogLevel(line);
+    const levelClass = level ? level.toLowerCase() : 'info';
+    const timeMatch = line.match(/^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/);
+    const timeStr = timeMatch ? timeMatch[1] : '';
+    const message = timeMatch ? line.slice(timeMatch[0].length + 1).trim() : line;
+    if (mode === 'errors' && level && level !== 'ERROR') return '';
+    if (mode === 'system') {
+      const sysMatch = message.match(/^(python|uvicorn|Windows|Linux|PID|system|hostname|release)/i);
+      if (!sysMatch) return '';
+    }
+    return `<div class="console-line">
+      <span class="c-time">${escapeHtml(timeStr)}</span>
+      <span class="c-level ${levelClass}">${escapeHtml(level || 'INFO')}</span>
+      <span class="c-msg">${escapeHtml(message)}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderSystem(data) {
+  if (!El.consoleSystem) return;
+  if (!data) {
+    El.consoleSystem.innerHTML = '<div class="empty-state"><p>تعذر تحميل بيانات النظام</p></div>';
+    return;
+  }
+  const rows = Object.entries(data).map(([k, v]) => `<div class="console-line"><span class="c-level INFO">${escapeHtml(k)}</span><span class="c-msg">${escapeHtml(String(v))}</span></div>`).join('');
+  El.consoleSystem.innerHTML = rows || '<div class="empty-state"><p>لا توجد بيانات</p></div>';
 }
 
 function parseImagePaths(field) {
   if (!field) return [];
   if (Array.isArray(field)) return field;
-  try {
-    const parsed = JSON.parse(field);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
+  try { const parsed = JSON.parse(field); return Array.isArray(parsed) ? parsed : []; }
+  catch { return []; }
 }
 
 function parsePublishedLinks(field) {
   if (!field) return {};
   if (typeof field === 'object') return field;
-  try {
-    return JSON.parse(field);
-  } catch {
-    return {};
-  }
+  try { return JSON.parse(field); }
+  catch { return {}; }
 }
 
 function createNewsItem(item) {
@@ -509,29 +570,22 @@ function createNewsItem(item) {
     : item.source_type || '';
 
   const tickerHtml = tickers.length
-    ? `<div class="news-meta" style="margin-top:6px;">
-         ${tickers.map(t => `<span class="ticker-badge">${escapeHtml(t)}</span>`).join('')}
-       </div>`
+    ? `<div class="news-meta" style="margin-top:6px;">${tickers.map(t => `<span class="ticker-badge">${escapeHtml(t)}</span>`).join('')}</div>`
     : '';
 
   const images = [...imageUrls, ...imagePaths];
   const imagesHtml = images.length
-    ? `<div class="news-images">
-         ${images.slice(0, 4).map(src => {
-           const isLocal = src.startsWith('/') || src.startsWith('data/') || src.startsWith('telegram_images/');
-           const displaySrc = isLocal ? `/images/${Path(src).name}` : src;
-           return `<img src="${escapeHtml(displaySrc)}" alt="صورة الخبر" loading="lazy" onerror="this.style.display='none'" />`;
-         }).join('')}
-       </div>`
+    ? `<div class="news-images">${images.slice(0, 4).map(src => {
+        const isLocal = src.startsWith('/') || src.startsWith('data/') || src.startsWith('telegram_images/');
+        const name = src.replace(/^.*[\\\/]/, '');
+        const displaySrc = isLocal ? `/images/${name}` : src;
+        return `<img src="${escapeHtml(displaySrc)}" alt="صورة الخبر" loading="lazy" onerror="this.style.display='none'" />`;
+      }).join('')}</div>`
     : '';
 
   const publishedLinks = parsePublishedLinks(item.published_links);
-  const linksHtml = Object.entries(publishedLinks).filter(([_, v]) => v).length
-    ? `<div class="published-links">
-         ${Object.entries(publishedLinks).filter(([_, v]) => v).map(([platform, link]) => 
-           `<a href="${escapeHtml(link)}" target="_blank" rel="noopener">🔗 ${escapeHtml(platform)}</a>`
-         ).join('')}
-       </div>`
+  const linksHtml = Object.entries(publishedLinks).filter(([, v]) => v).length
+    ? `<div class="published-links">${Object.entries(publishedLinks).filter(([, v]) => v).map(([platform, link]) => `<a href="${escapeHtml(link)}" target="_blank" rel="noopener">🔗 ${escapeHtml(platform)}</a>`).join('')}</div>`
     : '';
 
   const statusLabel = item.status === 'pending' ? 'في الانتظار'
@@ -545,32 +599,24 @@ function createNewsItem(item) {
         <strong class="title">${escapeHtml(truncate(item.title || item.summary_ar || 'بدون عنوان', 100))}</strong>
         <span class="tag sentiment-${sentiment}">${sentLabel}</span>
       </div>
-
       <div class="news-meta">
         <span class="importance-badge ${impClass}">أهمية ${importance}/100</span>
         <span class="tag impact-${impactType}">${impactLabel}</span>
         <span class="tag status-${item.status || 'pending'}">${statusLabel}</span>
         <span class="tag">${sourceTypeLabel}</span>
       </div>
-
       ${tickerHtml}
-
       <div class="importance-bar">
         <div class="fill ${impClass}" style="width: ${Math.min(100, importance)}%"></div>
       </div>
-
       <div class="news-summary">${escapeHtml(truncate(item.news_text || item.summary_ar || '', 180)) || 'لا يوجد ملخص'}</div>
-
       ${!item.is_valid_news && item.importance === 0 ? `
         <div class="news-reasoning" style="background: rgba(255,107,107,0.08); border-color: rgba(255,107,107,0.25);">
           <strong>⚠️ تنبيه:</strong> هذا الخبر غير صالح — تم تجاهله من الإرسال للموقع
         </div>
       ` : ''}
-
       ${imagesHtml}
-
       ${linksHtml}
-
       <div class="news-footer">
         <span class="source">📡 ${escapeHtml(item.source || '-')}</span>
         <span class="time">🕒 ${formatTimeAgo(item.collected_at) || formatTimestamp(item.collected_at) || '-'}</span>
@@ -579,40 +625,37 @@ function createNewsItem(item) {
   `;
 }
 
-/* ============ Paste-to-Analyze ============ */
+/* ============ Actions ============ */
 
-async function submitPastedNews() {
-  const text = (El.pasteText?.value || '').trim();
-  const source = El.pasteSource?.value || 'manual_copy';
-
-  if (!text) {
-    showToast('الرجاء إلصاق نص الخبر أولاً', 'error');
-    return;
-  }
-
-  setButtonLoading(El.pasteSubmit, true, 'جارٍ الإرسال...');
+async function startAgent() {
+  setButtonLoading(El.startBtn, true, 'بدء التشغيل...');
   try {
-    const res = await fetch(API.ingest, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, source }),
-    });
+    const res = await fetch(API.start, { method: 'POST' });
     const data = await res.json();
-
-    if (data.ok) {
-      showToast(data.message || 'تم إرسال الخبر للتحليل', 'success');
-      El.pasteText.value = '';
-      El.pasteSource.value = '';
-      await loadStatus();
-    } else {
-      showToast(data.message || 'فشل الإرسال', 'error');
-    }
+    showToast(data.message || 'تم تشغيل المشروع', data.ok ? 'success' : 'error');
+    await loadStatus();
   } catch (err) {
     showToast('خطأ في الاتصال بالخادم', 'error');
   } finally {
-    setButtonLoading(El.pasteSubmit, false);
+    setButtonLoading(El.startBtn, false);
   }
 }
+
+async function stopAgent() {
+  setButtonLoading(El.stopBtn, true, 'إيقاف...');
+  try {
+    const res = await fetch(API.stop, { method: 'POST' });
+    const data = await res.json();
+    showToast(data.message || 'تم إيقاف المشروع', data.ok ? 'success' : 'error');
+    await loadStatus();
+  } catch (err) {
+    showToast('خطأ في الاتصال بالخادم', 'error');
+  } finally {
+    setButtonLoading(El.stopBtn, false);
+  }
+}
+
+/* ============ Telegram ============ */
 
 async function sendTelegramCode() {
   const phone = (El.telegramPhone?.value || '').trim();
@@ -653,6 +696,14 @@ function updateTelegramAuth(authorized) {
   if (El.telegramState) El.telegramState.textContent = authorized ? 'متصل' : 'غير متصل';
 }
 
+async function loadTelegramAuth() {
+  try {
+    const res = await fetch(API.telegramStatus);
+    const data = await res.json();
+    updateTelegramAuth(Boolean(data.authorized));
+  } catch { updateTelegramAuth(false); }
+}
+
 async function loadTelegramChannels() {
   try {
     const res = await fetch(API.telegramChannels);
@@ -681,12 +732,77 @@ async function saveTelegramChannels() {
   } catch { showToast('تعذر حفظ القنوات', 'error'); }
 }
 
-async function loadTelegramAuth() {
+/* ============ Paste / Ingest ============ */
+
+async function submitPastedNews() {
+  const text = (El.pasteText?.value || '').trim();
+  const source = El.pasteSource?.value || 'manual_copy';
+  if (!text) { showToast('الرجاء إلصاق نص الخبر أولاً', 'error'); return; }
+
+  setButtonLoading(El.pasteSubmit, true, 'جارٍ الإرسال...');
   try {
-    const res = await fetch(API.telegramStatus);
+    const res = await fetch(API.ingest, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, source }),
+    });
     const data = await res.json();
-    updateTelegramAuth(Boolean(data.authorized));
-  } catch { updateTelegramAuth(false); }
+    if (data.ok) {
+      showToast(data.message || 'تم إرسال الخبر للتحليل', 'success');
+      El.pasteText.value = '';
+      El.pasteSource.value = '';
+      await loadStatus();
+    } else {
+      showToast(data.message || 'فشل الإرسال', 'error');
+    }
+  } catch (err) {
+    showToast('خطأ في الاتصال بالخادم', 'error');
+  } finally {
+    setButtonLoading(El.pasteSubmit, false);
+  }
+}
+
+/* ============ Recommendations ============ */
+
+async function fetchRecommendations() {
+  try {
+    const res = await fetch(API.recommendations);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.error('Recommendations fetch error:', err);
+    return null;
+  }
+}
+
+async function loadRecommendationsFull() {
+  const data = await fetchRecommendations();
+  const status = await fetchStatus();
+  renderRecommendations(data, Boolean(status?.running));
+}
+
+/* ============ Logs / Console ============ */
+
+async function loadLogs() {
+  const data = await fetchLogs(logsOffset, logsLimit);
+  if (!data) return;
+  logsTotal = data.total || 0;
+  renderLogs(data.lines || []);
+  if (El.logsOffsetHint) {
+    El.logsOffsetHint.textContent = `${logsOffset + 1} - ${Math.min(logsOffset + logsLimit, logsTotal)} من ${logsTotal}`;
+  }
+  if (consoleTab === 'output') renderConsoleLines(data.lines || [], El.consoleOutput, 'all');
+}
+
+async function loadSystem() {
+  const data = await fetchSystem();
+  renderSystem(data);
+}
+
+async function loadErrors() {
+  const data = await fetchLogs(logsOffset, logsLimit);
+  if (!data) return;
+  renderConsoleLines(data.lines || [], El.consoleErrors, 'errors');
 }
 
 /* ============ Main Load ============ */
@@ -700,22 +816,19 @@ async function loadStatus() {
   }
 
   allNews = data.latest || [];
-
   renderStats(data.stats || {});
-  renderStatusPill(data.running);
+  renderStatusPill(Boolean(data.running));
 
   const currentFilter = El.filterSelect?.value || 'all';
   renderNews(allNews, currentFilter);
   renderTelegramNews(allNews);
   renderCopyNews(allNews);
-  renderLogs(data.last_log || []);
+  renderRecentNews(allNews);
 
   const recData = await fetchRecommendations();
   renderRecommendations(recData, Boolean(data.running));
 
-  if (El.lastUpdate) {
-    El.lastUpdate.textContent = `آخر تحديث: ${formatTimestamp(data.timestamp)}`;
-  }
+  if (El.lastUpdate) El.lastUpdate.textContent = `آخر تحديث: ${formatTimestamp(data.timestamp)}`;
 }
 
 /* ============ Countdown Timer ============ */
@@ -723,24 +836,28 @@ async function loadStatus() {
 function startCountdown() {
   if (!AUTO_REFRESH) return;
   countdownValue = Math.floor(REFRESH_INTERVAL / 1000);
-
   if (refreshTimer) clearInterval(refreshTimer);
-
   refreshTimer = setInterval(() => {
     countdownValue--;
     if (countdownValue <= 0) {
       countdownValue = Math.floor(REFRESH_INTERVAL / 1000);
       loadStatus();
+      if (navPage === 'logs') loadLogs();
+      if (consoleTab === 'output') loadLogs();
+      if (consoleTab === 'errors') loadErrors();
+      if (consoleTab === 'system') loadSystem();
     }
-    if (El.countdownEl) {
-      El.countdownEl.textContent = countdownValue;
-    }
+    if (El.countdownEl) El.countdownEl.textContent = countdownValue;
   }, 1000);
 }
 
 /* ============ Event Listeners ============ */
 
 document.addEventListener('DOMContentLoaded', function() {
+  initNavigation();
+  initTabs();
+  initConsoleTabs();
+
   El.startBtn?.addEventListener('click', startAgent);
   El.stopBtn?.addEventListener('click', stopAgent);
   El.refreshBtn?.addEventListener('click', loadStatus);
@@ -751,8 +868,21 @@ document.addEventListener('DOMContentLoaded', function() {
   El.telegramLoadChannels?.addEventListener('click', loadTelegramChannels);
   El.telegramSaveChannels?.addEventListener('click', saveTelegramChannels);
 
-  initTabs();
+  El.logsRefresh?.addEventListener('click', () => { logsOffset = 0; loadLogs(); });
+  El.logsTop?.addEventListener('click', async () => {
+    const data = await fetchLogs(0, logsLimit);
+    if (data) { logsOffset = 0; logsTotal = data.total || 0; renderLogs(data.lines || []); }
+    if (El.logsOffsetHint) El.logsOffsetHint.textContent = `1 - ${Math.min(logsLimit, logsTotal)} من ${logsTotal}`;
+  });
+  El.logsBottom?.addEventListener('click', async () => {
+    const data = await fetchLogs(Math.max(0, logsTotal - logsLimit), logsLimit);
+    if (data) { logsOffset = Math.max(0, logsTotal - logsLimit); renderLogs(data.lines || []); }
+    if (El.logsOffsetHint) El.logsOffsetHint.textContent = `${logsOffset + 1} - ${logsTotal} من ${logsTotal}`;
+  });
+
   loadStatus();
   loadTelegramAuth();
+  loadLogs();
+  loadSystem();
   startCountdown();
 });

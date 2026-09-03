@@ -51,15 +51,66 @@ GLMinvestment/data-engine/data/data_engine.db
 GET /api/news-feed -> website news UI
 ```
 
+## Scrapers Architecture
+
+الـ scrapers في `collectors/scrappers/` تعمل كـ **standalone scripts** وتخزن في `db/data_engine.db` (معزأة عن `data/news.db`).
+كل scraper يُشغّل مرة واحدة يومياً عن طريق cron أو `run.bat`، ويبقي البيانات محدثة.
+
+### Data Flow
+```
+TradingView pages (ar.tradingview.com)
+    ├── Playwright / REST endpoint
+    ├── extract symbols + tab data (9 tabs)
+    └── save_to_db() → db/data_engine.db
+        ├── تبويبات market_movers_tabs  ← tradingview_market_movers.py (الجديد)
+        ├── stocks                     ← tradingview_scraper.py + tradingview_rest.py
+        └── screener_lists             ← tradingview_screener_lists.py
+```
+
+### Scraper Commands
+```bash
+# 9-tabs scraper (الجديد — يسحب كل التبويبات من صفحات Market Movers)
+python collectors/scrappers/tradingview_market_movers.py
+
+# Screener lists (gainers/losers/active/...)
+python collectors/scrappers/tradingview_screener_lists.py
+
+# Full market scraper (all stocks + tabs)
+python collectors/scrappers/tradingview_scraper.py
+
+# REST fetcher (no Playwright — خفيف وسريع)
+python collectors/scrappers/tradingview_rest.py --market egypt
+
+# Investing.com market data (sectors/commodities/currencies)
+python collectors/scrappers/investing_scraper.py
+
+# Investing.com news → data/news.db
+python collectors/investing_news_collector.py
+```
+
+### Stock Data Sources (Fallback Chain)
+1. TradingView REST (`tradingview_rest.py`) — خفيف، ثواني
+2. TradingView Playwright (`tradingview_scraper.py`) — كامل، 60-120 ث
+3. EGXPilot — fallback نهائي
+
+---
+
 ## Local Components
 
 - `collectors/telegram_collector.py`: Telegram messages and downloaded media.
 - `collectors/rss_collector.py`: RSS feeds and feed media.
 - `collectors/web_scraper.py`: web articles, Open Graph images, and ticker news.
 - `collectors/egyptian_sources.py`: specialized Egyptian-market sites (currently Alborsaa News — alborsaanews.com — قسم البورصة والشركات). Disabled by default; enable with `ENABLE_EGYPTIAN_SOURCES=1`. Sources under grace period require `importance >= NEW_SOURCE_MIN_IMPORTANCE` before publishing.
+- `collectors/investing_news_collector.py`: جمع أخبار Investing.com — يكتب مباشرة إلى `data/news.db` عبر NewsStore
 - `collectors/keyword_filter.py`: EGX relevance gate (keyword → ticker → AI fallback) applied by all collectors.
 - `config/sources.py`: central source registry; maps each channel/feed/site to its display name on the live site.
 - `data/news_store.py`: local SQLite persistence and migrations.
+- `collectors/scrappers/` (package): TradingView data scrapers using Playwright or REST.
+  - `tradingview_rest.py`: الأسعار الأساسية عبر Scanner REST endpoint (بدون Playwright)
+  - `tradingview_scraper.py`: Full scraper — كل الأسواق + 8 تبويبات تفصيلية (Performance/Valuation/Technicals/...)
+  - `tradingview_screener_lists.py`: قوائم مذكية (gainers, losers, active, unusual-volume, ...) — يسحب رمز + اسم + ترتيب فقط
+  - `tradingview_market_movers.py`: الـ **9 تبويبات** على صفحة Market Movers (overview, performance, technicals, valuation, dividends, profitability, incomeStatement, balanceSheet, cashFlow) — يسحب الجدول الكامل مع الـ column headers والـ cell values
+  - `investing_scraper.py`: Investing.com — sector tables، commodities، currencies → `data/investing_egypt.json`
 - `analyzer/news_analyzer.py`: Ollama text analysis and fallback model.
 - `analyzer/vision_analyzer.py`: optional image analysis/OCR.
 - `analyzer/recommendation_aggregator.py`: يجمع توصيات الأسهم من قنوات
@@ -312,7 +363,7 @@ After editing:
 - The Egyptian sources collector is a new channel for EGX-specific news from specialized local sites; it is intentionally opt-in and gated behind a grace period.
 - `ENABLE_TELEGRAM=0` and `SOCIAL_PLATFORMS=` are intentional while a separate worker owns Telegram collection and social publishing.
 
-Last updated: 2026-09-02
+Last updated: 2026-09-03
 
 ---
 
