@@ -1161,3 +1161,207 @@ body[dir="rtl"] { text-align: right; }
   .topbar-brand h1 { font-size: 1.3rem; }
   :root { --console-height: 150px; }
 }
+
+/* ============ Organized Workspace Layout ============ */
+.app-body {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  align-items: start;
+}
+
+.main {
+  width: 100%;
+  max-width: 1480px;
+  min-width: 0;
+  margin: 0 auto;
+  padding: 28px clamp(18px, 3vw, 42px) 40px;
+}
+
+.page-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.page-heading h2 {
+  margin-top: 4px;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  line-height: 1.25;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.page-note { color: var(--text-dim); font-size: 0.78rem; }
+
+.stats-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stats-grid .card {
+  min-height: 124px;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.75fr) minmax(0, 1.6fr);
+  gap: 16px;
+  align-items: start;
+  margin-top: 16px;
+}
+
+.dashboard-grid .panel { margin-bottom: 0; }
+.quick-actions .controls { align-items: stretch; flex-direction: column; }
+.quick-actions .btn, .quick-actions .filter-select, .quick-actions .telegram-box { width: 100%; justify-content: center; }
+.recent-panel .news-list { max-height: 570px; }
+
+.page > .panel { margin-bottom: 16px; }
+.page > .panel:last-child { margin-bottom: 0; }
+
+.panel, .card {
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+}
+
+.news-list { max-height: 68vh; }
+
+#page-news > .panel,
+#page-recommendations > .panel,
+#page-logs > .panel,
+#page-settings > .panel { max-width: 1180px; margin-inline: auto; }
+
+#page-logs .console-panel {
+  max-width: 1180px;
+  margin: 16px auto 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.console-panel { height: 300px; min-height: 220px; }
+
+@media (min-width: 901px) {
+  .sidebar { width: var(--sidebar-width); }
+  .nav-btn { justify-content: flex-start; }
+}
+
+/* ============ Market Panel ============ */
+.market-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.market-tab {
+  flex: 1;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.market-tab:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+}
+
+.market-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: rgba(78, 205, 196, 0.06);
+}
+
+.market-content { display: none; }
+.market-content.active { display: block; }
+
+.market-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.market-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.market-table thead {
+  background: rgba(78, 205, 196, 0.08);
+  border-bottom: 1px solid var(--border);
+}
+
+.market-table th {
+  text-align: right;
+  padding: 10px 12px;
+  color: var(--text-dim);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.market-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.market-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.market-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.market-table .muted {
+  color: var(--text-dim);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .app-body { grid-template-columns: 64px minmax(0, 1fr); }
+}
+
+@media (max-width: 760px) {
+  html, body { overflow-x: hidden; }
+  .app-body { display: flex; }
+  .app-body { overflow-x: hidden; }
+  .topbar { width: 100%; }
+  .topbar-actions { width: 100%; min-width: 0; justify-content: space-between; }
+  .refresh-info { min-width: 0; max-width: 100%; flex-wrap: wrap; }
+  .refresh-info #last-update { min-width: 0; max-width: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sidebar { max-width: 100%; }
+  .main { padding: 22px 16px 32px; }
+  .page-heading { align-items: flex-start; flex-direction: column; gap: 6px; }
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .quick-actions .controls { flex-direction: row; }
+  .quick-actions .btn, .quick-actions .filter-select, .quick-actions .telegram-box { width: auto; flex: 1 1 140px; }
+  #page-logs .console-panel { margin-top: 16px; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .quick-actions .controls { flex-direction: column; }
+  .quick-actions .btn, .quick-actions .filter-select, .quick-actions .telegram-box { width: 100%; }
+}

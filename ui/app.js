@@ -17,6 +17,7 @@ const API = {
   telegramChannels: '/api/telegram/channels',
   logs: '/api/logs',
   system: '/api/system',
+  daleelak: 'https://getdaleelak.com/api/v1/feed.json',
 };
 
 const REFRESH_INTERVAL = 15000;
@@ -81,6 +82,9 @@ const El = {
   logsTop: document.getElementById('logs-top'),
   logsBottom: document.getElementById('logs-bottom'),
   logsOffsetHint: document.getElementById('logs-offset-hint'),
+  marketUpdated: document.getElementById('market-updated'),
+  currenciesTbody: document.getElementById('currencies-tbody'),
+  metalsTbody: document.getElementById('metals-tbody'),
 };
 
 /* ============ Utility Helpers ============ */
@@ -209,6 +213,100 @@ function initTabs() {
       if (contentEl) contentEl.classList.add('active');
     });
   });
+}
+
+/* ============ Market Tabs ============ */
+
+function initMarketTabs() {
+  document.querySelectorAll('.market-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.market-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.market-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      const target = document.getElementById(`market-${tab.dataset.market}`);
+      if (target) target.classList.add('active');
+    });
+  });
+}
+
+/* ============ Daleelak Market Data ============ */
+
+async function fetchDaleelak() {
+  try {
+    const res = await fetch(API.daleelak, { method: 'GET' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.error('Daleelak fetch error:', err);
+    return null;
+  }
+}
+
+function renderDaleelak(data) {
+  if (!data || !Array.isArray(data.assets)) {
+    if (El.currenciesTbody) El.currenciesTbody.innerHTML = '<tr><td colspan="5" class="muted">تعذر تحميل البيانات</td></tr>';
+    if (El.metalsTbody) El.metalsTbody.innerHTML = '<tr><td colspan="5" class="muted">تعذر تحميل البيانات</td></tr>';
+    return;
+  }
+
+  const generatedAt = data.generatedAt ? new Date(data.generatedAt).toLocaleString('ar-EG') : '';
+  if (El.marketUpdated) El.marketUpdated.textContent = generatedAt ? `آخر تحديث: ${generatedAt}` : '—';
+
+  const currencies = data.assets.filter(a => a.category === 'currencies');
+  const metals = data.assets.filter(a => a.category === 'metals');
+
+  const renderAssetRow = (asset, side) => {
+    const dir = asset.directions?.[side];
+    if (!dir || !dir.best) return '';
+    const best = dir.best;
+    const sellerAr = best.sellerAr || best.seller || '';
+    const value = best.value != null ? best.value.toLocaleString('ar-EG') : '-';
+    return `<span>${escapeHtml(sellerAr)}</span><span>${value}</span>`;
+  };
+
+  const renderCurrencyRows = () => {
+    if (!El.currenciesTbody) return '';
+    if (!currencies.length) return '<tr><td colspan="5" class="muted">لا توجد بيانات</td></tr>';
+    return currencies.map(asset => {
+      const id = escapeHtml(asset.id || asset.slug || '-');
+      const unit = escapeHtml(asset.unit || '-');
+      const buyCells = renderAssetRow(asset, 'buy');
+      const sellCells = renderAssetRow(asset, 'sell');
+      return `<tr>
+        <td><strong>${id}</strong><br><small class="muted">${unit}</small></td>
+        <td>${buyCells ? buyCells.split('</span>')[0] : '-'}</td>
+        <td>${buyCells ? buyCells.split('</span>')[1] || '-' : '-'}</td>
+        <td>${sellCells ? sellCells.split('</span>')[0] : '-'}</td>
+        <td>${sellCells ? sellCells.split('</span>')[1] || '-' : '-'}</td>
+      </tr>`;
+    }).join('');
+  };
+
+  const renderMetalsRows = () => {
+    if (!El.metalsTbody) return '';
+    if (!metals.length) return '<tr><td colspan="5" class="muted">لا توجد بيانات</td></tr>';
+    return metals.map(asset => {
+      const id = escapeHtml(asset.id || asset.slug || '-');
+      const unit = escapeHtml(asset.unit || '-');
+      const buyCells = renderAssetRow(asset, 'buy');
+      const sellCells = renderAssetRow(asset, 'sell');
+      return `<tr>
+        <td><strong>${id}</strong><br><small class="muted">${unit}</small></td>
+        <td>${buyCells ? buyCells.split('</span>')[0] : '-'}</td>
+        <td>${buyCells ? buyCells.split('</span>')[1] || '-' : '-'}</td>
+        <td>${sellCells ? sellCells.split('</span>')[0] : '-'}</td>
+        <td>${sellCells ? sellCells.split('</span>')[1] || '-' : '-'}</td>
+      </tr>`;
+    }).join('');
+  };
+
+  if (El.currenciesTbody) El.currenciesTbody.innerHTML = renderCurrencyRows();
+  if (El.metalsTbody) El.metalsTbody.innerHTML = renderMetalsRows();
+}
+
+async function loadMarketData() {
+  const data = await fetchDaleelak();
+  renderDaleelak(data);
 }
 
 /* ============ Console Tabs ============ */
@@ -828,6 +926,8 @@ async function loadStatus() {
   const recData = await fetchRecommendations();
   renderRecommendations(recData, Boolean(data.running));
 
+  await loadMarketData();
+
   if (El.lastUpdate) El.lastUpdate.textContent = `آخر تحديث: ${formatTimestamp(data.timestamp)}`;
 }
 
@@ -857,6 +957,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initNavigation();
   initTabs();
   initConsoleTabs();
+  initMarketTabs();
 
   El.startBtn?.addEventListener('click', startAgent);
   El.stopBtn?.addEventListener('click', stopAgent);

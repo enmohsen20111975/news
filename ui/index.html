@@ -58,7 +58,14 @@
         <main class="main" id="main-content">
           <!-- Dashboard -->
           <section class="page active" id="page-dashboard">
-            <div class="grid">
+            <div class="page-heading">
+              <div>
+                <span class="eyebrow">لوحة المتابعة</span>
+                <h2>نظرة عامة على غرفة الأخبار</h2>
+              </div>
+              <span class="page-note">تتحدث البيانات تلقائياً كل 15 ثانية</span>
+            </div>
+            <div class="grid stats-grid">
               <div class="card">
                 <div class="label">📰 إجمالي الأخبار</div>
                 <div class="value" id="total-count">0</div>
@@ -77,7 +84,8 @@
               </div>
             </div>
 
-            <div class="panel" style="margin-top:20px;">
+            <div class="dashboard-grid">
+            <div class="panel quick-actions">
               <h2><span>إجراءات سريعة</span></h2>
               <div class="controls">
                 <button class="btn primary" id="start-btn"><span>تشغيل المشروع</span></button>
@@ -93,9 +101,24 @@
               </div>
             </div>
 
-            <div class="panel" style="margin-top:20px;">
+            <div class="panel recent-panel">
               <h2><span>آخر الأخبار</span><span class="count" id="recent-news-count">0</span></h2>
               <ul class="news-list" id="recent-news-list"></ul>
+            </div>
+
+            <div class="panel market-panel">
+              <h2><span>أسعار السوق</span><span class="count" id="market-updated">—</span></h2>
+              <div class="market-tabs">
+                <button class="market-tab active" data-market="currencies">عملات</button>
+                <button class="market-tab" data-market="metals">ذهب / معادن</button>
+              </div>
+              <div class="market-content active" id="market-currencies">
+                <div class="market-table-wrap"><table class="market-table"><thead><tr><th>الزوج</th><th>شراء</th><th>البنك</th><th>بيع</th><th>البنك</th></tr></thead><tbody id="currencies-tbody"></tbody></table></div>
+              </div>
+              <div class="market-content" id="market-metals">
+                <div class="market-table-wrap"><table class="market-table"><thead><tr><th>الأصل</th><th>شراء</th><th>المصدر</th><th>بيع</th><th>المصدر</th></tr></thead><tbody id="metals-tbody"></tbody></table></div>
+              </div>
+            </div>
             </div>
           </section>
 
@@ -155,6 +178,25 @@
               </div>
               <ul class="log-list" id="logs-list"></ul>
             </section>
+            <section class="console-panel" aria-label="الكونسول">
+              <div class="console-header">
+                <div class="console-tabs">
+                  <button class="console-tab active" data-console="output">📟 الإخراج</button>
+                  <button class="console-tab" data-console="system">💻 النظام</button>
+                  <button class="console-tab" data-console="errors">⚠️ الأخطاء</button>
+                </div>
+                <div class="console-actions">
+                  <button class="btn secondary" id="console-clear"><span>مسح</span></button>
+                </div>
+              </div>
+              <div class="console-body">
+                <div class="console-content active" id="console-output">
+                  <div class="empty-state"><p>في انتظار البيانات...</p></div>
+                </div>
+                <div class="console-content" id="console-system"></div>
+                <div class="console-content" id="console-errors"></div>
+              </div>
+            </section>
           </section>
 
           <!-- Settings -->
@@ -178,26 +220,6 @@
           </section>
         </main>
 
-        <!-- ===== Console Panel ===== -->
-        <section class="console-panel" aria-label="الكونسول">
-          <div class="console-header">
-            <div class="console-tabs">
-              <button class="console-tab active" data-console="output">📟 الإخراج</button>
-              <button class="console-tab" data-console="system">💻 النظام</button>
-              <button class="console-tab" data-console="errors">⚠️ الأخطاء</button>
-            </div>
-            <div class="console-actions">
-              <button class="btn secondary" id="console-clear"><span>مسح</span></button>
-            </div>
-          </div>
-          <div class="console-body">
-            <div class="console-content active" id="console-output">
-              <div class="empty-state"><p>في انتظار البيانات...</p></div>
-            </div>
-            <div class="console-content" id="console-system"></div>
-            <div class="console-content" id="console-errors"></div>
-          </div>
-        </section>
       </div>
     </div>
 
