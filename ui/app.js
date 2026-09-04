@@ -77,14 +77,10 @@ const El = {
   consoleOutput: document.getElementById('console-output'),
   consoleSystem: document.getElementById('console-system'),
   consoleErrors: document.getElementById('console-errors'),
-  consoleClear: document.getElementById('console-clear'),
-  logsRefresh: document.getElementById('logs-refresh'),
-  logsTop: document.getElementById('logs-top'),
-  logsBottom: document.getElementById('logs-bottom'),
-  logsOffsetHint: document.getElementById('logs-offset-hint'),
-  marketUpdated: document.getElementById('market-updated'),
-  currenciesTbody: document.getElementById('currencies-tbody'),
-  metalsTbody: document.getElementById('metals-tbody'),
+  allNewsCount: document.getElementById('all-news-count'),
+  allNewsList: document.getElementById('all-news-list'),
+  allNewsSource: document.getElementById('all-news-source'),
+  allNewsRefresh: document.getElementById('all-news-refresh'),
 };
 
 /* ============ Utility Helpers ============ */
@@ -196,6 +192,7 @@ function initNavigation() {
       if (page === 'logs') loadLogs();
       if (page === 'recommendations') loadRecommendationsFull();
       if (page === 'settings') loadTelegramAuth();
+      if (page === 'all-news') { loadNewsSources(); loadAllNews(); }
     });
   });
 }
@@ -213,6 +210,72 @@ function initTabs() {
       if (contentEl) contentEl.classList.add('active');
     });
   });
+}
+
+/* ============ All News ============ */
+
+async function loadAllNews() {
+  const source = El.allNewsSource ? El.allNewsSource.value : '';
+  const url = new URL('/api/news', window.location.origin);
+  url.searchParams.set('limit', '200');
+  if (source) url.searchParams.set('source', source);
+
+  try {
+    const res = await fetch(url.toString());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    renderAllNews(data);
+  } catch (err) {
+    console.error('loadAllNews error:', err);
+  }
+}
+
+function renderAllNews(data) {
+  const items = Array.isArray(data.items) ? data.items : [];
+  if (El.allNewsCount) El.allNewsCount.textContent = `${data.total || items.length} خبر`;
+
+  if (!items.length) {
+    if (El.allNewsList) El.allNewsList.innerHTML = '<li class="empty-state"><p>لا توجد أخبار حالياً</p></li>';
+    return;
+  }
+
+  if (El.allNewsList) {
+    El.allNewsList.innerHTML = items.map(item => {
+      const sentiment = item.sentiment || 'neutral';
+      const status = item.status || 'pending';
+      const source = escapeHtml(item.source || 'غير معروف');
+      const time = escapeHtml(item.collected_at || '');
+      const title = escapeHtml(item.title || 'بدون عنوان');
+      const summary = escapeHtml(item.summary_ar || item.news_text || '');
+      return `<li class="news-item">
+        <div class="news-top">
+          <div class="title">${title}</div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+            <span class="tag">${source}</span>
+            <span class="tag status-${status}">${status}</span>
+          </div>
+        </div>
+        ${summary ? `<div class="news-summary">${summary}</div>` : ''}
+        <div class="news-footer">
+          <span class="source">🕒 ${time}</span>
+        </div>
+      </li>`;
+    }).join('');
+  }
+}
+
+async function loadNewsSources() {
+  try {
+    const res = await fetch('/api/news/sources');
+    if (!res.ok) return;
+    const data = await res.json();
+    const sources = Array.isArray(data.sources) ? data.sources : [];
+    if (!El.allNewsSource) return;
+    El.allNewsSource.innerHTML = '<option value="">كل المصادر</option>' +
+      sources.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+  } catch (err) {
+    console.error('loadNewsSources error:', err);
+  }
 }
 
 /* ============ Market Tabs ============ */
@@ -968,6 +1031,9 @@ document.addEventListener('DOMContentLoaded', function() {
   El.telegramVerify?.addEventListener('click', verifyTelegram);
   El.telegramLoadChannels?.addEventListener('click', loadTelegramChannels);
   El.telegramSaveChannels?.addEventListener('click', saveTelegramChannels);
+
+  El.allNewsRefresh?.addEventListener('click', loadAllNews);
+  El.allNewsSource?.addEventListener('change', loadAllNews);
 
   El.logsRefresh?.addEventListener('click', () => { logsOffset = 0; loadLogs(); });
   El.logsTop?.addEventListener('click', async () => {

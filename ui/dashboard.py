@@ -370,6 +370,74 @@ def index() -> HTMLResponse:
     return HTMLResponse(html_path.read_text(encoding='utf-8'))
 
 
+@app.get('/api/news')
+def news_list(limit: int = 100, offset: int = 0, source: str = ''):
+    if not DB_PATH.exists():
+        return {'items': [], 'total': 0, 'limit': limit, 'offset': offset}
+
+    conn = _db_connect()
+    try:
+        query = '''
+            SELECT title, source, source_type, importance, sentiment, impact_type, summary_ar, collected_at, status, sent_ok, tickers, image_paths, image_urls, ocr_text, published_links, raw_analysis
+            FROM news
+        '''
+        params = []
+        if source:
+            query += ' WHERE source = ?'
+            params.append(source)
+        query += ' ORDER BY collected_at DESC LIMIT ? OFFSET ?'
+        params.extend([limit, offset])
+
+        rows = conn.execute(query, params).fetchall()
+        result = []
+        for r in rows:
+            raw_analysis = r['raw_analysis'] or {}
+            if isinstance(raw_analysis, str):
+                try:
+                    raw_analysis = json.loads(raw_analysis)
+                except Exception:
+                    raw_analysis = {}
+            result.append({
+                'title': r['title'] or 'بدون عنوان',
+                'source': r['source'] or 'غير معروف',
+                'source_type': r['source_type'] or 'web',
+                'importance': r['importance'] or 0,
+                'sentiment': r['sentiment'] or 'neutral',
+                'impact_type': r['impact_type'] or 'general',
+                'summary_ar': r['summary_ar'] or '',
+                'collected_at': r['collected_at'] or '',
+                'status': r['status'] or 'pending',
+                'sent_ok': bool(r['sent_ok']),
+                'tickers': r['tickers'] or [],
+                'image_paths': r['image_paths'] or [],
+                'image_urls': r['image_urls'] or [],
+                'ocr_text': r['ocr_text'] or '',
+                'published_links': r['published_links'] or {},
+                'raw_analysis': raw_analysis,
+                'news_text': raw_analysis.get('news_text', '') or r['summary_ar'] or '',
+                'is_valid_news': raw_analysis.get('is_valid_news', True),
+            })
+
+        total_row = conn.execute('SELECT COUNT(*) as c FROM news').fetchone()
+        total = total_row['c'] if total_row else 0
+        return {'items': result, 'total': total, 'limit': limit, 'offset': offset}
+    finally:
+        conn.close()
+
+
+@app.get('/api/news/sources')
+def news_sources():
+    if not DB_PATH.exists():
+        return {'sources': []}
+
+    conn = _db_connect()
+    try:
+        rows = conn.execute('SELECT DISTINCT source FROM news ORDER BY source').fetchall()
+        return {'sources': [r['source'] for r in rows]}
+    finally:
+        conn.close()
+
+
 @app.get('/api/status')
 def status():
     data = {
@@ -382,7 +450,20 @@ def status():
     return data
 
 
-@app.post('/api/monitor/start')
+@app.get('/api/system')
+def system_info():
+    try:
+        import platform
+        return {
+            'python': platform.python_version(),
+            'system': platform.system(),
+            'release': platform.release(),
+            'hostname': platform.node(),
+            'pid': int(PID_PATH.read_text(encoding='ascii').strip()) if PID_PATH.exists() else None,
+            'running': _process_running(),
+        }
+    except Exception as exc:
+        return JSONResponse({'error': str(exc)}, status_code=400)
 def start_monitor():
     if _process_running():
         return JSONResponse({'ok': True, 'running': True, 'message': 'المشروع يعمل بالفعل'})

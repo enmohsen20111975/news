@@ -40,6 +40,10 @@
             <span class="nav-icon">📰</span>
             <span>الأخبار</span>
           </button>
+          <button class="nav-btn" data-nav="all-news">
+            <span class="nav-icon">🌐</span>
+            <span>كل الأخبار</span>
+          </button>
           <button class="nav-btn" data-nav="recommendations">
             <span class="nav-icon">📊</span>
             <span>التوصيات</span>
@@ -155,6 +159,20 @@
               <div class="tab-content" id="tab-recommendations-content">
                 <ul class="news-list" id="recommendations-list"></ul>
               </div>
+            </section>
+          </section>
+
+          <!-- All News -->
+          <section class="page" id="page-all-news">
+            <section class="panel">
+              <h2><span>كل الأخبار</span><span class="count" id="all-news-count">0</span></h2>
+              <div class="controls">
+                <select class="filter-select" id="all-news-source">
+                  <option value="">كل المصادر</option>
+                </select>
+                <button class="btn secondary" id="all-news-refresh"><span>تحديث</span></button>
+              </div>
+              <ul class="news-list" id="all-news-list"></ul>
             </section>
           </section>
 
